@@ -39,7 +39,7 @@ button{font-family:inherit;cursor:pointer}
 .btn:active{background:var(--blue-d)}
 .btn.orange{background:var(--orange)}
 .btn.ghost{background:#fff;color:var(--blue);border:1.5px solid var(--blue)}
-.btn.small{padding:9px 13px;min-height:42px;font-size:.86rem}
+.btn.small{padding:9px 13px;min-height:48px;font-size:.86rem}
 .btn:disabled{opacity:.45;cursor:not-allowed}
 .spk{background:var(--orange);color:#fff;border:none;border-radius:999px;width:40px;height:40px;font-size:1.05rem;flex:0 0 auto;display:inline-flex;align-items:center;justify-content:center;vertical-align:middle}
 .spk:active{background:var(--orange-d)}
@@ -474,7 +474,7 @@ var LSFStore={
 var LSFCloud={
   URL:'https://amwgxgixgyuoyzvesyxj.supabase.co',
   KEY:'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFtd2d4Z2l4Z3l1b3l6dmVzeXhqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTQxMzgwOTIsImV4cCI6MjEwOTcxNDA5Mn0.2A1iC_hcgFaOEzdu4OgUH66wOprf4KFYMz-mpkuX7zU',
-  _timer:null,_busy:false,_hold:false,
+  _timer:null,_busy:false,_hold:false,_lastErr:'',_recovery:null,
   session:function(){return LSFStore.getAuth()},
   headers:function(tok){var h={'apikey':LSFCloud.KEY,'Content-Type':'application/json'};if(tok)h['Authorization']='Bearer '+tok;return h},
   _saveSession:function(j){LSFStore.setAuth({at:j.access_token,rt:j.refresh_token,exp:Date.now()+((j.expires_in||3600)*1000),email:(j.user&&j.user.email)||'',uid:(j.user&&j.user.id)||''})},
@@ -482,10 +482,12 @@ var LSFCloud={
   signUp:function(email,pass){return LSFCloud.authCall('signup',{email:email,password:pass}).then(function(j){if(j&&j.access_token){LSFCloud._saveSession(j);return j}throw new Error('Account created, but no session came back — please sign in.')})},
   signIn:function(email,pass){return LSFCloud.authCall('token?grant_type=password',{email:email,password:pass}).then(function(j){LSFCloud._saveSession(j);return j})},
   signOut:function(){var s=LSFCloud.session();LSFStore.setAuth(null);LSFCloud._hold=false;if(s&&s.at){try{fetch(LSFCloud.URL+'/auth/v1/logout',{method:'POST',headers:LSFCloud.headers(s.at)})}catch(e){}}},
+  recover:function(email){return fetch(LSFCloud.URL+'/auth/v1/recover',{method:'POST',headers:LSFCloud.headers(),body:JSON.stringify({email:email})}).then(function(r){if(!r.ok)return r.json().then(function(j){throw new Error((j&&(j.msg||j.message))||('Error '+r.status))});return true})},
+  completeReset:function(pw){var rc=LSFCloud._recovery;if(!rc||!rc.at)return Promise.reject(new Error('This reset link is no longer active — request a fresh one.'));return fetch(LSFCloud.URL+'/auth/v1/user',{method:'PUT',headers:LSFCloud.headers(rc.at),body:JSON.stringify({password:pw})}).then(function(r){return r.json().then(function(j){if(!r.ok)throw new Error((j&&(j.msg||j.message))||('Error '+r.status));return j})}).then(function(user){LSFStore.setAuth({at:rc.at,rt:rc.rt,exp:Date.now()+((rc.exp||3600)*1000),email:(user&&user.email)||'',uid:(user&&user.id)||''});LSFCloud._recovery=null;return user})},
   refresh:function(){var s=LSFCloud.session();if(!s||!s.rt)return Promise.reject(new Error('no session'));return LSFCloud.authCall('token?grant_type=refresh_token',{refresh_token:s.rt}).then(function(j){LSFCloud._saveSession(j);return j})},
   token:function(){var s=LSFCloud.session();if(!s)return Promise.resolve(null);if(s.exp&&Date.now()<s.exp-60000)return Promise.resolve(s.at);return LSFCloud.refresh().then(function(){var s2=LSFCloud.session();return s2?s2.at:null}).catch(function(){return s.at})},
   _rest:function(method,path,body,prefer,retried){return LSFCloud.token().then(function(tok){if(!tok)throw new Error('not signed in');var h=LSFCloud.headers(tok);if(prefer)h['Prefer']=prefer;var opt={method:method,headers:h};if(body)opt.body=JSON.stringify(body);return fetch(LSFCloud.URL+'/rest/v1/'+path,opt).then(function(r){if(r.status===401&&!retried){return LSFCloud.refresh().then(function(){return LSFCloud._rest(method,path,body,prefer,true)})}return r})})},
-  push:function(){var s=LSFCloud.session();if(!s||!s.uid)return Promise.reject(new Error('not signed in'));return LSFCloud._rest('POST','lsf_progress',{user_id:s.uid,data:ST,updated_at:new Date().toISOString()},'resolution=merge-duplicates').then(function(r){if(!r.ok)throw new Error('Cloud save failed ('+r.status+')');ST.cloudAt=Date.now();LSFStore.save(ST);return true})},
+  push:function(){var s=LSFCloud.session();if(!s||!s.uid)return Promise.reject(new Error('not signed in'));return LSFCloud._rest('POST','lsf_progress',{user_id:s.uid,data:ST,updated_at:new Date().toISOString()},'resolution=merge-duplicates').then(function(r){if(!r.ok)throw new Error('Cloud save failed ('+r.status+')');ST.cloudAt=Date.now();LSFCloud._lastErr='';LSFStore.save(ST);return true}).catch(function(e){LSFCloud._lastErr=String((e&&e.message)||e||'Cloud save failed');throw e})},
   pull:function(){var s=LSFCloud.session();if(!s||!s.uid)return Promise.reject(new Error('not signed in'));return LSFCloud._rest('GET','lsf_progress?select=data,updated_at&user_id=eq.'+encodeURIComponent(s.uid)).then(function(r){if(!r.ok)throw new Error('Cloud load failed ('+r.status+')');return r.json()}).then(function(rows){if(!rows||!rows.length||!rows[0].data)return null;return{data:rows[0].data,at:rows[0].updated_at}})},
   schedule:function(){if(LSFCloud._hold||!LSFCloud.session())return;if(LSFCloud._timer)clearTimeout(LSFCloud._timer);LSFCloud._timer=setTimeout(function(){if(LSFCloud._busy)return;LSFCloud._busy=true;LSFCloud.push().catch(function(){}).then(function(){LSFCloud._busy=false;var el=document.getElementById('cloudStatus');if(el)el.textContent=cloudStatusText()})},5000)},
   applyRemote:function(remote){var fresh=defState();var clean={};for(var ck in fresh){clean[ck]=(ck in remote)?remote[ck]:fresh[ck]}clean.cloudAt=Date.now();return LSFStore.importText(JSON.stringify(clean))?clean:null}
@@ -2225,16 +2227,34 @@ function testMic(){
 }
 /* ── LAYER 5 · UI — Progress screen. Backup / restore / reset go through LSFStore (Layer 2); the 'Download app file' utility is Layer 6 shell behaviour wired here. ── */
 /* ============ PROGRESS ============ */
+function resetCardHtml(){
+  var h='<div class="card" style="border:2px solid var(--orange)"><h3>🔑 Choose a new password</h3>';
+  h+='<p class="muted">You opened a password-reset link from your email. Set a new password (at least 6 characters) — you are then signed in with it straight away, and your cloud backup keeps working.</p>';
+  h+='<label class="muted" style="font-weight:600">New password</label><input type="password" id="resetPass" autocomplete="new-password" placeholder="At least 6 characters" style="width:100%;min-height:48px;margin:4px 0 10px;padding:0 10px">';
+  h+='<button class="btn" id="resetSetBtn" type="button" style="width:100%">Set new password</button><div id="resetFb"></div></div>';
+  return h;
+}
+function wireResetCard(){
+  var b=$('resetSetBtn');if(!b)return;
+  b.onclick=function(){
+    var pw=$('resetPass').value||'';var fb=$('resetFb');
+    if(pw.length<6){if(fb)fb.innerHTML='<div class="feedback no" style="margin-top:10px">❌ Please choose a password of at least 6 characters.</div>';return}
+    b.disabled=true;
+    LSFCloud.completeReset(pw).then(function(){renderAccount();showNotice('✅ New password set — you are signed in.')}).catch(function(e){b.disabled=false;if(fb)fb.innerHTML='<div class="feedback no" style="margin-top:10px">❌ '+esc(e.message||'This reset link could not be used — request a fresh one via Forgot password.')+'</div>'});
+  };
+}
 function renderAccount(){
   goTab('progress');syncRoute('#/account');
   var h='<button class="btn ghost small" type="button" onclick="goRoute(\'#/progress\')">← My Progress</button>';
+  if(LSFCloud._recovery)h+=resetCardHtml();
   h+='<div class="card"><div class="kicker">☁️ Your account</div><h2 style="font-size:1.25rem;margin:4px 0">Sign up / Sign in</h2><p class="muted">One free account — email + password — backs up your Spanish progress online (Supabase), so it follows you to any phone or browser. No account? The app still works fully on this device; the account is only a safe copy.</p></div>';
   h+=cloudCardHtml();
   h+='<div class="card"><h3>How it works</h3><ul style="margin:6px 0;padding-left:20px;line-height:1.7"><li>📚 Practise as usual — progress saves on this device first</li><li>☁️ Signed in? A copy backs up automatically a few seconds later</li><li>📱 New phone? Open this page, sign in, and the app asks before loading your progress</li><li>🔒 Only your account can open your backup — the database rule was tested</li></ul><button class="btn ghost" type="button" style="width:100%" onclick="goRoute(\'#/progress\')">📊 Go to My Progress</button></div>';
   $('tab-progress').innerHTML=h;
   wireCloudCard();
+  wireResetCard();
 }
-function cloudStatusText(){if(!LSFCloud.session())return'';return ST.cloudAt?('Last cloud backup: '+new Date(ST.cloudAt).toLocaleString()):'Not backed up yet — tap Sync now.'}
+function cloudStatusText(){if(!LSFCloud.session())return'';if(LSFCloud._lastErr)return '⚠️ Last cloud backup FAILED — check your internet and tap Sync now to try again.';return ST.cloudAt?('Last cloud backup: '+new Date(ST.cloudAt).toLocaleString()):'Not backed up yet — tap Sync now.'}
 function cloudCardHtml(){
   var s=LSFCloud.session();
   var h='<div class="card" id="cloudCard"><h3>☁️ Cloud account &amp; backup</h3>';
@@ -2242,8 +2262,8 @@ function cloudCardHtml(){
     h+='<p class="muted">Create a free account with your email and a password, and your progress is backed up online (Supabase). Sign in on any phone or browser and your lessons, streak and words come with you. The app works fully without an account too — progress then stays only on this device.</p>';
     h+='<label class="muted" style="font-weight:600">Email</label><input type="email" id="cloudEmail" autocomplete="email" placeholder="you@example.com" style="width:100%;min-height:48px;margin:4px 0 8px;padding:0 10px">';
     h+='<label class="muted" style="font-weight:600">Password</label><input type="password" id="cloudPass" autocomplete="current-password" placeholder="At least 6 characters" style="width:100%;min-height:48px;margin:4px 0 10px;padding:0 10px">';
-    h+='<div class="grid2"><button class="btn" id="cloudInBtn" type="button">Sign in</button><button class="btn orange" id="cloudUpBtn" type="button">Create account</button></div><div id="cloudFb"></div>';
-    h+='<p class="muted" style="margin-top:8px">One account works on every device. Keep your password safe — there is no “forgot password” button in the app yet.</p>';
+    h+='<div class="grid2"><button class="btn" id="cloudInBtn" type="button">Sign in</button><button class="btn orange" id="cloudUpBtn" type="button">Create account</button></div><button class="btn ghost small" id="cloudForgotBtn" type="button" style="width:100%;margin-top:8px">Forgot password?</button><div id="cloudFb"></div>';
+    h+='<p class="muted" style="margin-top:8px">One account works on every device. Forgot the password? Tap “Forgot password?” — a reset link goes to your email, and opening it brings you back here to choose a new one.</p>';
   }else{
     h+='<p class="muted">Signed in as <b>'+esc(s.email||'')+'</b>. Progress backs up automatically a few seconds after you practise, and whenever you tap Sync now.</p>';
     h+='<p class="muted" id="cloudStatus">'+cloudStatusText()+'</p>';
@@ -2272,7 +2292,8 @@ function wireCloudCard(){
       return LSFCloud.push().then(function(){ok(isNew?"✅ Account created — this device's progress is now backed up to your account.":"✅ Signed in — this device's progress is now backed up to your account.");var st=$('cloudStatus');if(st)st.textContent=cloudStatusText()});
     });
   }
-  var up=$('cloudUpBtn'),inn=$('cloudInBtn'),sync=$('cloudSyncBtn'),out=$('cloudOutBtn');
+  var up=$('cloudUpBtn'),inn=$('cloudInBtn'),sync=$('cloudSyncBtn'),out=$('cloudOutBtn'),fg=$('cloudForgotBtn');
+  if(fg)fg.onclick=function(){var em=($('cloudEmail').value||'').trim();if(!em||em.indexOf('@')<1){no('❌ First type your account email in the Email box above, then tap Forgot password.');return}fg.disabled=true;LSFCloud.recover(em).then(function(){ok('📧 Reset link sent to '+esc(em)+' — open the email on any device and tap the link; this app will then ask you for a new password.')}).catch(function(e){fg.disabled=false;no('❌ '+esc(e.message||'Could not send the reset email. Check your internet and try again.'))})};
   if(up)up.onclick=function(){var em=($('cloudEmail').value||'').trim(),pw=$('cloudPass').value||'';if(!em||em.indexOf('@')<1||pw.length<6){no('❌ Please enter a valid email and a password of at least 6 characters.');return}up.disabled=true;fb('');LSFCloud.signUp(em,pw).then(function(){return afterAuth(true)}).catch(function(e){up.disabled=false;no('❌ '+esc(e.message||'Could not create the account. Check your internet and try again.'))})};
   if(inn)inn.onclick=function(){var em=($('cloudEmail').value||'').trim(),pw=$('cloudPass').value||'';if(!em||!pw){no('❌ Please enter your email and password.');return}inn.disabled=true;fb('');LSFCloud.signIn(em,pw).then(function(){return afterAuth(false)}).catch(function(e){inn.disabled=false;no('❌ '+esc(e.message||'Could not sign in. Check the email and password.'))})};
   if(sync)sync.onclick=function(){LSFCloud._hold=false;sync.disabled=true;LSFCloud.push().then(function(){sync.disabled=false;ok('✅ Progress saved to your account.');var st=$('cloudStatus');if(st)st.textContent=cloudStatusText()}).catch(function(e){sync.disabled=false;no('❌ '+esc(e.message||'Sync failed — check your internet and try again.'))})};
@@ -3439,7 +3460,7 @@ function openWriting(i){
   $('wrSave').onclick=function(){
     var txt=$('wrText').value.trim();
     if(!txt){$('wrFb').innerHTML='<div class="feedback no" style="margin-top:10px">Write something first — even two lines. Then save it.</div>';return}
-    ST.drafts.push({id:Date.now(),title:w.t,text:txt,date:todayStr()});save();
+    ST.drafts.push({id:Date.now(),title:w.t,text:txt,date:todayStr()});if(ST.drafts.length>100)ST.drafts=ST.drafts.slice(-100);save();
     $('wrFb').innerHTML='<div class="feedback ok" style="margin-top:10px">💾 Draft saved on this device. You can find it in the Writing Workshop list.</div>';sndOk();
   };
   $('wrReveal').onclick=function(){
@@ -3668,7 +3689,7 @@ function renderBuilderPro(){
   $('sbpSay').onclick=function(){speak(sent)};
   $('sbpSave').onclick=function(){
     if(ST.myPhrases.some(function(m){return m.text===sent})){$('sbpFb').innerHTML='<div class="feedback ok" style="margin-top:10px">⭐ Already saved in My Phrases.</div>';return}
-    ST.myPhrases.push({text:sent,date:todayStr()});save();
+    ST.myPhrases.push({text:sent,date:todayStr()});if(ST.myPhrases.length>100)ST.myPhrases=ST.myPhrases.slice(-100);save();
     $('sbpFb').innerHTML='<div class="feedback ok" style="margin-top:10px">⭐ Saved to My Phrases — it will also appear on your printable word sheet.</div>';sndOk();
   };
   document.querySelectorAll('[data-delphrase]').forEach(function(b){b.addEventListener('click',function(){var ix=parseInt(b.getAttribute('data-delphrase'),10);ST.myPhrases.splice(ix,1);save();renderBuilderPro()})});
@@ -3984,6 +4005,17 @@ function applyRoute(){
 window.addEventListener('hashchange',applyRoute);
 function initRouter(){
   _booting=false;
+  /* Password-reset links return here as #access_token=...&type=recovery —
+     intercept BEFORE the router can read that fragment as a page route:
+     stash the recovery session and land on the Account page instead. */
+  try{
+    var rawH=(location.hash||'');
+    if(rawH.indexOf('type=recovery')>=0&&rawH.indexOf('access_token=')>=0){
+      var prm={};rawH.replace(/^#\/?/,'').split('&').forEach(function(kv){var p=kv.split('=');if(p.length>1)prm[decodeURIComponent(p[0])]=decodeURIComponent(p.slice(1).join('='))});
+      if(prm.access_token&&window.LSFCloud)LSFCloud._recovery={at:prm.access_token,rt:prm.refresh_token||'',exp:parseInt(prm.expires_in||'3600',10)};
+      try{history.replaceState(null,'','#/account')}catch(e){}
+    }
+  }catch(e){}
   var back=$('pageBack');
   if(back)back.onclick=function(){
     var before=_curRoute;
