@@ -382,10 +382,10 @@ button,.card,.opt,.chip,.tab,.lessonitem,.toolcard,.seg button,.pill,.modal{tran
 .seg button.on{background:var(--grad);box-shadow:0 4px 12px rgba(79,70,229,.35)}
 .seg.hasind button.on{background:transparent;box-shadow:none}
 .segind{position:absolute;top:4px;bottom:4px;border-radius:999px;background:linear-gradient(135deg,#4f46e5,#3b82f6);box-shadow:0 4px 12px rgba(79,70,229,.35);transition:left .25s cubic-bezier(.4,0,.2,1),width .25s cubic-bezier(.4,0,.2,1);z-index:0}
-#darkToggle{appearance:none;-webkit-appearance:none;width:52px;height:30px;border-radius:999px;background:#cbd5e1;position:relative;cursor:pointer;flex:0 0 auto;transition:background .25s;vertical-align:middle}
-#darkToggle:checked{background:linear-gradient(135deg,#4f46e5,#3b82f6)}
-#darkToggle::after{content:"";position:absolute;top:3px;left:3px;width:24px;height:24px;border-radius:50%;background:#fff;box-shadow:0 2px 6px rgba(0,0,0,.25);transition:transform .25s cubic-bezier(.4,0,.2,1)}
-#darkToggle:checked::after{transform:translateX(22px)}
+input.switch{appearance:none;-webkit-appearance:none;width:52px;height:30px;border-radius:999px;background:#cbd5e1;position:relative;cursor:pointer;flex:0 0 auto;transition:background .25s;vertical-align:middle}
+input.switch:checked{background:linear-gradient(135deg,#4f46e5,#3b82f6)}
+input.switch::after{content:"";position:absolute;top:3px;left:3px;width:24px;height:24px;border-radius:50%;background:#fff;box-shadow:0 2px 6px rgba(0,0,0,.25);transition:transform .25s cubic-bezier(.4,0,.2,1)}
+input.switch:checked::after{transform:translateX(22px)}
 .dock{box-shadow:0 18px 40px -12px rgba(15,23,42,.28)}
 .herocard{background:linear-gradient(140deg,#e0e7ff,#ffffff 55%,#eef2ff);border-color:#c7d2fe}
 .daycard{background:linear-gradient(150deg,#ffffff,#eef2ff);border-color:#c7d2fe}
@@ -395,16 +395,26 @@ body.dark .tab,body.dark .pill,body.dark .opt,body.dark .lessonitem,body.dark .c
 body.dark .flashcard{background:linear-gradient(160deg,#1e293b,#243349)}
 body.dark .seg{background:#0b1220}
 body.dark .dock{background:#16213a}
-body.dark #darkToggle{background:#334155}
-body.dark #darkToggle:checked{background:linear-gradient(135deg,#4f46e5,#3b82f6)}
+body.dark input.switch{background:#334155}
+body.dark input.switch:checked{background:linear-gradient(135deg,#4f46e5,#3b82f6)}
 /* First-screen clearance: the tighter type scale pulled the first card up — keep its
    controls clear of the floating dock (same repair as the Space copy's audit). */
 .topbar{padding-bottom:6px}
 .wrap{padding-top:4px}
+.topbar{position:relative}
+#headHome{padding-right:52px}
+#headPage{padding-right:52px}
+#gearBtn{position:absolute;top:calc(12px + env(safe-area-inset-top));right:12px;width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.16);border:1.5px solid rgba(255,255,255,.35);color:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:5;transition:transform .15s ease}
+#gearBtn:active{transform:scale(.94)}
+#gearBtn svg{width:22px;height:22px}
+.setrow{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;padding:12px 0;border-bottom:1px solid var(--line)}
+.setrow:last-of-type{border-bottom:none}
+.setrow .lab{font-weight:600;font-size:.95rem}
 </style>
 </head>
 <body>
 <header class="topbar">
+<button type="button" id="gearBtn" aria-label="Settings"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></button>
 <div id="headHome">
 <h1>🇪🇸 Learn Spanish — My Personal Tutor</h1>
 <p>¡Hola, Farrakh! 10–20 minutes a day is enough. ¡Vamos! (Let's go!)</p>
@@ -454,6 +464,17 @@ body.dark #darkToggle:checked{background:linear-gradient(135deg,#4f46e5,#3b82f6)
 <button class="btn" id="confirmYes" type="button" style="flex:1">Yes, do it</button>
 <button class="btn ghost" id="confirmNo" type="button" style="flex:1">Cancel</button>
 </div>
+</div>
+</div>
+
+<div class="modalbg" id="setModal">
+<div class="modal">
+<h3>⚙️ Settings</h3>
+<p class="muted" style="margin:6px 0 2px">Applied everywhere and saved on this device. The same controls also live in Progress → App settings.</p>
+<div class="setrow"><span class="lab">Meanings</span><span class="seg"><button id="setEn" type="button">English</button><button id="setRoman" type="button">Roman Urdu</button><button id="setUrdu" type="button">اردو</button></span></div>
+<div class="setrow"><span class="lab">🌙 Dark mode</span><input type="checkbox" id="setDark" class="switch" aria-label="Dark mode"></div>
+<div class="setrow"><span class="lab">🔊 Speaking speed</span><span class="seg"><button id="setSpNormal" type="button">Normal</button><button id="setSpSlow" type="button">Slow</button></span></div>
+<button class="btn" id="setClose" type="button" style="width:100%;margin-top:14px">Done</button>
 </div>
 </div>
 
@@ -667,11 +688,11 @@ function goTab(name){
      switches the visible section; routes/pages are hash-driven there. */
 }
 document.querySelectorAll('#tabs .tab').forEach(function(b){b.addEventListener('click',function(){goTab(b.getAttribute('data-tab'))})});
-function applyUr(){var m=ST.meanMode||'roman';document.body.classList.toggle('hideUr',m!=='roman');document.body.classList.toggle('hideUU',m!=='urdu');ST.ur=(m!=='en');['mmEn','mmRoman','mmUrdu'].forEach(function(id,i){var b=$(id);if(b)b.classList.toggle('on',['en','roman','urdu'][i]===m)})}
+function applyUr(){var m=ST.meanMode||'roman';document.body.classList.toggle('hideUr',m!=='roman');document.body.classList.toggle('hideUU',m!=='urdu');ST.ur=(m!=='en');['mmEn','mmRoman','mmUrdu'].forEach(function(id,i){var b=$(id);if(b)b.classList.toggle('on',['en','roman','urdu'][i]===m)});['setEn','setRoman','setUrdu'].forEach(function(id,i){var b=$(id);if(b)b.classList.toggle('on',['en','roman','urdu'][i]===m)})}
 function setMeanMode(m){ST.meanMode=m;save();applyUr();if(currentTab==='cards')renderCards();if(currentTab==='home')renderHome()}
 /* Meanings / dark / speed controls live in ONE place now — the App settings
    card on the Progress page — wired by wireAppSettings() when it renders. */
-function setSpeed(slow){slowMode=slow;ST.slow=slow;save();var a=$('spNormal'),b=$('spSlow');if(a)a.classList.toggle('on',!slow);if(b)b.classList.toggle('on',slow)}
+function setSpeed(slow){slowMode=slow;ST.slow=slow;save();var a=$('spNormal'),b=$('spSlow');if(a)a.classList.toggle('on',!slow);if(b)b.classList.toggle('on',slow);var c=$('setSpNormal'),e=$('setSpSlow');if(c)c.classList.toggle('on',!slow);if(e)e.classList.toggle('on',slow)}
 /* confirm modal */
 var confirmCb=null;
 function askConfirm(title,text,cb){$('confirmTitle').textContent=title;$('confirmText').textContent=text;confirmCb=cb;$('confirmModal').classList.add('show')}
@@ -2341,6 +2362,28 @@ function wireAppSettings(){
   if(n&&s){n.classList.toggle('on',!slowMode);s.classList.toggle('on',slowMode)}
   placeSegInds($('appSettingsCard'));
 }
+function syncSetModal(){
+  applyUr();
+  var d=$('setDark');if(d)d.checked=!!ST.dark;
+  var n=$('setSpNormal'),s=$('setSpSlow');
+  if(n&&s){n.classList.toggle('on',!slowMode);s.classList.toggle('on',slowMode)}
+  placeSegInds($('setModal'));
+}
+function wireSettingsModal(){
+  var g=$('gearBtn'),m=$('setModal');if(!g||!m)return;
+  g.onclick=function(){m.classList.add('show');setTimeout(syncSetModal,30)};
+  var c=$('setClose');if(c)c.onclick=function(){m.classList.remove('show')};
+  m.addEventListener('click',function(e){if(e.target===m)m.classList.remove('show')});
+  var a=$('setEn'),b=$('setRoman'),u=$('setUrdu');
+  if(a)a.onclick=function(){setMeanMode('en')};
+  if(b)b.onclick=function(){setMeanMode('roman')};
+  if(u)u.onclick=function(){setMeanMode('urdu')};
+  var d=$('setDark');
+  if(d)d.onchange=function(){ST.dark=this.checked;save();applyDark()};
+  var n=$('setSpNormal'),s=$('setSpSlow');
+  if(n)n.onclick=function(){setSpeed(false)};
+  if(s)s.onclick=function(){setSpeed(true)};
+}
 function renderProgress(){
   var doneN=Object.keys(ST.done).length;var knownN=Object.keys(ST.known).length;
   var h='<div class="card"><h2 style="font-size:1.2rem">📊 My Progress</h2>';
@@ -2396,7 +2439,7 @@ function renderProgress(){
   else{h+='<div class="chiprow">';LESSONS.forEach(function(L){if(ST.done[L.n])h+='<span class="chip on">✓ '+L.n+'. '+esc(L.t)+'</span>'});h+='</div>'}
   h+='<p class="muted" style="margin-top:12px">Progress is saved on this device, in this browser (localStorage) — and in your cloud account below, if you are signed in. Clearing browser data clears the on-device copy.</p>';
   h+='<button class="btn" id="resetBtn" type="button" style="background:var(--red)">🗑️ Reset all progress</button></div>';
-  h+='<div class="card" id="appSettingsCard"><h3>⚙️ App settings — Reading & Sound Settings</h3><p class="muted">Meanings language, dark mode and speaking speed used to sit on every page. They live here now — set once, remembered everywhere.</p><div style="display:flex;flex-wrap:wrap;gap:8px;align-items:center"><span class="pill">Meanings: <span class="seg"><button id="mmEn" type="button">English</button><button id="mmRoman" type="button">Roman Urdu</button><button id="mmUrdu" type="button">اردو</button></span></span><label class="pill"><input type="checkbox" id="darkToggle" aria-label="Dark mode"> 🌙 Dark mode</label><span class="pill">🔊 Speed: <span class="seg"><button id="spNormal" type="button">Normal</button><button id="spSlow" type="button">Slow</button></span></span></div></div>';
+  h+='<div class="card" id="appSettingsCard"><h3>⚙️ App settings — Reading & Sound Settings</h3><p class="muted">Meanings language, dark mode and speaking speed used to sit on every page. They live here now — set once, remembered everywhere. The same controls also open from the ⚙️ gear at the top of every page.</p><div style="display:flex;flex-wrap:wrap;gap:8px;align-items:center"><span class="pill">Meanings: <span class="seg"><button id="mmEn" type="button">English</button><button id="mmRoman" type="button">Roman Urdu</button><button id="mmUrdu" type="button">اردو</button></span></span><label class="pill"><input type="checkbox" id="darkToggle" class="switch" aria-label="Dark mode"> 🌙 Dark mode</label><span class="pill">🔊 Speed: <span class="seg"><button id="spNormal" type="button">Normal</button><button id="spSlow" type="button">Slow</button></span></span></div></div>';
   h+=cloudCardHtml();
   h+='<div class="card"><h3>💾 Backup my progress (file)</h3><p class="muted">Moving to a new phone or browser? Download your progress as one small file, then restore it on the other device. <b>Honest note:</b> this is a manual file backup, separate from the cloud account above — downloading it uploads nothing; the file stays in your hands.</p><div class="grid2"><button class="btn" id="expBtn" type="button">⬇️ Download my progress</button><button class="btn ghost" id="impBtn" type="button">⬆️ Restore progress</button></div><button class="btn" id="appDlBtn" type="button" style="width:100%;margin-top:10px;min-height:48px">⬇ Download app file</button><p class="muted" style="margin:6px 0 0">Saves a copy of this app page itself (for backup or moving it to another host). Your progress is not inside this file — progress stays on this device.</p><div id="appDlFb"></div><input type="file" id="impFile" accept=".json,application/json" style="display:none"><div id="impFb"></div></div>';
   $('tab-progress').innerHTML=h;
@@ -3178,8 +3221,9 @@ function openPrintSheet(cat){
 /* ============ PWA: guarded service worker (GitHub copy provides sw.js + manifest.json) ============ */
 if('serviceWorker' in navigator){try{navigator.serviceWorker.register('sw.js').catch(function(){})}catch(e){}}
 /* ============ THEME BOOT + THUMB-DOCK WIRING ============ */
-function applyDark(){var on=!!ST.dark;document.body.classList.toggle('dark',on);document.documentElement.setAttribute('data-theme',on?'dark':'light');var t=$('darkToggle');if(t)t.checked=on;var m=$('themeColorMeta');if(m)m.setAttribute('content',on?'#0f172a':'#4f46e5')}
+function applyDark(){var on=!!ST.dark;document.body.classList.toggle('dark',on);document.documentElement.setAttribute('data-theme',on?'dark':'light');var t=$('darkToggle');if(t)t.checked=on;var t2=$('setDark');if(t2)t2.checked=on;var m=$('themeColorMeta');if(m)m.setAttribute('content',on?'#0f172a':'#4f46e5')}
 /* darkToggle itself is wired in wireAppSettings() (Progress → App settings). */
+wireSettingsModal();
 /* Thumb dock — wired to the Layer 6 hash router (defined in the final script) */
 $('dockHome').onclick=function(){goRoute('#/home')};
 $('dockLessons').onclick=function(){goRoute('#/lessons')};
