@@ -375,12 +375,6 @@ body.deep .dock{display:none}
 </div>
 </header>
 <div class="wrap" id="app">
-<div class="toggles">
-<span class="pill">Meanings: <span class="seg"><button id="mmEn" type="button">English</button><button id="mmRoman" type="button">Roman Urdu</button><button id="mmUrdu" type="button">اردو</button></span></span>
-<label class="pill"><input type="checkbox" id="darkToggle" aria-label="Dark mode"> 🌙 Dark mode</label>
-<span class="pill"><svg viewBox="0 0 24 24" aria-hidden="true" style="width:17px;height:17px;flex:0 0 auto"><path d="M11 5 6.5 9H3v6h3.5L11 19z" fill="#2563eb"/><path d="M15 9.5a4 4 0 0 1 0 5M17.5 7a7.5 7.5 0 0 1 0 10" fill="none" stroke="#2563eb" stroke-width="2" stroke-linecap="round"/></svg> Speed:
-<span class="seg"><button id="spNormal" class="on" type="button">Normal</button><button id="spSlow" type="button">Slow</button></span></span>
-</div>
 <div id="noticeBox"></div>
 <nav class="tabs" id="tabs">
 <button class="tab active" data-tab="home" type="button">🏠 Home</button>
@@ -630,13 +624,9 @@ function goTab(name){
 document.querySelectorAll('#tabs .tab').forEach(function(b){b.addEventListener('click',function(){goTab(b.getAttribute('data-tab'))})});
 function applyUr(){var m=ST.meanMode||'roman';document.body.classList.toggle('hideUr',m!=='roman');document.body.classList.toggle('hideUU',m!=='urdu');ST.ur=(m!=='en');['mmEn','mmRoman','mmUrdu'].forEach(function(id,i){var b=$(id);if(b)b.classList.toggle('on',['en','roman','urdu'][i]===m)})}
 function setMeanMode(m){ST.meanMode=m;save();applyUr();if(currentTab==='cards')renderCards();if(currentTab==='home')renderHome()}
-$('mmEn').addEventListener('click',function(){setMeanMode('en')});
-$('mmRoman').addEventListener('click',function(){setMeanMode('roman')});
-$('mmUrdu').addEventListener('click',function(){setMeanMode('urdu')});
-function setSpeed(slow){slowMode=slow;ST.slow=slow;save();$('spNormal').classList.toggle('on',!slow);$('spSlow').classList.toggle('on',slow)}
-$('spNormal').addEventListener('click',function(){setSpeed(false)});
-$('spSlow').addEventListener('click',function(){setSpeed(true)});
-if(slowMode){$('spNormal').classList.remove('on');$('spSlow').classList.add('on')}
+/* Meanings / dark / speed controls live in ONE place now — the App settings
+   card on the Progress page — wired by wireAppSettings() when it renders. */
+function setSpeed(slow){slowMode=slow;ST.slow=slow;save();var a=$('spNormal'),b=$('spSlow');if(a)a.classList.toggle('on',!slow);if(b)b.classList.toggle('on',slow)}
 /* confirm modal */
 var confirmCb=null;
 function askConfirm(title,text,cb){$('confirmTitle').textContent=title;$('confirmText').textContent=text;confirmCb=cb;$('confirmModal').classList.add('show')}
@@ -2299,6 +2289,19 @@ function wireCloudCard(){
   if(sync)sync.onclick=function(){LSFCloud._hold=false;sync.disabled=true;LSFCloud.push().then(function(){sync.disabled=false;ok('✅ Progress saved to your account.');var st=$('cloudStatus');if(st)st.textContent=cloudStatusText()}).catch(function(e){sync.disabled=false;no('❌ '+esc(e.message||'Sync failed — check your internet and try again.'))})};
   if(out)out.onclick=function(){LSFCloud.signOut();if((location.hash||'').indexOf('account')>=0){renderAccount()}else{renderProgress()}showNotice('Signed out. Progress on this device is untouched.')};
 }
+function wireAppSettings(){
+  var a=$('mmEn'),b=$('mmRoman'),c=$('mmUrdu');
+  if(a)a.onclick=function(){setMeanMode('en')};
+  if(b)b.onclick=function(){setMeanMode('roman')};
+  if(c)c.onclick=function(){setMeanMode('urdu')};
+  var d=$('darkToggle');
+  if(d){d.checked=!!ST.dark;d.onchange=function(){ST.dark=this.checked;save();applyDark()}}
+  var n=$('spNormal'),s=$('spSlow');
+  if(n)n.onclick=function(){setSpeed(false)};
+  if(s)s.onclick=function(){setSpeed(true)};
+  applyUr();
+  if(n&&s){n.classList.toggle('on',!slowMode);s.classList.toggle('on',slowMode)}
+}
 function renderProgress(){
   var doneN=Object.keys(ST.done).length;var knownN=Object.keys(ST.known).length;
   var h='<div class="card"><h2 style="font-size:1.2rem">📊 My Progress</h2>';
@@ -2354,6 +2357,7 @@ function renderProgress(){
   else{h+='<div class="chiprow">';LESSONS.forEach(function(L){if(ST.done[L.n])h+='<span class="chip on">✓ '+L.n+'. '+esc(L.t)+'</span>'});h+='</div>'}
   h+='<p class="muted" style="margin-top:12px">Progress is saved on this device, in this browser (localStorage) — and in your cloud account below, if you are signed in. Clearing browser data clears the on-device copy.</p>';
   h+='<button class="btn" id="resetBtn" type="button" style="background:var(--red)">🗑️ Reset all progress</button></div>';
+  h+='<div class="card"><h3>⚙️ App settings — Reading & Sound Settings</h3><p class="muted">Meanings language, dark mode and speaking speed used to sit on every page. They live here now — set once, remembered everywhere.</p><div style="display:flex;flex-wrap:wrap;gap:8px;align-items:center"><span class="pill">Meanings: <span class="seg"><button id="mmEn" type="button">English</button><button id="mmRoman" type="button">Roman Urdu</button><button id="mmUrdu" type="button">اردو</button></span></span><label class="pill"><input type="checkbox" id="darkToggle" aria-label="Dark mode"> 🌙 Dark mode</label><span class="pill">🔊 Speed: <span class="seg"><button id="spNormal" type="button">Normal</button><button id="spSlow" type="button">Slow</button></span></span></div></div>';
   h+=cloudCardHtml();
   h+='<div class="card"><h3>💾 Backup my progress (file)</h3><p class="muted">Moving to a new phone or browser? Download your progress as one small file, then restore it on the other device. <b>Honest note:</b> this is a manual file backup, separate from the cloud account above — downloading it uploads nothing; the file stays in your hands.</p><div class="grid2"><button class="btn" id="expBtn" type="button">⬇️ Download my progress</button><button class="btn ghost" id="impBtn" type="button">⬆️ Restore progress</button></div><button class="btn" id="appDlBtn" type="button" style="width:100%;margin-top:10px;min-height:48px">⬇ Download app file</button><p class="muted" style="margin:6px 0 0">Saves a copy of this app page itself (for backup or moving it to another host). Your progress is not inside this file — progress stays on this device.</p><div id="appDlFb"></div><input type="file" id="impFile" accept=".json,application/json" style="display:none"><div id="impFb"></div></div>';
   $('tab-progress').innerHTML=h;
@@ -2385,6 +2389,7 @@ function renderProgress(){
   }}
   $('impBtn').onclick=function(){$('impFile').click()};
   wireCloudCard();
+  wireAppSettings();
   $('impFile').addEventListener('change',function(){
     var f=this.files&&this.files[0];if(!f)return;
     var rd=new FileReader();
@@ -3135,7 +3140,7 @@ function openPrintSheet(cat){
 if('serviceWorker' in navigator){try{navigator.serviceWorker.register('sw.js').catch(function(){})}catch(e){}}
 /* ============ THEME BOOT + THUMB-DOCK WIRING ============ */
 function applyDark(){var on=!!ST.dark;document.body.classList.toggle('dark',on);var t=$('darkToggle');if(t)t.checked=on;var m=$('themeColorMeta');if(m)m.setAttribute('content',on?'#0a1122':'#123a7d')}
-$('darkToggle').addEventListener('change',function(){ST.dark=this.checked;save();applyDark()});
+/* darkToggle itself is wired in wireAppSettings() (Progress → App settings). */
 /* Thumb dock — wired to the Layer 6 hash router (defined in the final script) */
 $('dockHome').onclick=function(){goRoute('#/home')};
 $('dockLessons').onclick=function(){goRoute('#/lessons')};
