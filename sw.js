@@ -1,4 +1,4 @@
-const CACHE = 'learn-spanish-v10';
+const CACHE = 'learn-spanish-v11';
 const CORE = [
   './',
   './index.html',
