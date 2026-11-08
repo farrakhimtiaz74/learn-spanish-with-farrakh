@@ -6,15 +6,15 @@
 <meta name="color-scheme" content="light dark">
 <meta name="theme-color" id="themeColorMeta" content="#123a7d">
  <link rel="manifest" href="manifest.json">
-<meta name="description" content="Learn Spanish with Farrakh — a free, built-in Spanish course for Urdu speakers: 50 lessons (A1 + A2 + B1 + B2), 1250 flashcards, verbs, games, speaking practice. No key, no signup. Offline works on the live site.">
+<meta name="description" content="Learn Spanish with Farrakh — a free, built-in Spanish course for Urdu speakers: 50 lessons (A1 + A2 + B1 + B2), 1250 flashcards, verbs, games, speaking practice. No key needed — a free optional account backs up your progress. Offline works on the live site.">
 <link rel="canonical" href="https://farrakhimtiaz74.github.io/learn-spanish-with-farrakh/">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Learn Spanish with Farrakh">
-<meta property="og:description" content="50 built-in Spanish lessons (A1 + A2 + B1 + B2), 1250 flashcards, verb trainer, games and speaking practice — made for Urdu speakers. Free, no signup. Offline works on the live site.">
+<meta property="og:description" content="50 built-in Spanish lessons (A1 + A2 + B1 + B2), 1250 flashcards, verb trainer, games and speaking practice — made for Urdu speakers. Free — an optional account backs up your progress. Offline works on the live site.">
 <meta property="og:url" content="https://farrakhimtiaz74.github.io/learn-spanish-with-farrakh/">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Learn Spanish with Farrakh">
-<meta name="twitter:description" content="50 built-in Spanish lessons (A1 + A2 + B1 + B2), 1250 flashcards, verb trainer, games and speaking practice — made for Urdu speakers. Free, no signup. Offline works on the live site.">
+<meta name="twitter:description" content="50 built-in Spanish lessons (A1 + A2 + B1 + B2), 1250 flashcards, verb trainer, games and speaking practice — made for Urdu speakers. Free — an optional account backs up your progress. Offline works on the live site.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%231e3a8a'/%3E%3Cstop offset='.55' stop-color='%232563eb'/%3E%3Cstop offset='1' stop-color='%230ea5e9'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='100' height='100' rx='22' fill='url(%23g)'/%3E%3Ctext x='50' y='47' font-family='Arial,sans-serif' font-size='34' font-weight='800' fill='%23ffffff' text-anchor='middle'%3EES%3C/text%3E%3Ccircle cx='50' cy='72' r='7' fill='%23f97316'/%3E%3C/svg%3E">
 <title>Learn Spanish with Farrakh</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -403,7 +403,7 @@ body.deep .dock{display:none}
 <section id="tab-page" hidden></section>
 </div>
 <nav class="dock" aria-label="Quick thumb dock"><button type="button" id="dockHome"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/><path d="M9.5 21v-6h5v6"/></svg><span>Home</span></button><button type="button" id="dockLessons"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20V4a1 1 0 0 0-1-1H6.5A2.5 2.5 0 0 0 4 5.5z"/><path d="M4 19.5A2.5 2.5 0 0 0 6.5 22H20v-5"/></svg><span>Learn</span></button><button type="button" id="dockCards"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></svg><span>Cards</span></button><button type="button" id="dockPractice"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9.4 9.2a2.7 2.7 0 1 1 3.6 2.55c-.85.3-1 .85-1 1.75"/><path d="M12 17h.01"/></svg><span>Practice</span></button><button type="button" id="dockProgress"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20V10"/><path d="M10 20V4"/><path d="M16 20v-7"/><path d="M22 20H2"/></svg><span>Progress</span></button></nav>
-<footer>Built-in lessons — no AI, no key, no signup. Offline works on the live site. Progress stays on this device.<br>Learn Spanish with Farrakh · A1 → B2 path · Made for daily practice on your phone.</footer>
+<footer>Built-in lessons — no AI, no key. Offline works on the live site. Progress saves on this device — an optional free account also backs it up online.<br>Learn Spanish with Farrakh · A1 → B2 path · Made for daily practice on your phone.</footer>
 
 <div id="printSheet" hidden></div>
 
@@ -1389,6 +1389,7 @@ function renderHome(){
   hw+='<div class="toolgrid">';
   hw+=tc('progress','📅','Weekly Goal + Graph','Goal: '+ST.weekGoal+' days this week');
   hw+=tc('progress','🏅','My Badges','First Lesson · 7-Day Streak · 100 Words · Verb Master');
+  hw+=tc('account','☁️','Cloud Account',LSFCloud.session()?('Signed in · backing up as '+(LSFCloud.session().email||'')):'Sign up / Sign in · progress backup');
   hw+='</div></div>';
   $('tab-home').innerHTML=hw;
   $('dailyBtn').onclick=function(){renderDaily()};
@@ -1413,7 +1414,7 @@ function renderHome(){
     else if(nav==='verbmastery'){goRoute('#/verbs');setTimeout(function(){var vmx=$('vmBody');if(vmx)vmx.scrollIntoView({behavior:'smooth',block:'start'})},140)}
     else if(nav==='mic'){goRoute('#/speak')}
     else{
-      var routes={lessons:'#/lessons',levelmap:'#/levelmap',grammar:'#/grammar',cinema:'#/cinema',verbs:'#/verbs',cards:'#/flashcards',hard:'#/study/hard',quiz:'#/practice',builder:'#/tool/sentence-builder',serestar:'#/tool/ser-estar',timed:'#/tool/timed',review:'#/tool/review-mistakes',exam:'#/exam/a1',exam2:'#/exam/a2',exam3:'#/exam/b1',exam4:'#/exam/b2',mock:'#/exam/dele',verbexam:'#/exam/verbs',writing:'#/writing',builderpro:'#/tool/builder-pro',traps:'#/tool/traps',syllables:'#/tool/syllables',match:'#/tool/word-match',hangman:'#/tool/hangman',numdrill:'#/tool/numbers',listentype:'#/tool/listen-type',library:'#/listening',roleplay:'#/roleplay',bridge:'#/bridge',phrasebook:'#/phrasebook',reading:'#/reading',sim:'#/simulator',clinic:'#/clinic',speak:'#/speak',progress:'#/progress'};
+      var routes={lessons:'#/lessons',levelmap:'#/levelmap',grammar:'#/grammar',cinema:'#/cinema',verbs:'#/verbs',cards:'#/flashcards',hard:'#/study/hard',quiz:'#/practice',builder:'#/tool/sentence-builder',serestar:'#/tool/ser-estar',timed:'#/tool/timed',review:'#/tool/review-mistakes',exam:'#/exam/a1',exam2:'#/exam/a2',exam3:'#/exam/b1',exam4:'#/exam/b2',mock:'#/exam/dele',verbexam:'#/exam/verbs',writing:'#/writing',builderpro:'#/tool/builder-pro',traps:'#/tool/traps',syllables:'#/tool/syllables',match:'#/tool/word-match',hangman:'#/tool/hangman',numdrill:'#/tool/numbers',listentype:'#/tool/listen-type',library:'#/listening',roleplay:'#/roleplay',bridge:'#/bridge',phrasebook:'#/phrasebook',reading:'#/reading',sim:'#/simulator',clinic:'#/clinic',speak:'#/speak',progress:'#/progress',account:'#/account'};
       if(routes[nav])goRoute(routes[nav]);
     }
   })});
