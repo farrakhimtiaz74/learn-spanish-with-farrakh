@@ -438,7 +438,7 @@ var LIVE_URL='https://farrakhimtiaz74.github.io/learn-spanish-with-farrakh/';
 var deferredInstallPrompt=null;
 window.addEventListener('beforeinstallprompt',function(e){e.preventDefault();deferredInstallPrompt=e});
 window.addEventListener('appinstalled',function(){deferredInstallPrompt=null});
-function defState(){return{done:{},scores:[],known:{},seen:{},streak:0,lastDay:'',totalDays:0,lastLesson:0,ur:true,slow:false,mistakes:[],still:{},verbPasses:0,timedBest:0,examPassed:false,examBest:0,exam2Passed:false,exam2Best:0,rescueDay:'',weekGoal:5,dayLog:{},maxStreak:0,dark:false,dailyDoneDay:'',hgWins:0,hgLosses:0,exam3Passed:false,exam3Best:0,mockBest:0,srs:{},favs:{},favLessons:{},minutesLog:{},minutesGoal:15,wmWins:0,earlyBird:false,nightOwl:false,meanMode:'roman',whatsNewR3:false,calOffset:0,exam4Passed:false,exam4Best:0,verbStats:{},verbExamPassed:false,verbExamBest:0,drafts:[],myPhrases:[],fontSize:1,sfx:true,anim:true,challenge:{},challengeWinner:false,cinemaDone:{},simDone:{},clinicDone:{},whatsNewR4:false,certCeleb:''}}
+function defState(){return{done:{},scores:[],known:{},seen:{},streak:0,lastDay:'',totalDays:0,lastLesson:0,ur:true,slow:false,mistakes:[],still:{},verbPasses:0,timedBest:0,examPassed:false,examBest:0,exam2Passed:false,exam2Best:0,rescueDay:'',weekGoal:5,dayLog:{},maxStreak:0,dark:false,dailyDoneDay:'',hgWins:0,hgLosses:0,exam3Passed:false,exam3Best:0,mockBest:0,srs:{},favs:{},favLessons:{},minutesLog:{},minutesGoal:15,wmWins:0,earlyBird:false,nightOwl:false,meanMode:'roman',whatsNewR3:false,calOffset:0,exam4Passed:false,exam4Best:0,verbStats:{},verbExamPassed:false,verbExamBest:0,drafts:[],myPhrases:[],fontSize:1,sfx:true,anim:true,challenge:{},challengeWinner:false,cinemaDone:{},simDone:{},clinicDone:{},whatsNewR4:false,certCeleb:'',cloudAt:0}}
 
 /* LSFStore — the ONLY code in the app that touches localStorage.
    load()      : read the save and merge it over the defaults (keys missing
@@ -457,7 +457,38 @@ var LSFStore={
   save:function(st){try{localStorage.setItem(SKEY,JSON.stringify(st));return true}catch(e){var now=Date.now();if(!window._saveWarnedAt||now-window._saveWarnedAt>60000){window._saveWarnedAt=now;showNotice('Progress could not be saved on this device (storage is full or blocked, e.g. private mode). Your learning still works, but progress may be lost when you close the page.')}return false}},
   exportText:function(st){return JSON.stringify(st,null,1)},
   importText:function(text){var data=null;try{data=JSON.parse(text)}catch(e){return null}var fresh=defState();if(!data||typeof data!=='object'||Array.isArray(data))return null;var clean={};for(var ck in fresh){clean[ck]=(ck in data)?data[ck]:fresh[ck]}try{localStorage.setItem(SKEY,JSON.stringify(clean))}catch(e){return null}return clean},
+  getAuth:function(){try{var r=localStorage.getItem(SKEY+'_auth');return r?JSON.parse(r):null}catch(e){return null}},
+  setAuth:function(a){try{if(a)localStorage.setItem(SKEY+'_auth',JSON.stringify(a));else localStorage.removeItem(SKEY+'_auth')}catch(e){}},
   reset:function(){try{localStorage.removeItem(SKEY)}catch(e){}}
+};
+/* ----------------------------------------------------------------
+   LSFCloud — OPTIONAL cloud account & backup (Supabase), the network
+   half of Layer 2. LOCAL-FIRST: the app works fully signed out and
+   offline; this module only mirrors the progress blob to the signed-in
+   account (email + password, Supabase Auth) in public.lsf_progress,
+   where row-level security limits every account to its own row. The
+   anon key below is a PUBLIC client key — safe in the page by design;
+   the database rules, not the key, protect the data. The auth session
+   is kept by LSFStore under a separate key and is NEVER synced.
+   ---------------------------------------------------------------- */
+var LSFCloud={
+  URL:'https://amwgxgixgyuoyzvesyxj.supabase.co',
+  KEY:'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFtd2d4Z2l4Z3l1b3l6dmVzeXhqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTQxMzgwOTIsImV4cCI6MjEwOTcxNDA5Mn0.2A1iC_hcgFaOEzdu4OgUH66wOprf4KFYMz-mpkuX7zU',
+  _timer:null,_busy:false,_hold:false,
+  session:function(){return LSFStore.getAuth()},
+  headers:function(tok){var h={'apikey':LSFCloud.KEY,'Content-Type':'application/json'};if(tok)h['Authorization']='Bearer '+tok;return h},
+  _saveSession:function(j){LSFStore.setAuth({at:j.access_token,rt:j.refresh_token,exp:Date.now()+((j.expires_in||3600)*1000),email:(j.user&&j.user.email)||'',uid:(j.user&&j.user.id)||''})},
+  authCall:function(path,body){return fetch(LSFCloud.URL+'/auth/v1/'+path,{method:'POST',headers:LSFCloud.headers(),body:JSON.stringify(body)}).then(function(r){return r.json().then(function(j){if(!r.ok)throw new Error((j&&(j.msg||j.message||j.error_description))||('Error '+r.status));return j})})},
+  signUp:function(email,pass){return LSFCloud.authCall('signup',{email:email,password:pass}).then(function(j){if(j&&j.access_token){LSFCloud._saveSession(j);return j}throw new Error('Account created, but no session came back — please sign in.')})},
+  signIn:function(email,pass){return LSFCloud.authCall('token?grant_type=password',{email:email,password:pass}).then(function(j){LSFCloud._saveSession(j);return j})},
+  signOut:function(){var s=LSFCloud.session();LSFStore.setAuth(null);LSFCloud._hold=false;if(s&&s.at){try{fetch(LSFCloud.URL+'/auth/v1/logout',{method:'POST',headers:LSFCloud.headers(s.at)})}catch(e){}}},
+  refresh:function(){var s=LSFCloud.session();if(!s||!s.rt)return Promise.reject(new Error('no session'));return LSFCloud.authCall('token?grant_type=refresh_token',{refresh_token:s.rt}).then(function(j){LSFCloud._saveSession(j);return j})},
+  token:function(){var s=LSFCloud.session();if(!s)return Promise.resolve(null);if(s.exp&&Date.now()<s.exp-60000)return Promise.resolve(s.at);return LSFCloud.refresh().then(function(){var s2=LSFCloud.session();return s2?s2.at:null}).catch(function(){return s.at})},
+  _rest:function(method,path,body,prefer,retried){return LSFCloud.token().then(function(tok){if(!tok)throw new Error('not signed in');var h=LSFCloud.headers(tok);if(prefer)h['Prefer']=prefer;var opt={method:method,headers:h};if(body)opt.body=JSON.stringify(body);return fetch(LSFCloud.URL+'/rest/v1/'+path,opt).then(function(r){if(r.status===401&&!retried){return LSFCloud.refresh().then(function(){return LSFCloud._rest(method,path,body,prefer,true)})}return r})})},
+  push:function(){var s=LSFCloud.session();if(!s||!s.uid)return Promise.reject(new Error('not signed in'));return LSFCloud._rest('POST','lsf_progress',{user_id:s.uid,data:ST,updated_at:new Date().toISOString()},'resolution=merge-duplicates').then(function(r){if(!r.ok)throw new Error('Cloud save failed ('+r.status+')');ST.cloudAt=Date.now();LSFStore.save(ST);return true})},
+  pull:function(){var s=LSFCloud.session();if(!s||!s.uid)return Promise.reject(new Error('not signed in'));return LSFCloud._rest('GET','lsf_progress?select=data,updated_at&user_id=eq.'+encodeURIComponent(s.uid)).then(function(r){if(!r.ok)throw new Error('Cloud load failed ('+r.status+')');return r.json()}).then(function(rows){if(!rows||!rows.length||!rows[0].data)return null;return{data:rows[0].data,at:rows[0].updated_at}})},
+  schedule:function(){if(LSFCloud._hold||!LSFCloud.session())return;if(LSFCloud._timer)clearTimeout(LSFCloud._timer);LSFCloud._timer=setTimeout(function(){if(LSFCloud._busy)return;LSFCloud._busy=true;LSFCloud.push().catch(function(){}).then(function(){LSFCloud._busy=false;var el=document.getElementById('cloudStatus');if(el)el.textContent=cloudStatusText()})},5000)},
+  applyRemote:function(remote){var fresh=defState();var clean={};for(var ck in fresh){clean[ck]=(ck in remote)?remote[ck]:fresh[ck]}clean.cloudAt=Date.now();return LSFStore.importText(JSON.stringify(clean))?clean:null}
 };
 /* ================================================================
    LAYER 3 — LEARNING LOGIC (part 1: state rules)
@@ -484,7 +515,7 @@ function wordByWord(heard,target){
 /* The live progress object — owned by Layer 2. Every other layer reads and
    writes it through save(); nothing outside LSFStore touches localStorage. */
 var ST=LSFStore.load();
-function save(){LSFStore.save(ST)} /* the global write path every layer already calls — kept so no call site changed */
+function save(){LSFStore.save(ST);try{LSFCloud.schedule()}catch(e){}} /* the global write path every layer already calls — kept so no call site changed; the schedule() call only debounces an optional cloud backup when signed in */
 function pushScore(name,score,total){ST.scores.push({name:name,score:score,total:total,date:todayStr()});if(ST.scores.length>100)ST.scores=ST.scores.slice(-100)}
 function normAns(s){var m={'á':'a','é':'e','í':'i','ó':'o','ú':'u','ü':'u','ñ':'n'};var t=String(s||'').toLowerCase().split('').map(function(c){return m[c]||c}).join('');return t.replace(/[¿?¡!.,;:()"«»]/g,' ').replace(/\s+/g,' ').trim()}
 function dedupeFlash(pool){var seen={},out=[];pool.forEach(function(f){var k=normAns(f.es);if(seen[k])return;seen[k]=1;out.push(f)});return out}
@@ -2190,6 +2221,50 @@ function testMic(){
 }
 /* ── LAYER 5 · UI — Progress screen. Backup / restore / reset go through LSFStore (Layer 2); the 'Download app file' utility is Layer 6 shell behaviour wired here. ── */
 /* ============ PROGRESS ============ */
+function cloudStatusText(){if(!LSFCloud.session())return'';return ST.cloudAt?('Last cloud backup: '+new Date(ST.cloudAt).toLocaleString()):'Not backed up yet — tap Sync now.'}
+function cloudCardHtml(){
+  var s=LSFCloud.session();
+  var h='<div class="card" id="cloudCard"><h3>☁️ Cloud account &amp; backup</h3>';
+  if(!s){
+    h+='<p class="muted">Create a free account with your email and a password, and your progress is backed up online (Supabase). Sign in on any phone or browser and your lessons, streak and words come with you. The app works fully without an account too — progress then stays only on this device.</p>';
+    h+='<label class="muted" style="font-weight:600">Email</label><input type="email" id="cloudEmail" autocomplete="email" placeholder="you@example.com" style="width:100%;min-height:48px;margin:4px 0 8px;padding:0 10px">';
+    h+='<label class="muted" style="font-weight:600">Password</label><input type="password" id="cloudPass" autocomplete="current-password" placeholder="At least 6 characters" style="width:100%;min-height:48px;margin:4px 0 10px;padding:0 10px">';
+    h+='<div class="grid2"><button class="btn" id="cloudInBtn" type="button">Sign in</button><button class="btn orange" id="cloudUpBtn" type="button">Create account</button></div><div id="cloudFb"></div>';
+    h+='<p class="muted" style="margin-top:8px">One account works on every device. Keep your password safe — there is no “forgot password” button in the app yet.</p>';
+  }else{
+    h+='<p class="muted">Signed in as <b>'+esc(s.email||'')+'</b>. Progress backs up automatically a few seconds after you practise, and whenever you tap Sync now.</p>';
+    h+='<p class="muted" id="cloudStatus">'+cloudStatusText()+'</p>';
+    h+='<div class="grid2"><button class="btn" id="cloudSyncBtn" type="button">☁️ Sync now</button><button class="btn ghost" id="cloudOutBtn" type="button">Sign out</button></div><div id="cloudFb"></div>';
+    h+='<p class="muted" style="margin-top:8px">Signing out never deletes progress — not on this device, and not in your account.</p>';
+  }
+  return h+'</div>';
+}
+function wireCloudCard(){
+  function fb(html){var e=$('cloudFb');if(e)e.innerHTML=html}
+  function ok(m){fb('<div class="feedback ok" style="margin-top:10px">'+m+'</div>')}
+  function no(m){fb('<div class="feedback no" style="margin-top:10px">'+m+'</div>')}
+  function afterAuth(isNew){
+    return LSFCloud.pull().then(function(remote){
+      var localHas=Object.keys(ST.done).length>0||Object.keys(ST.known).length>0||ST.scores.length>0||ST.streak>0;
+      var remoteAt=remote?new Date(remote.at).getTime():0;
+      if(remote&&(!localHas||remoteAt>(ST.cloudAt||0))){
+        LSFCloud._hold=true;
+        askConfirm('Load your cloud progress?','Your account has progress saved online ('+new Date(remote.at).toLocaleString()+'). Loading it replaces the progress on this device, then the page reloads. If you cancel, nothing is loaded and nothing is uploaded.',function(){
+          LSFCloud._hold=false;
+          if(LSFCloud.applyRemote(remote.data)){location.reload()}else{no('❌ The cloud progress could not be saved on this device. Nothing was changed.')}
+        });
+        ok(isNew?'✅ Account created — choose in the box above whether to load your saved progress.':'✅ Signed in — choose in the box above whether to load your saved progress.');
+        return;
+      }
+      return LSFCloud.push().then(function(){ok(isNew?"✅ Account created — this device's progress is now backed up to your account.":"✅ Signed in — this device's progress is now backed up to your account.");var st=$('cloudStatus');if(st)st.textContent=cloudStatusText()});
+    });
+  }
+  var up=$('cloudUpBtn'),inn=$('cloudInBtn'),sync=$('cloudSyncBtn'),out=$('cloudOutBtn');
+  if(up)up.onclick=function(){var em=($('cloudEmail').value||'').trim(),pw=$('cloudPass').value||'';if(!em||em.indexOf('@')<1||pw.length<6){no('❌ Please enter a valid email and a password of at least 6 characters.');return}up.disabled=true;fb('');LSFCloud.signUp(em,pw).then(function(){return afterAuth(true)}).catch(function(e){up.disabled=false;no('❌ '+esc(e.message||'Could not create the account. Check your internet and try again.'))})};
+  if(inn)inn.onclick=function(){var em=($('cloudEmail').value||'').trim(),pw=$('cloudPass').value||'';if(!em||!pw){no('❌ Please enter your email and password.');return}inn.disabled=true;fb('');LSFCloud.signIn(em,pw).then(function(){return afterAuth(false)}).catch(function(e){inn.disabled=false;no('❌ '+esc(e.message||'Could not sign in. Check the email and password.'))})};
+  if(sync)sync.onclick=function(){LSFCloud._hold=false;sync.disabled=true;LSFCloud.push().then(function(){sync.disabled=false;ok('✅ Progress saved to your account.');var st=$('cloudStatus');if(st)st.textContent=cloudStatusText()}).catch(function(e){sync.disabled=false;no('❌ '+esc(e.message||'Sync failed — check your internet and try again.'))})};
+  if(out)out.onclick=function(){LSFCloud.signOut();renderProgress();showNotice('Signed out. Progress on this device is untouched.')};
+}
 function renderProgress(){
   var doneN=Object.keys(ST.done).length;var knownN=Object.keys(ST.known).length;
   var h='<div class="card"><h2 style="font-size:1.2rem">📊 My Progress</h2>';
@@ -2243,9 +2318,10 @@ function renderProgress(){
   h+='<div class="card"><h3>✔️ Lessons completed</h3>';
   if(!doneN){h+='<p class="muted">None yet — Lesson 1 is waiting for you. ¡Vamos!</p>'}
   else{h+='<div class="chiprow">';LESSONS.forEach(function(L){if(ST.done[L.n])h+='<span class="chip on">✓ '+L.n+'. '+esc(L.t)+'</span>'});h+='</div>'}
-  h+='<p class="muted" style="margin-top:12px">Progress is saved only on this device, in this browser (localStorage). Clearing browser data clears it too.</p>';
+  h+='<p class="muted" style="margin-top:12px">Progress is saved on this device, in this browser (localStorage) — and in your cloud account below, if you are signed in. Clearing browser data clears the on-device copy.</p>';
   h+='<button class="btn" id="resetBtn" type="button" style="background:var(--red)">🗑️ Reset all progress</button></div>';
-  h+='<div class="card"><h3>💾 Backup my progress (file)</h3><p class="muted">Moving to a new phone or browser? Download your progress as one small file, then restore it on the other device. <b>Honest note:</b> this is a manual file backup — not cloud sync. Nothing is uploaded anywhere; the file stays in your hands.</p><div class="grid2"><button class="btn" id="expBtn" type="button">⬇️ Download my progress</button><button class="btn ghost" id="impBtn" type="button">⬆️ Restore progress</button></div><button class="btn" id="appDlBtn" type="button" style="width:100%;margin-top:10px;min-height:48px">⬇ Download app file</button><p class="muted" style="margin:6px 0 0">Saves a copy of this app page itself (for backup or moving it to another host). Your progress is not inside this file — progress stays on this device.</p><div id="appDlFb"></div><input type="file" id="impFile" accept=".json,application/json" style="display:none"><div id="impFb"></div></div>';
+  h+=cloudCardHtml();
+  h+='<div class="card"><h3>💾 Backup my progress (file)</h3><p class="muted">Moving to a new phone or browser? Download your progress as one small file, then restore it on the other device. <b>Honest note:</b> this is a manual file backup, separate from the cloud account above — downloading it uploads nothing; the file stays in your hands.</p><div class="grid2"><button class="btn" id="expBtn" type="button">⬇️ Download my progress</button><button class="btn ghost" id="impBtn" type="button">⬆️ Restore progress</button></div><button class="btn" id="appDlBtn" type="button" style="width:100%;margin-top:10px;min-height:48px">⬇ Download app file</button><p class="muted" style="margin:6px 0 0">Saves a copy of this app page itself (for backup or moving it to another host). Your progress is not inside this file — progress stays on this device.</p><div id="appDlFb"></div><input type="file" id="impFile" accept=".json,application/json" style="display:none"><div id="impFb"></div></div>';
   $('tab-progress').innerHTML=h;
   $('expBtn').onclick=function(){
     var blob=new Blob([LSFStore.exportText(ST)],{type:'application/json'});
@@ -2274,6 +2350,7 @@ function renderProgress(){
     }catch(e){fallback()}
   }}
   $('impBtn').onclick=function(){$('impFile').click()};
+  wireCloudCard();
   $('impFile').addEventListener('change',function(){
     var f=this.files&&this.files[0];if(!f)return;
     var rd=new FileReader();
@@ -3330,7 +3407,7 @@ function renderWriting(){
   h+='<div class="card"><div class="kicker">✍️ Write it yourself</div><h2 style="font-size:1.25rem;margin:4px 0">Writing Workshop</h2><p class="muted">'+WRITING.length+' guided tasks, growing from single sentences to short texts. You write first — THEN reveal the model answer and check yourself with the checklist. <b>Honest note:</b> there is no AI checker here. Checking is self-guided against the model answer — which is exactly how real self-study works.</p></div>';
   WRITING.forEach(function(w,i){h+='<button type="button" class="lessonitem" onclick="openWriting('+i+')"><span class="lring" style="background:#e8eef7"><i>'+(i+1)+'</i></span><span class="lt"><b>'+esc(w.t)+'</b><span class="muted">Level: '+esc(w.lv)+'</span></span><span class="arr" style="color:var(--orange);font-weight:800">›</span></button>'});
   if(ST.drafts.length){
-    h+='<div class="card"><h3>📝 My saved drafts ('+ST.drafts.length+')</h3><p class="muted">Saved only on this device. Tap a draft to read it, or delete it.</p>';
+    h+='<div class="card"><h3>📝 My saved drafts ('+ST.drafts.length+')</h3><p class="muted">Saved with your progress on this device — and in your cloud account if you are signed in. Tap a draft to read it, or delete it.</p>';
     ST.drafts.slice().reverse().forEach(function(d){h+='<div class="wordrow"><div class="txt"><b>'+esc(d.title)+'</b><div class="en" style="white-space:pre-wrap">'+esc(d.text)+'</div><div class="muted">'+esc(d.date)+'</div></div><button class="btn small ghost" type="button" data-deldraft="'+d.id+'">🗑️ Delete</button></div>'});
     h+='</div>';
   }
