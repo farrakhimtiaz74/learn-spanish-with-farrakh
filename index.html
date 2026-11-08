@@ -1329,25 +1329,12 @@ function renderHome(){
   /* Cloud account strip — the sign up / sign in page lives at #/account */
   var _sess=LSFCloud.session();
   hw+='<button type="button" class="toolcard" data-nav="account" style="width:100%;text-align:left"><span class="tic">☁️</span><span class="tt"><b>'+(_sess?'Cloud account — signed in':'Sign up / Sign in — cloud account')+'</b><span>'+(_sess?('Backing up as '+esc(_sess.email||'')):'Free backup of your progress — email + password')+'</span></span><span class="arr">›</span></button>';
-  /* ROUND 4: Daily Motivation strip */
-  var mot=MOTIV[(d.getDate()-1)%MOTIV.length];
-  hw+='<div class="motivstrip"><div class="kicker">✨ Daily Motivation</div><div style="display:flex;gap:10px;align-items:flex-start;margin-top:6px"><div style="flex:1"><div class="es" style="font-size:1.12rem">'+esc(mot[0])+'</div><div class="ur">'+esc(mot[1])+'</div></div>'+speakBtn(mot[0])+'</div></div>';
-  /* What's New — round 4 */
-  if(!ST.whatsNewR4){
-    hw+='<div class="card" id="wn4Card" style="border:2px solid var(--blue)"><div class="kicker">🚀 What’s new — round 4</div><h3 style="font-size:1.08rem;margin:6px 0">The B2 path is here, Farrakh</h3><ul style="margin:6px 0 10px;padding-left:20px;line-height:1.7"><li>🎓 <b>Lessons 41–50 — B2 pack</b> (subjunctive, conditional, reported speech, news, debate, if-clauses) + B2 Final Exam and the <b>A1 → B2</b> grand certificate</li><li>🎬 <b>Conversation Simulator</b> — 15 branching real-life scenarios</li><li>🗣️ <b>Pronunciation Clinic</b> · 🏆 <b>Verb Mastery + Grand Exam</b> · ✍️ <b>Writing Workshop</b> · 🎬 <b>Listening Cinema</b></li><li>🗂️ <b>1250 flashcards</b> · 🆘 Phrasebook now <b>200</b> · 📚 Grammar Library (all 50 rules)</li><li>🩺 Weakness Doctor · 🏆 Weekly Challenges · 🔊 sound effects · ✨ premium animations</li></ul><button class="btn" id="wn4X" type="button" style="width:100%">Got it — ¡a por el B2!</button></div>';
-  }
-  /* What's New — round 3 (shows once, dismissal saved) */
-  if(!ST.whatsNewR3){
-    hw+='<div class="card" id="wnCard" style="border:2px solid var(--orange)"><div class="kicker">✨ What’s new — round 3</div><h3 style="font-size:1.08rem;margin:6px 0">Your app just grew, Farrakh</h3><ul style="margin:6px 0 10px;padding-left:20px;line-height:1.7"><li>🎓 <b>Lessons 31–40 — the B1 pack</b> (por/para, two pasts, gustar, reflexives, embassy, repairs…)</li><li>🗂️ <b>1000 flashcards</b> + اردو script meanings (use the اردو button at the top)</li><li>🔁 <b>Spaced repetition</b> — "Due today" reviews below</li><li>📖 <b>Reading Library</b> — 10 stories, tap any word to hear it</li><li>⏺️ <b>Record &amp; Compare</b> your own voice in Speak</li><li>🧭 <b>Level Map</b> — all 40 lessons as stepping stones</li><li>⚠️ Urdu-Speaker Trap Trainer · 🔤 Syllable Trainer · 📝 DELE-style Mock Exam · 🏆 B1 Final Exam</li></ul><button class="btn orange" id="wnX" type="button" style="width:100%">Got it — shukriya!</button></div>';
-  }
   /* Today: SRS due + minutes goal */
   var dueToday=srsDueList().length;var tMin=todayMinutes();var mGoal=ST.minutesGoal||15;
   hw+='<div class="card"><div class="kicker">Today · Review &amp; time</div><p style="margin:8px 0 4px">🔁 <b>Due today: '+dueToday+' card'+(dueToday===1?'':'s')+'</b> — spaced repetition brings back words just before you forget them.</p>'+(dueToday?'<button class="btn" id="homeDueBtn" type="button" style="width:100%">🔁 Review due cards now</button>':'<p class="muted" style="margin:2px 0">Nothing due — mark more cards "Know it" and they will return here on schedule (1 → 3 → 7 → 21 → 45 days).</p>');
   hw+='<p style="margin:12px 0 4px">⏱️ <b>Today\'s practice: '+tMin+' / '+mGoal+' min</b></p><div class="progressbar"><div style="width:'+Math.min(100,tMin/mGoal*100)+'%;background:var(--orange)"></div></div><p class="muted" style="margin:4px 0 0">Counts time the app is open and being used. Set your goal (10/15/20 min) on the Progress tab.</p></div>';
-  /* ROUND 4: Weekly Challenge on Home */
-  hw+=challengeCardHtml();
   /* Global search */
-  hw+='<div class="card"><div class="kicker">🔎 Search everything</div><h3 style="font-size:1.05rem;margin:6px 0">One search for the whole app</h3><input type="text" id="gSearch" placeholder="Type a word, lesson or phrase… e.g. taxi, salud, embassy"><div id="gResults"></div></div>';
+  hw+='<button type="button" class="toolcard" onclick="goRoute(\'#/tool/search\')" style="width:100%;text-align:left"><span class="tic">🔎</span><span class="tt"><b>Search everything</b><span>Words, lessons and phrases in one search</span></span><span class="arr">›</span></button>';
   /* Word + Phrase of the Day */
   hw+='<div class="card daycard"><div class="grid2" style="gap:18px"><div><div class="kicker">🌟 Word of the Day</div>';
   hw+='<div style="display:flex;gap:10px;align-items:flex-start;margin-top:8px"><div style="flex:1"><div class="es big">'+esc(wod.es)+'</div><div class="en">'+esc(wod.en)+'</div><div class="ur">'+esc(wod.ur)+'</div>'+uuLine(wod.uu)+'</div>'+speakBtn(wod.es)+'</div></div>';
@@ -1361,8 +1348,6 @@ function renderHome(){
   if(!practisedToday&&new Date().getHours()>=17&&ST.rescueDay!==todayStr()){
     hw+='<div class="rescue" id="rescueCard"><div style="display:flex;gap:10px;align-items:flex-start"><div style="flex:1"><b style="font-family:Outfit">🔥 Keep your streak — do 5 minutes now</b><p class="muted" style="margin:4px 0 10px">It is evening and today\'s practice is not logged yet. Five small minutes keep your '+ST.streak+'-day streak alive.</p><button class="btn orange" id="rescueBtn" type="button">⏱️ Start the Daily 5-Minute Lesson</button></div><button type="button" id="rescueX" aria-label="Dismiss" style="background:transparent;border:none;font-size:1.15rem;color:var(--muted)">✕</button></div></div>';
   }
-  /* Install + Share */
-  hw+='<div class="card"><div class="kicker">📲 Keep it on your phone · Share it</div><h3 style="font-size:1.05rem;margin:6px 0 2px">Install the app &amp; share the live link</h3><p class="muted" style="margin:2px 0 4px">Live site: <b>farrakhimtiaz74.github.io/learn-spanish-with-farrakh</b></p><button class="btn" id="installBtn" type="button" style="width:100%">📲 Install app</button><div id="installHelp"></div><div class="sharebar"><a class="wa" href="https://wa.me/?text='+encodeURIComponent('Learn Spanish with Farrakh — free built-in Spanish course (50 lessons, 1250 flashcards): '+LIVE_URL)+'" target="_blank" rel="noopener">WhatsApp</a><a class="tg" href="https://t.me/share/url?url='+encodeURIComponent(LIVE_URL)+'&text='+encodeURIComponent('Learn Spanish with Farrakh — free built-in Spanish course')+'" target="_blank" rel="noopener">Telegram</a><a class="xx" href="https://twitter.com/intent/tweet?url='+encodeURIComponent(LIVE_URL)+'&text='+encodeURIComponent('Learn Spanish with Farrakh — free built-in Spanish course: 50 lessons, 1250 flashcards')+'" target="_blank" rel="noopener">X</a></div><p class="muted" style="margin:8px 0 0">Or copy the live address from the line above by hand: <b>'+LIVE_URL+'</b></p></div>';
   /* CATEGORY 1 — LEARN */
   hw+=cat('📚','','1 · LEARN','Lessons and building blocks, step by step.');
   hw+='<div class="toolgrid">';
@@ -1430,17 +1415,10 @@ function renderHome(){
   hw+='</div></div>';
   $('tab-home').innerHTML=hw;
   $('dailyBtn').onclick=function(){renderDaily()};
-  var wnx=$('wnX');if(wnx)wnx.onclick=function(){ST.whatsNewR3=true;save();var c=$('wnCard');if(c)c.remove()};
-  var wn4x=$('wn4X');if(wn4x)wn4x.onclick=function(){ST.whatsNewR4=true;save();var c4=$('wn4Card');if(c4)c4.remove()};
   var hdb=$('homeDueBtn');if(hdb)hdb.onclick=function(){goRoute('#/study/due')};
-  var gs=$('gSearch');if(gs)gs.addEventListener('input',function(){renderSearchResults(this.value)});
   $('contBtn').onclick=function(){openLesson(idx)};
   var rb=$('rescueBtn');if(rb)rb.onclick=function(){var dc=$('dailyCard');if(dc)dc.scrollIntoView({behavior:'smooth'});renderDaily()};
   var rx=$('rescueX');if(rx)rx.onclick=function(){ST.rescueDay=todayStr();save();var rc=$('rescueCard');if(rc)rc.remove()};
-  var ib=$('installBtn');if(ib)ib.onclick=function(){
-    if(deferredInstallPrompt){var dp=deferredInstallPrompt;deferredInstallPrompt=null;var showInstallPrompt=dp.prompt;try{showInstallPrompt.call(dp)}catch(e){}return}
-    $('installHelp').innerHTML='<div class="feedback ok" style="margin-top:10px"><b>Add to Home Screen:</b><br>📱 <b>Android (Chrome):</b> tap the ⋮ menu (top right) → <b>"Add to Home screen"</b> or "Install app" → Add. On the live site Chrome may also offer "Install app" by itself.<br>🍎 <b>iPhone (Safari):</b> tap the Share button → <b>"Add to Home Screen"</b>.<br>The app then opens full-screen from your home screen, like a real app.</div>';
-  };
   document.querySelectorAll('[data-nav]').forEach(function(b){b.addEventListener('click',function(){
     var nav=b.getAttribute('data-nav');
     if(nav==='daily'){var dc=$('dailyCard');if(dc)dc.scrollIntoView({behavior:'smooth'});renderDaily()}
