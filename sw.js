@@ -1,60 +1,31 @@
-const CACHE = 'learn-spanish-v13';
-const CORE = [
-  './',
-  './index.html',
-  './manifest.json',
-  './icon.svg',
-  './icon-192.png',
-  './icon-512.png',
-  './icon-maskable-512.png'
-];
-
-self.addEventListener('install', (event) => {
-  event.waitUntil(
-    caches.open(CACHE).then((cache) => cache.addAll(CORE)).then(() => self.skipWaiting())
-  );
-});
-
-self.addEventListener('activate', (event) => {
-  event.waitUntil(
-    caches.keys()
-      .then((keys) => Promise.all(keys.filter((k) => k !== CACHE).map((k) => caches.delete(k))))
-      .then(() => self.clients.claim())
-  );
-});
-
-self.addEventListener('fetch', (event) => {
-  if (event.request.method !== 'GET') return;
-  const url = new URL(event.request.url);
-  const isPage = url.origin === self.location.origin &&
-    (event.request.mode === 'navigate' || url.pathname.endsWith('/') || url.pathname.endsWith('/index.html'));
-  if (isPage) {
-    /* The app page itself is NETWORK-FIRST (revalidated): a new version
-       shows on the very next open, never one launch late. The cached copy
-       is only the offline fallback. */
-    event.respondWith(
-      fetch(event.request, { cache: 'no-cache' }).then((response) => {
-        if (response && response.ok) {
-          const copy = response.clone();
-          caches.open(CACHE).then((cache) => cache.put('./index.html', copy));
-        }
-        return response;
-      }).catch(() => caches.match('./index.html', { ignoreSearch: true })
-        .then((hit) => hit || caches.match('./', { ignoreSearch: true })))
-    );
-    return;
-  }
-  /* Everything else (icons, manifest): stale-while-revalidate. */
-  event.respondWith(
-    caches.match(event.request, { ignoreSearch: true }).then((cached) => {
-      const network = fetch(event.request).then((response) => {
-        if (response && response.ok && url.origin === self.location.origin) {
-          const copy = response.clone();
-          caches.open(CACHE).then((cache) => cache.put(event.request, copy));
-        }
-        return response;
-      }).catch(() => cached);
-      return cached || network;
+/* Learn Spanish — MODULAR build service worker.
+   Same policy as the main app: network-first for everything same-origin so
+   updates land on the next launch; cache is the offline fallback. */
+var CACHE='learn-spanish-v14';
+var CORE=['./','./index.html','./manifest.json',
+'./styles/main.css','./styles/components.css','./styles/themes.css',
+'./js/app.js','./js/store.js','./js/tts.js','./js/services.js',
+'./js/data/lessons.js','./js/data/vocabulary.js','./js/data/verbs.js','./js/data/stories.js','./js/data/practice.js',
+'./js/ui/learn.js','./js/ui/cards.js','./js/ui/speak.js','./js/ui/tools.js','./js/ui/grammar.js',
+'./icon-192.png','./icon-512.png'];
+self.addEventListener('install',function(e){e.waitUntil(caches.open(CACHE).then(function(c){return c.addAll(CORE)}).then(function(){return self.skipWaiting()}))});
+self.addEventListener('activate',function(e){e.waitUntil(caches.keys().then(function(ks){return Promise.all(ks.map(function(k){if(k.indexOf('learn-spanish-')===0&&k!==CACHE)return caches.delete(k)}))}).then(function(){return self.clients.claim()}))});
+self.addEventListener('fetch',function(e){
+  var req=e.request;
+  if(req.method!=='GET')return;
+  var url=new URL(req.url);
+  if(url.origin!==self.location.origin)return;
+  e.respondWith(
+    fetch(req).then(function(res){
+      var copy=res.clone();
+      caches.open(CACHE).then(function(c){c.put(req,copy)});
+      return res;
+    }).catch(function(){
+      return caches.match(req,{ignoreSearch:true}).then(function(hit){
+        if(hit)return hit;
+        if(req.mode==='navigate')return caches.match('./index.html');
+        return new Response('',{status:504});
+      });
     })
   );
 });
