@@ -1,8 +1,7 @@
-const CACHE = 'learn-spanish-v1';
+const CACHE = 'learn-spanish-v2';
 const CORE = [
   './',
   './index.html',
-  './learn-spanish-with-farrakh.html',
   './manifest.json',
   './icon.svg'
 ];
