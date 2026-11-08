@@ -1,1 +1,112 @@
-{"background_color":"#0a1122","description":"Personal Spanish learning app — built-in lessons, no AI, no key, works offline.","display":"standalone","icons":[{"purpose":"any","sizes":"any","src":"./icon.svg","type":"image/svg+xml"},{"purpose":"any","sizes":"192x192","src":"./icon-192.png","type":"image/png"},{"purpose":"any","sizes":"512x512","src":"./icon-512.png","type":"image/png"},{"purpose":"maskable","sizes":"512x512","src":"./icon-maskable-512.png","type":"image/png"}],"name":"Learn Spanish with Farrakh","scope":"./","short_name":"Spanish","start_url":"./","theme_color":"#2563eb"}
+{
+  "background_color": "#0a1122",
+  "description": "Personal Spanish learning app — built-in lessons, no AI, no key, works offline.",
+  "display": "standalone",
+  "icons": [
+    {
+      "purpose": "any",
+      "sizes": "any",
+      "src": "./icon.svg",
+      "type": "image/svg+xml"
+    },
+    {
+      "purpose": "any",
+      "sizes": "192x192",
+      "src": "./icon-192.png",
+      "type": "image/png"
+    },
+    {
+      "purpose": "any",
+      "sizes": "512x512",
+      "src": "./icon-512.png",
+      "type": "image/png"
+    },
+    {
+      "purpose": "maskable",
+      "sizes": "512x512",
+      "src": "./icon-maskable-512.png",
+      "type": "image/png"
+    }
+  ],
+  "name": "Learn Spanish with Farrakh",
+  "scope": "./",
+  "short_name": "Spanish",
+  "start_url": "./",
+  "theme_color": "#2563eb",
+  "shortcuts": [
+    {
+      "name": "Flashcards",
+      "short_name": "Flashcards",
+      "description": "Study 1,250 Spanish words with flashcards",
+      "url": "./#/flashcards",
+      "icons": [
+        {
+          "src": "./icon-192.png",
+          "sizes": "192x192",
+          "type": "image/png"
+        }
+      ]
+    },
+    {
+      "name": "Lessons",
+      "short_name": "Lessons",
+      "description": "Continue your Spanish lessons (A1 to B2)",
+      "url": "./#/lessons",
+      "icons": [
+        {
+          "src": "./icon-192.png",
+          "sizes": "192x192",
+          "type": "image/png"
+        }
+      ]
+    },
+    {
+      "name": "Exams",
+      "short_name": "Exams",
+      "description": "Take level exams and earn certificates",
+      "url": "./#/exams",
+      "icons": [
+        {
+          "src": "./icon-192.png",
+          "sizes": "192x192",
+          "type": "image/png"
+        }
+      ]
+    },
+    {
+      "name": "Practice",
+      "short_name": "Practice",
+      "description": "Games, quizzes and speaking practice",
+      "url": "./#/practice",
+      "icons": [
+        {
+          "src": "./icon-192.png",
+          "sizes": "192x192",
+          "type": "image/png"
+        }
+      ]
+    }
+  ],
+  "share_target": {
+    "action": "./",
+    "method": "GET",
+    "enctype": "application/x-www-form-urlencoded",
+    "params": {
+      "title": "title",
+      "text": "text",
+      "url": "url"
+    }
+  },
+  "protocol_handlers": [
+    {
+      "protocol": "web+spanish",
+      "url": "./?q=%s"
+    }
+  ],
+  "launch_handler": {
+    "client_mode": [
+      "navigate-existing",
+      "auto"
+    ]
+  }
+}
