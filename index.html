@@ -18,12 +18,12 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%231e3a8a'/%3E%3Cstop offset='.55' stop-color='%232563eb'/%3E%3Cstop offset='1' stop-color='%230ea5e9'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='100' height='100' rx='22' fill='url(%23g)'/%3E%3Ctext x='50' y='47' font-family='Arial,sans-serif' font-size='34' font-weight='800' fill='%23ffffff' text-anchor='middle'%3EES%3C/text%3E%3Ccircle cx='50' cy='72' r='7' fill='%23f97316'/%3E%3C/svg%3E">
 <title>Learn Spanish with Farrakh</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Inter:wght@400;500;600;700&family=Noto+Nastaliq+Urdu:wght@400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Noto+Nastaliq+Urdu:wght@400;600&display=swap" rel="stylesheet">
 <style>
 :root{color-scheme:light;--blue:#2563eb;--blue-d:#1d4ed8;--orange:#f97316;--orange-d:#c2410c;--bg:#f4f7fc;--card:#ffffff;--ink:#17233b;--muted:#51617a;--line:#dbe4f0;--green:#16a34a;--red:#dc2626;--softblue:#e8f0fe;--softorange:#fdeeda;--grad:linear-gradient(135deg,#123a7d,#2563eb 58%,#0284c7);--grad-o:linear-gradient(135deg,#ea580c,#f97316);--r-sm:12px;--r-md:16px;--r-lg:20px;--shadow-sm:0 1px 2px rgba(15,42,90,.05),0 4px 14px rgba(15,42,90,.06);--shadow-md:0 2px 6px rgba(15,42,90,.06),0 14px 34px rgba(15,42,90,.10)}
 *{box-sizing:border-box}
-body{margin:0;font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.55}
-h1,h2,h3{font-family:'Sora',sans-serif;line-height:1.2;margin:0}
+body{margin:0;font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.55}
+h1,h2,h3{font-family:'Outfit',sans-serif;line-height:1.2;margin:0}
 button{font-family:inherit;cursor:pointer}
 .topbar{background:var(--grad);color:#fff;padding:calc(18px + env(safe-area-inset-top)) 18px 16px;border-radius:0 0 var(--r-lg) var(--r-lg);box-shadow:0 10px 30px rgba(18,58,125,.32)}
 .topbar h1{font-size:1.35rem;font-weight:800;letter-spacing:-.01em}
@@ -57,16 +57,16 @@ button{font-family:inherit;cursor:pointer}
 .pill{display:inline-flex;align-items:center;gap:7px;background:#fff;border:1.5px solid var(--line);border-radius:999px;padding:8px 13px;font-size:.85rem;font-weight:600}
 .pill input{width:18px;height:18px;accent-color:var(--blue)}
 .toggles .pill{flex:1 1 150px;justify-content:center}
-.btn,.tab{font-family:'Sora',sans-serif}
+.btn,.tab{font-family:'Outfit',sans-serif}
 .seg{display:inline-flex;background:#e3ebf5;border-radius:999px;padding:3px}
 .seg button{border:none;background:transparent;padding:7px 14px;border-radius:999px;font-weight:700;font-size:.83rem;color:var(--muted)}
 .seg button.on{background:var(--blue);color:#fff}
 .lessonitem{display:flex;gap:12px;align-items:center;width:100%;text-align:left;background:#fff;border:1.5px solid var(--line);border-radius:var(--r-md);padding:14px;margin:8px 0}
-.lessonitem .num{width:44px;height:44px;border-radius:50%;background:var(--softblue);color:var(--blue);display:flex;align-items:center;justify-content:center;font-family:'Sora';font-weight:800;flex:0 0 auto}
+.lessonitem .num{width:44px;height:44px;border-radius:50%;background:var(--softblue);color:var(--blue);display:flex;align-items:center;justify-content:center;font-family:'Outfit';font-weight:800;flex:0 0 auto}
 .lessonitem.done .num{background:var(--green);color:#fff}
 .lessonitem.locked{opacity:.55}
 .lessonitem .lt{flex:1;min-width:0}
-.lessonitem .lt b{font-family:'Sora';font-size:.98rem;display:block}
+.lessonitem .lt b{font-family:'Outfit';font-size:.98rem;display:block}
 .badge{font-size:.72rem;font-weight:700;border-radius:999px;padding:3px 9px;background:var(--softblue);color:var(--blue-d)}
 .badge.done{background:#dcfce7;color:#15803d}
 .dlg{background:var(--softblue);border-radius:var(--r-md);padding:12px 14px;margin:8px 0}
@@ -183,7 +183,7 @@ body.dark .cert{background:linear-gradient(160deg,#241c10,#2a2118);color:var(--i
 .lessonitem{background:var(--card);border:1px solid var(--line);border-radius:var(--r-md);padding:15px;box-shadow:var(--shadow-sm);transition:transform .15s ease,box-shadow .15s ease}
 .lessonitem:hover{box-shadow:var(--shadow-md)}
 .lring{width:48px;height:48px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex:0 0 auto;padding:4px}
-.lring i{width:100%;height:100%;border-radius:50%;background:var(--card);display:flex;align-items:center;justify-content:center;font-family:'Sora';font-weight:800;font-style:normal;color:var(--blue);font-size:.95rem}
+.lring i{width:100%;height:100%;border-radius:50%;background:var(--card);display:flex;align-items:center;justify-content:center;font-family:'Outfit';font-weight:800;font-style:normal;color:var(--blue);font-size:.95rem}
 .lessonitem.done .lring i{background:var(--green);color:#fff}
 .opt{background:var(--card);border:1.5px solid var(--line);border-radius:var(--r-md);box-shadow:var(--shadow-sm);transition:all .15s ease;padding:14px 15px}
 .opt:hover{border-color:#b9cff7;transform:translateY(-1px)}
@@ -221,7 +221,7 @@ input[type=text],select{border:1.5px solid var(--line);border-radius:var(--r-md)
 .toolcard:active{transform:scale(.98)}
 .toolcard .tic{width:42px;height:42px;border-radius:var(--r-sm);background:var(--softblue);display:flex;align-items:center;justify-content:center;font-size:1.15rem;flex:0 0 auto}
 .toolcard .tt{flex:1;min-width:0}
-.toolcard .tt b{font-family:'Sora';font-size:.92rem;display:block;line-height:1.25}
+.toolcard .tt b{font-family:'Outfit';font-size:.92rem;display:block;line-height:1.25}
 .toolcard .tt span{font-size:.84rem;color:var(--muted);display:block;line-height:1.38;margin-top:2px}
 .toolcard .arr{color:var(--blue);opacity:.55;font-weight:800}
 .herocard{background:linear-gradient(140deg,#e3edfd,#ffffff 55%,#eef4ff);border:1px solid #c9dcfb}
@@ -246,7 +246,7 @@ body.dark .rescue{background:linear-gradient(135deg,#33241a,#2a2019);border-colo
 .kbkey{flex:0 0 calc(10% - 5px);border:1.5px solid var(--line);background:var(--card);border-radius:var(--r-sm);padding:11px 2px;font-weight:800;font-size:.95rem;min-height:48px;color:var(--ink);text-transform:uppercase}
 .kbkey.used-ok{background:#f0fdf4;border-color:var(--green);color:var(--green)}
 .kbkey.used-no{background:#fef2f2;border-color:var(--red);color:var(--red);opacity:.65}
-.hangword{font-family:'Sora';font-size:1.7rem;letter-spacing:.35em;text-align:center;margin:10px 0;font-weight:800}
+.hangword{font-family:'Outfit';font-size:1.7rem;letter-spacing:.35em;text-align:center;margin:10px 0;font-weight:800}
 .rpline{border-radius:var(--r-sm);padding:10px 12px;margin:7px 0}
 .rpline.them{background:var(--softblue)}
 .rpline.me{background:#f0fdf4;border:1px solid #bbf7d0}
@@ -309,9 +309,9 @@ body.dark .uu{color:#d9b078}
 .calcell.on{background:var(--green);border-color:var(--green);color:#fff}
 .calcell.today{outline:2.5px solid var(--orange);outline-offset:-1px}
 .calcell.dim{opacity:.35}
-.sylchip{border:1.5px solid var(--line);background:var(--softblue);border-radius:12px;padding:12px 16px;font-family:Sora;font-weight:800;font-size:1.3rem;color:var(--blue-d);cursor:pointer}
+.sylchip{border:1.5px solid var(--line);background:var(--softblue);border-radius:12px;padding:12px 16px;font-family:Outfit;font-weight:800;font-size:1.3rem;color:var(--blue-d);cursor:pointer}
 body.dark .sylchip{color:#7db3ff}
-.mapnode{width:56px;height:56px;border-radius:50%;border:2.5px solid var(--line);background:var(--card);font-family:Sora;font-weight:800;font-size:1rem;color:var(--muted);display:inline-flex;align-items:center;justify-content:center;cursor:pointer}
+.mapnode{width:56px;height:56px;border-radius:50%;border:2.5px solid var(--line);background:var(--card);font-family:Outfit;font-weight:800;font-size:1rem;color:var(--muted);display:inline-flex;align-items:center;justify-content:center;cursor:pointer}
 .mapnode.done{background:var(--green);border-color:var(--green);color:#fff}
 .mapnode.cur{background:var(--orange);border-color:var(--orange);color:#fff;box-shadow:0 6px 16px rgba(249,115,22,.4)}
 .mapnode.lock{opacity:.5;cursor:not-allowed}
@@ -356,6 +356,47 @@ body.deep .dock{display:none}
 #tab-verbs.verbfocus #vmBody,#tab-verbs.verbfocus #irrBody{display:none}
 #tab-verbs.verbfocus>div.card:last-child{display:none}
 .pagelink{display:flex;width:100%;text-align:left;align-items:center;gap:10px}
+
+/* ===== V10 PREMIUM DESIGN OVERHAUL — indigo system, Outfit + Plus Jakarta Sans, slate dark ===== */
+:root{--blue:#4f46e5;--blue-d:#4338ca;--orange:#f59e0b;--orange-d:#d97706;--bg:#f5f6fa;--ink:#0f172a;--muted:#64748b;--line:#e5e8f0;--green:#10b981;--red:#f43f5e;--softblue:#eef2ff;--softorange:#fef3c7;--grad:linear-gradient(135deg,#4f46e5,#3b82f6);--grad-o:linear-gradient(135deg,#f59e0b,#f97316);--shadow-sm:0 1px 2px rgba(15,23,42,.04),0 4px 14px rgba(15,23,42,.05);--shadow-md:0 10px 25px -5px rgba(0,0,0,.05),0 8px 10px -6px rgba(0,0,0,.05)}
+:root[data-theme="dark"]{color-scheme:dark}
+body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:14px;line-height:1.6}
+h1,h2,h3{font-family:'Outfit',sans-serif}
+.topbar h1{font-size:1.5rem}
+.card h3{font-size:16px;font-weight:700}
+.wrap{max-width:480px}
+footer{max-width:480px}
+.topbar{max-width:480px;margin:0 auto;box-shadow:0 18px 40px -12px rgba(79,70,229,.45)}
+@media(min-width:520px){body{background:linear-gradient(180deg,#e9ecf7,#dde3f1)}}
+.card{border-color:rgba(0,0,0,.04)}
+.btn,.tab{font-family:'Outfit',sans-serif}
+.btn{box-shadow:0 10px 24px -6px rgba(79,70,229,.45)}
+.btn:active{transform:scale(.97)}
+.btn.orange{box-shadow:0 10px 24px -6px rgba(245,158,11,.5)}
+.tab.active{box-shadow:0 10px 22px -6px rgba(79,70,229,.45)}
+.caticon{box-shadow:0 10px 22px -6px rgba(79,70,229,.5)}
+button,.card,.opt,.chip,.tab,.lessonitem,.toolcard,.seg button,.pill,.modal{transition:all .25s cubic-bezier(.4,0,.2,1)}
+.modalbg.show .modal{animation:lsfPop .28s cubic-bezier(.4,0,.2,1) both}
+.seg{position:relative;background:#e9ebf4;padding:4px;box-shadow:inset 0 1px 3px rgba(15,23,42,.06)}
+.seg button{position:relative;z-index:1}
+.seg button.on{background:var(--grad);box-shadow:0 4px 12px rgba(79,70,229,.35)}
+.seg.hasind button.on{background:transparent;box-shadow:none}
+.segind{position:absolute;top:4px;bottom:4px;border-radius:999px;background:linear-gradient(135deg,#4f46e5,#3b82f6);box-shadow:0 4px 12px rgba(79,70,229,.35);transition:left .25s cubic-bezier(.4,0,.2,1),width .25s cubic-bezier(.4,0,.2,1);z-index:0}
+#darkToggle{appearance:none;-webkit-appearance:none;width:52px;height:30px;border-radius:999px;background:#cbd5e1;position:relative;cursor:pointer;flex:0 0 auto;transition:background .25s;vertical-align:middle}
+#darkToggle:checked{background:linear-gradient(135deg,#4f46e5,#3b82f6)}
+#darkToggle::after{content:"";position:absolute;top:3px;left:3px;width:24px;height:24px;border-radius:50%;background:#fff;box-shadow:0 2px 6px rgba(0,0,0,.25);transition:transform .25s cubic-bezier(.4,0,.2,1)}
+#darkToggle:checked::after{transform:translateX(22px)}
+.dock{box-shadow:0 18px 40px -12px rgba(15,23,42,.28)}
+.herocard{background:linear-gradient(140deg,#e0e7ff,#ffffff 55%,#eef2ff);border-color:#c7d2fe}
+.daycard{background:linear-gradient(150deg,#ffffff,#eef2ff);border-color:#c7d2fe}
+body.dark{--bg:#0f172a;--card:#1e293b;--ink:#e8eef7;--muted:#94a3b8;--line:#334155;--softblue:#1e293b;--softorange:#3a2c14;--blue-d:#a5b4fc;--orange-d:#fbbf24;--shadow-sm:0 1px 2px rgba(0,0,0,.4),0 4px 14px rgba(0,0,0,.35);--shadow-md:0 10px 25px -5px rgba(0,0,0,.45),0 8px 10px -6px rgba(0,0,0,.4)}
+body.dark .topbar{background:linear-gradient(135deg,#1e1b4b,#312e81 58%,#1e3a5f)}
+body.dark .tab,body.dark .pill,body.dark .opt,body.dark .lessonitem,body.dark .chip,body.dark .btn.ghost,body.dark input[type=text],body.dark select,body.dark textarea,body.dark .modal{background:#1e293b}
+body.dark .flashcard{background:linear-gradient(160deg,#1e293b,#243349)}
+body.dark .seg{background:#0b1220}
+body.dark .dock{background:#16213a}
+body.dark #darkToggle{background:#334155}
+body.dark #darkToggle:checked{background:linear-gradient(135deg,#4f46e5,#3b82f6)}
 </style>
 </head>
 <body>
@@ -1314,7 +1355,7 @@ function renderHome(){
   /* Streak rescue — evening, today not practised yet */
   var practisedToday=(ST.dailyDoneDay===todayStr())||ST.scores.some(function(s){return s.date===todayStr()});
   if(!practisedToday&&new Date().getHours()>=17&&ST.rescueDay!==todayStr()){
-    hw+='<div class="rescue" id="rescueCard"><div style="display:flex;gap:10px;align-items:flex-start"><div style="flex:1"><b style="font-family:Sora">🔥 Keep your streak — do 5 minutes now</b><p class="muted" style="margin:4px 0 10px">It is evening and today\'s practice is not logged yet. Five small minutes keep your '+ST.streak+'-day streak alive.</p><button class="btn orange" id="rescueBtn" type="button">⏱️ Start the Daily 5-Minute Lesson</button></div><button type="button" id="rescueX" aria-label="Dismiss" style="background:transparent;border:none;font-size:1.15rem;color:var(--muted)">✕</button></div></div>';
+    hw+='<div class="rescue" id="rescueCard"><div style="display:flex;gap:10px;align-items:flex-start"><div style="flex:1"><b style="font-family:Outfit">🔥 Keep your streak — do 5 minutes now</b><p class="muted" style="margin:4px 0 10px">It is evening and today\'s practice is not logged yet. Five small minutes keep your '+ST.streak+'-day streak alive.</p><button class="btn orange" id="rescueBtn" type="button">⏱️ Start the Daily 5-Minute Lesson</button></div><button type="button" id="rescueX" aria-label="Dismiss" style="background:transparent;border:none;font-size:1.15rem;color:var(--muted)">✕</button></div></div>';
   }
   /* Install + Share */
   hw+='<div class="card"><div class="kicker">📲 Keep it on your phone · Share it</div><h3 style="font-size:1.05rem;margin:6px 0 2px">Install the app &amp; share the live link</h3><p class="muted" style="margin:2px 0 4px">Live site: <b>farrakhimtiaz74.github.io/learn-spanish-with-farrakh</b></p><button class="btn" id="installBtn" type="button" style="width:100%">📲 Install app</button><div id="installHelp"></div><div class="sharebar"><a class="wa" href="https://wa.me/?text='+encodeURIComponent('Learn Spanish with Farrakh — free built-in Spanish course (50 lessons, 1250 flashcards): '+LIVE_URL)+'" target="_blank" rel="noopener">WhatsApp</a><a class="tg" href="https://t.me/share/url?url='+encodeURIComponent(LIVE_URL)+'&text='+encodeURIComponent('Learn Spanish with Farrakh — free built-in Spanish course')+'" target="_blank" rel="noopener">Telegram</a><a class="xx" href="https://twitter.com/intent/tweet?url='+encodeURIComponent(LIVE_URL)+'&text='+encodeURIComponent('Learn Spanish with Farrakh — free built-in Spanish course: 50 lessons, 1250 flashcards')+'" target="_blank" rel="noopener">X</a></div><p class="muted" style="margin:8px 0 0">Or copy the live address from the line above by hand: <b>'+LIVE_URL+'</b></p></div>';
@@ -2289,6 +2330,21 @@ function wireCloudCard(){
   if(sync)sync.onclick=function(){LSFCloud._hold=false;sync.disabled=true;LSFCloud.push().then(function(){sync.disabled=false;ok('✅ Progress saved to your account.');var st=$('cloudStatus');if(st)st.textContent=cloudStatusText()}).catch(function(e){sync.disabled=false;no('❌ '+esc(e.message||'Sync failed — check your internet and try again.'))})};
   if(out)out.onclick=function(){LSFCloud.signOut();if((location.hash||'').indexOf('account')>=0){renderAccount()}else{renderProgress()}showNotice('Signed out. Progress on this device is untouched.')};
 }
+function placeSegInds(scope){
+  if(!scope||!scope.querySelectorAll)return;
+  var segs=scope.querySelectorAll('.seg');
+  for(var i=0;i<segs.length;i++){
+    (function(seg){
+      if(!seg.querySelector)return;
+      var on=seg.querySelector('button.on');if(!on)return;
+      var ind=seg.querySelector('.segind');
+      if(!ind){ind=document.createElement('span');ind.className='segind';seg.insertBefore(ind,seg.firstChild)}
+      seg.classList.add('hasind');
+      ind.style.left=on.offsetLeft+'px';ind.style.width=on.offsetWidth+'px';
+      if(!seg._indWired){seg._indWired=true;seg.addEventListener('click',function(){setTimeout(function(){placeSegInds(scope)},30)})}
+    })(segs[i]);
+  }
+}
 function wireAppSettings(){
   var a=$('mmEn'),b=$('mmRoman'),c=$('mmUrdu');
   if(a)a.onclick=function(){setMeanMode('en')};
@@ -2301,11 +2357,12 @@ function wireAppSettings(){
   if(s)s.onclick=function(){setSpeed(true)};
   applyUr();
   if(n&&s){n.classList.toggle('on',!slowMode);s.classList.toggle('on',slowMode)}
+  placeSegInds($('appSettingsCard'));
 }
 function renderProgress(){
   var doneN=Object.keys(ST.done).length;var knownN=Object.keys(ST.known).length;
   var h='<div class="card"><h2 style="font-size:1.2rem">📊 My Progress</h2>';
-  h+='<div class="grid2" style="margin-top:10px"><div class="pronbox" style="margin:0;text-align:center"><div style="font-size:1.7rem;font-weight:800;font-family:Sora">🔥 '+ST.streak+'</div><div class="muted">day streak</div></div><div class="pronbox" style="margin:0;text-align:center"><div style="font-size:1.7rem;font-weight:800;font-family:Sora">'+doneN+' / '+LESSONS.length+'</div><div class="muted">lessons completed</div></div><div class="pronbox" style="margin:0;text-align:center"><div style="font-size:1.7rem;font-weight:800;font-family:Sora">'+knownN+'</div><div class="muted">words marked "Know it"</div></div><div class="pronbox" style="margin:0;text-align:center"><div style="font-size:1.7rem;font-weight:800;font-family:Sora">'+ST.totalDays+'</div><div class="muted">total practice days</div></div></div>';
+  h+='<div class="grid2" style="margin-top:10px"><div class="pronbox" style="margin:0;text-align:center"><div style="font-size:1.7rem;font-weight:800;font-family:Outfit">🔥 '+ST.streak+'</div><div class="muted">day streak</div></div><div class="pronbox" style="margin:0;text-align:center"><div style="font-size:1.7rem;font-weight:800;font-family:Outfit">'+doneN+' / '+LESSONS.length+'</div><div class="muted">lessons completed</div></div><div class="pronbox" style="margin:0;text-align:center"><div style="font-size:1.7rem;font-weight:800;font-family:Outfit">'+knownN+'</div><div class="muted">words marked "Know it"</div></div><div class="pronbox" style="margin:0;text-align:center"><div style="font-size:1.7rem;font-weight:800;font-family:Outfit">'+ST.totalDays+'</div><div class="muted">total practice days</div></div></div>';
   h+='<p class="muted" style="margin-top:12px">Lesson progress</p><div class="progressbar"><div style="width:'+(doneN/LESSONS.length*100)+'%"></div></div>';
   h+='<p class="muted">Flashcard progress</p><div class="progressbar"><div style="width:'+(FLASH.length?(knownN/FLASH.length*100):0)+'%;background:var(--orange)"></div></div>';
   h+='</div>';
@@ -2357,7 +2414,7 @@ function renderProgress(){
   else{h+='<div class="chiprow">';LESSONS.forEach(function(L){if(ST.done[L.n])h+='<span class="chip on">✓ '+L.n+'. '+esc(L.t)+'</span>'});h+='</div>'}
   h+='<p class="muted" style="margin-top:12px">Progress is saved on this device, in this browser (localStorage) — and in your cloud account below, if you are signed in. Clearing browser data clears the on-device copy.</p>';
   h+='<button class="btn" id="resetBtn" type="button" style="background:var(--red)">🗑️ Reset all progress</button></div>';
-  h+='<div class="card"><h3>⚙️ App settings — Reading & Sound Settings</h3><p class="muted">Meanings language, dark mode and speaking speed used to sit on every page. They live here now — set once, remembered everywhere.</p><div style="display:flex;flex-wrap:wrap;gap:8px;align-items:center"><span class="pill">Meanings: <span class="seg"><button id="mmEn" type="button">English</button><button id="mmRoman" type="button">Roman Urdu</button><button id="mmUrdu" type="button">اردو</button></span></span><label class="pill"><input type="checkbox" id="darkToggle" aria-label="Dark mode"> 🌙 Dark mode</label><span class="pill">🔊 Speed: <span class="seg"><button id="spNormal" type="button">Normal</button><button id="spSlow" type="button">Slow</button></span></span></div></div>';
+  h+='<div class="card" id="appSettingsCard"><h3>⚙️ App settings — Reading & Sound Settings</h3><p class="muted">Meanings language, dark mode and speaking speed used to sit on every page. They live here now — set once, remembered everywhere.</p><div style="display:flex;flex-wrap:wrap;gap:8px;align-items:center"><span class="pill">Meanings: <span class="seg"><button id="mmEn" type="button">English</button><button id="mmRoman" type="button">Roman Urdu</button><button id="mmUrdu" type="button">اردو</button></span></span><label class="pill"><input type="checkbox" id="darkToggle" aria-label="Dark mode"> 🌙 Dark mode</label><span class="pill">🔊 Speed: <span class="seg"><button id="spNormal" type="button">Normal</button><button id="spSlow" type="button">Slow</button></span></span></div></div>';
   h+=cloudCardHtml();
   h+='<div class="card"><h3>💾 Backup my progress (file)</h3><p class="muted">Moving to a new phone or browser? Download your progress as one small file, then restore it on the other device. <b>Honest note:</b> this is a manual file backup, separate from the cloud account above — downloading it uploads nothing; the file stays in your hands.</p><div class="grid2"><button class="btn" id="expBtn" type="button">⬇️ Download my progress</button><button class="btn ghost" id="impBtn" type="button">⬆️ Restore progress</button></div><button class="btn" id="appDlBtn" type="button" style="width:100%;margin-top:10px;min-height:48px">⬇ Download app file</button><p class="muted" style="margin:6px 0 0">Saves a copy of this app page itself (for backup or moving it to another host). Your progress is not inside this file — progress stays on this device.</p><div id="appDlFb"></div><input type="file" id="impFile" accept=".json,application/json" style="display:none"><div id="impFb"></div></div>';
   $('tab-progress').innerHTML=h;
@@ -3113,15 +3170,15 @@ function openPrintSheet(cat){
   else{rows=FLASH.filter(function(f){return f.cat===cat});title=CATS[cat]+' — '+rows.length+' words'}
   var h='<div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px" class="noprint"><button class="btn ghost" id="psClose" type="button">✕ Close sheet</button></div>';
   h+='<p class="muted" style="margin-top:0">This is the clean printable sheet. To print it or save it as a PDF, use your browser menu → Print — only this sheet prints, nothing else on the page.</p>';
-  h+='<h2 style="font-family:Sora">Learn Spanish with Farrakh — Word Sheet</h2><h3 style="font-family:Sora;margin:4px 0 10px">'+esc(title)+'</h3>';
+  h+='<h2 style="font-family:Outfit">Learn Spanish with Farrakh — Word Sheet</h2><h3 style="font-family:Outfit;margin:4px 0 10px">'+esc(title)+'</h3>';
   h+='<table><tr><th>Spanish</th><th>English</th><th>Roman Urdu</th></tr>';
   rows.forEach(function(f){h+='<tr><td><b>'+esc(f.es)+'</b></td><td>'+esc(f.en)+'</td><td>'+esc(f.ur)+'</td></tr>'});
   h+='</table>';
   var favRows=FLASH.filter(function(f,i){return ST.favs[i]});
-  if(favRows.length){h+='<h3 style="font-family:Sora;margin:16px 0 6px">⭐ My Favourite Words — marked section ('+favRows.length+')</h3><table><tr><th>Spanish</th><th>English</th><th>Roman Urdu</th></tr>';favRows.forEach(function(f){h+='<tr><td><b>'+esc(f.es)+'</b></td><td>'+esc(f.en)+'</td><td>'+esc(f.ur)+'</td></tr>'});h+='</table>'}
-  if(ST.myPhrases&&ST.myPhrases.length){h+='<h3 style="font-family:Sora;margin:16px 0 6px">⭐ My Phrases — built by me ('+ST.myPhrases.length+')</h3>';ST.myPhrases.forEach(function(mp){h+='<p style="margin:4px 0"><b>'+esc(mp.text)+'</b> <span style="color:#555">('+esc(mp.date)+')</span></p>'})}
+  if(favRows.length){h+='<h3 style="font-family:Outfit;margin:16px 0 6px">⭐ My Favourite Words — marked section ('+favRows.length+')</h3><table><tr><th>Spanish</th><th>English</th><th>Roman Urdu</th></tr>';favRows.forEach(function(f){h+='<tr><td><b>'+esc(f.es)+'</b></td><td>'+esc(f.en)+'</td><td>'+esc(f.ur)+'</td></tr>'});h+='</table>'}
+  if(ST.myPhrases&&ST.myPhrases.length){h+='<h3 style="font-family:Outfit;margin:16px 0 6px">⭐ My Phrases — built by me ('+ST.myPhrases.length+')</h3>';ST.myPhrases.forEach(function(mp){h+='<p style="margin:4px 0"><b>'+esc(mp.text)+'</b> <span style="color:#555">('+esc(mp.date)+')</span></p>'})}
   var lfKeys=Object.keys(ST.favLessons||{});
-  if(lfKeys.length){h+='<h3 style="font-family:Sora;margin:16px 0 6px">⭐ Favourite Lesson Words ('+lfKeys.length+')</h3><p>'+lfKeys.map(function(k){return esc(k.split(':').slice(1).join(':'))}).join(' · ')+'</p>'}
+  if(lfKeys.length){h+='<h3 style="font-family:Outfit;margin:16px 0 6px">⭐ Favourite Lesson Words ('+lfKeys.length+')</h3><p>'+lfKeys.map(function(k){return esc(k.split(':').slice(1).join(':'))}).join(' · ')+'</p>'}
   h+='<p style="font-size:.8rem;color:#555;margin-top:10px">Learn Spanish with Farrakh · '+LIVE_URL+'</p>';
   var ps=$('printSheet');ps.innerHTML=h;ps.hidden=false;
   ps.scrollIntoView({behavior:'smooth'});
@@ -3139,7 +3196,7 @@ function openPrintSheet(cat){
 /* ============ PWA: guarded service worker (GitHub copy provides sw.js + manifest.json) ============ */
 if('serviceWorker' in navigator){try{navigator.serviceWorker.register('sw.js').catch(function(){})}catch(e){}}
 /* ============ THEME BOOT + THUMB-DOCK WIRING ============ */
-function applyDark(){var on=!!ST.dark;document.body.classList.toggle('dark',on);var t=$('darkToggle');if(t)t.checked=on;var m=$('themeColorMeta');if(m)m.setAttribute('content',on?'#0a1122':'#123a7d')}
+function applyDark(){var on=!!ST.dark;document.body.classList.toggle('dark',on);document.documentElement.setAttribute('data-theme',on?'dark':'light');var t=$('darkToggle');if(t)t.checked=on;var m=$('themeColorMeta');if(m)m.setAttribute('content',on?'#0f172a':'#4f46e5')}
 /* darkToggle itself is wired in wireAppSettings() (Progress → App settings). */
 /* Thumb dock — wired to the Layer 6 hash router (defined in the final script) */
 $('dockHome').onclick=function(){goRoute('#/home')};
