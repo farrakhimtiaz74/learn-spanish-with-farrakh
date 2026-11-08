@@ -1,9 +1,12 @@
-const CACHE = 'learn-spanish-v2';
+const CACHE = 'learn-spanish-v3';
 const CORE = [
   './',
   './index.html',
   './manifest.json',
-  './icon.svg'
+  './icon.svg',
+  './icon-192.png',
+  './icon-512.png',
+  './icon-maskable-512.png'
 ];
 
 self.addEventListener('install', (event) => {
