@@ -4,7 +4,17 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="color-scheme" content="light dark">
-<link rel="icon" href="data:,">
+<meta name="theme-color" content="#1e3a8a">
+<meta name="description" content="Learn Spanish with Farrakh — a free, built-in Spanish course for Urdu speakers: 30 lessons (A1 + A2), 800 flashcards, verbs, games, speaking practice. No key, no signup, works offline.">
+<link rel="canonical" href="https://farrakhimtiaz74.github.io/learn-spanish-with-farrakh/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Learn Spanish with Farrakh">
+<meta property="og:description" content="30 built-in Spanish lessons (A1 + A2), 800 flashcards, verb trainer, games and speaking practice — made for Urdu speakers. Free, no signup, works offline.">
+<meta property="og:url" content="https://farrakhimtiaz74.github.io/learn-spanish-with-farrakh/">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Learn Spanish with Farrakh">
+<meta name="twitter:description" content="30 built-in Spanish lessons (A1 + A2), 800 flashcards, verb trainer, games and speaking practice — made for Urdu speakers. Free, no signup, works offline.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%231e3a8a'/%3E%3Cstop offset='.55' stop-color='%232563eb'/%3E%3Cstop offset='1' stop-color='%230ea5e9'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='100' height='100' rx='22' fill='url(%23g)'/%3E%3Ctext x='50' y='47' font-family='Arial,sans-serif' font-size='34' font-weight='800' fill='%23ffffff' text-anchor='middle'%3EES%3C/text%3E%3Ccircle cx='50' cy='72' r='7' fill='%23f97316'/%3E%3C/svg%3E">
 <title>Learn Spanish with Farrakh</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -214,6 +224,35 @@ body.dark .tab,body.dark .toolcard{box-shadow:0 2px 6px rgba(0,0,0,.3),0 12px 28
 body.dark .btn.ghost{border-color:#35507e}
 body.dark .lring i{background:#182238}
 body.dark .lessonitem.done .lring i{background:var(--green)}
+/* ===== Batch 2: share, games, print ===== */
+.sharebar{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.sharebar a,.sharebar button{flex:1 1 30%;text-align:center;text-decoration:none;border-radius:12px;padding:11px 8px;font-weight:700;font-size:.86rem;min-height:46px;border:1.5px solid var(--line);background:var(--card);color:var(--ink)}
+.sharebar a.wa{background:#22c55e;color:#fff;border-color:#22c55e}
+.sharebar a.tg{background:#229ed9;color:#fff;border-color:#229ed9}
+.sharebar a.xx{background:#111827;color:#fff;border-color:#111827}
+.rescue{background:linear-gradient(135deg,#fff7ed,#ffedd5);border:1.5px solid #fdba74;border-radius:18px;padding:16px;margin:14px 0;box-shadow:var(--shadow-sm)}
+body.dark .rescue{background:linear-gradient(135deg,#33241a,#2a2019);border-color:#9a5a24}
+.wmgrid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.wmbtn{border:1.5px solid var(--line);background:var(--card);border-radius:12px;padding:13px 10px;font-weight:700;font-size:.95rem;min-height:52px;color:var(--ink)}
+.wmbtn.sel{border-color:var(--orange);background:var(--softorange)}
+.wmbtn.hit{border-color:var(--green);background:#f0fdf4;color:var(--green);opacity:.75}
+.wmbtn.miss{border-color:var(--red);background:#fef2f2}
+.kbrow{display:flex;gap:5px;flex-wrap:wrap;margin:6px 0}
+.kbkey{flex:0 0 calc(10% - 5px);border:1.5px solid var(--line);background:var(--card);border-radius:10px;padding:11px 2px;font-weight:800;font-size:.95rem;min-height:48px;color:var(--ink);text-transform:uppercase}
+.kbkey.used-ok{background:#f0fdf4;border-color:var(--green);color:var(--green)}
+.kbkey.used-no{background:#fef2f2;border-color:var(--red);color:var(--red);opacity:.65}
+.hangword{font-family:'Sora';font-size:1.7rem;letter-spacing:.35em;text-align:center;margin:10px 0;font-weight:800}
+.rpline{border-radius:12px;padding:10px 12px;margin:7px 0}
+.rpline.them{background:var(--softblue)}
+.rpline.me{background:#f0fdf4;border:1px solid #bbf7d0}
+body.dark .rpline.me{background:#0e2e1c}
+#printSheet{background:#fff;color:#111;padding:26px;max-width:860px;margin:14px auto;border:1px solid #ddd;border-radius:8px}
+#printSheet table{width:100%}#printSheet th,#printSheet td{border-bottom:1px solid #e5e7eb;color:#111}
+@media print{
+ body>*{display:none!important}
+ body>#printSheet{display:block!important;position:static;border:none;margin:0;max-width:none}
+ .dock,.topbar{display:none!important}
+}
 </style>
 </head>
 <body>
@@ -223,7 +262,7 @@ body.dark .lessonitem.done .lring i{background:var(--green)}
 <div class="stats">
 <span class="stat">🔥 Streak: <span id="streakTop">0</span> <span id="streakWord">days</span></span>
 <span class="stat">📚 Words known: <span id="wordsTop">0</span></span>
-<span class="stat">✅ Lessons: <span id="lessonsTop">0</span>/20</span>
+<span class="stat">✅ Lessons: <span id="lessonsTop">0</span>/<span id="lessonsTotal">30</span></span>
 </div>
 </header>
 <div class="wrap" id="app">
@@ -261,6 +300,8 @@ body.dark .lessonitem.done .lring i{background:var(--green)}
 </nav>
 <footer>Built-in lessons — no AI, no key, no signup. Works offline. Progress stays on this device.<br>Learn Spanish with Farrakh · A1 beginner path · Made for daily practice on your phone.</footer>
 
+<div id="printSheet" hidden></div>
+
 <div class="modalbg" id="confirmModal">
 <div class="modal">
 <h3 id="confirmTitle">Are you sure?</h3>
@@ -276,7 +317,8 @@ body.dark .lessonitem.done .lring i{background:var(--green)}
 /* ============ HELPERS & STATE ============ */
 var $=function(id){return document.getElementById(id)};
 var SKEY='lsf_progress_v1';
-function defState(){return{done:{},scores:[],known:{},seen:{},streak:0,lastDay:'',totalDays:0,lastLesson:0,ur:true,slow:false,mistakes:[],still:{},verbPasses:0,timedBest:0,examPassed:false,examBest:0,weekGoal:5,dayLog:{},maxStreak:0,dark:false,dailyDoneDay:''}}
+var LIVE_URL='https://farrakhimtiaz74.github.io/learn-spanish-with-farrakh/';
+function defState(){return{done:{},scores:[],known:{},seen:{},streak:0,lastDay:'',totalDays:0,lastLesson:0,ur:true,slow:false,mistakes:[],still:{},verbPasses:0,timedBest:0,examPassed:false,examBest:0,exam2Passed:false,exam2Best:0,rescueDay:'',weekGoal:5,dayLog:{},maxStreak:0,dark:false,dailyDoneDay:''}}
 function saveMistake(q,exp){if(!q)return;for(var i=0;i<ST.mistakes.length;i++){if(ST.mistakes[i].q===q)return}ST.mistakes.push({q:q,exp:exp||''});if(ST.mistakes.length>200)ST.mistakes=ST.mistakes.slice(-200);save()}
 function wordMatchPct(heard,target){
   var norm=function(s){return String(s||'').toLowerCase().replace(/[¿?¡!.,;:]/g,'').replace(/\s+/g,' ').trim()};
@@ -295,7 +337,7 @@ try{var raw=localStorage.getItem(SKEY);if(raw){var p=JSON.parse(raw);for(var k i
 function save(){try{localStorage.setItem(SKEY,JSON.stringify(ST))}catch(e){}}
 function todayStr(){var d=new Date();return d.getFullYear()+'-'+(d.getMonth()+1)+'-'+d.getDate()}
 function touchDay(){var t=todayStr();ST.dayLog[t]=true;if(ST.streak>(ST.maxStreak||0))ST.maxStreak=ST.streak;if(ST.lastDay===t){save();return}var y=new Date();y.setDate(y.getDate()-1);var ys=y.getFullYear()+'-'+(y.getMonth()+1)+'-'+y.getDate();if(ST.lastDay===ys){ST.streak+=1}else if(ST.lastDay===''){ST.streak=1}else{ST.streak=1}if(ST.streak>(ST.maxStreak||0))ST.maxStreak=ST.streak;ST.lastDay=t;ST.totalDays+=1;save();updateTop()}
-function updateTop(){$('streakTop').textContent=ST.streak;var sw=$('streakWord');if(sw)sw.textContent=(ST.streak===1?'day':'days');$('wordsTop').textContent=Object.keys(ST.known).length;$('lessonsTop').textContent=Object.keys(ST.done).length}
+function updateTop(){$('streakTop').textContent=ST.streak;var sw=$('streakWord');if(sw)sw.textContent=(ST.streak===1?'day':'days');$('wordsTop').textContent=Object.keys(ST.known).length;$('lessonsTop').textContent=Object.keys(ST.done).length;var lt=$('lessonsTotal');if(lt&&typeof LESSONS!=='undefined')lt.textContent=LESSONS.length}
 function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;')}
 function speakBtn(text,sm){return '<button type="button" class="spk'+(sm?' sm':'')+'" data-say="'+esc(text).replace(/"/g,'&quot;')+'" aria-label="Listen">🔊</button>'}
 var slowMode=!!ST.slow;
@@ -437,6 +479,16 @@ addCat('feelings',[['feliz','happy','Khush'],['contento','pleased / glad','Khush
 addCat('useful',[['la cosa','thing','Cheez'],['el lugar','place','Jagah'],['la vez','time (occasion)','Dafa / baar'],['otra vez','again','Dobara'],['esta vez','this time','Is dafa'],['la primera vez','the first time','Pehli dafa'],['la última vez','the last time','Aakhri dafa'],['casi','almost','Qareeb qareeb'],['quizás','maybe','Shayad'],['también','also','Bhi'],['tampoco','neither / not either','Bhi nahi'],['todavía','still / yet','Abhi tak'],['ya','already / now','Ab / pehle hi'],['pronto','soon','Jald'],['despacio','slowly','Aahista'],['rápido','fast / quick','Taiz'],['juntos','together','Saath saath'],['solo','only / alone','Sirf / akela'],['cada','each / every','Har ek'],['otro','another / other','Doosra'],['mismo','same','Wohi / ek jaisa'],['diferente','different','Alag'],['importante','important','Ahem'],['posible','possible','Mumkin'],['imposible','impossible','Na-mumkin'],['necesario','necessary','Zaroori'],['fácil','easy','Aasaan'],['difícil','difficult','Mushkil'],['verdadero','true','Sach'],['mentira','a lie','Jhoot'],['por supuesto','of course','Bilkul / zaroor'],['en cambio','instead / on the other hand','Is ke bar-aks'],['por eso','that is why','Isi liye'],['sin embargo','however','Is ke bawajood'],['además','besides / also','Is ke ilawa'],['al menos','at least','Kam az kam'],['sobre todo','above all','Khaas taur par'],['en serio','seriously','Sanjeedgi se'],['de verdad','really / truly','Sach mein']]);
 </script>
 <script>
+/* ============ FLASHCARDS A2 SETS (+297 → 800) ============ */
+CATS.house='🏡 House & Home';CATS.health2='🩺 Body & Health (deep)';CATS.feelings2='💭 Feelings (deep)';CATS.work2='🧑‍💼 Work (deep)';CATS.nature='🌿 Nature';CATS.tech='📱 Technology';
+addCat('house',[['la cocina','kitchen','Bawarchi khana'],['el baño','bathroom','Bathroom'],['el dormitorio','bedroom','Sonay ka kamra'],['la sala','living room','Baithak'],['el comedor','dining room','Khana khanay ka kamra'],['el pasillo','hallway','Rahdari'],['la escalera','stairs','Seerhi'],['el techo','roof / ceiling','Chhat'],['la pared','wall','Deewar'],['el suelo','floor','Farsh'],['la ventana','window','Khirki'],['el balcón','balcony','Balcony'],['el jardín','garden','Bagh'],['el garaje','garage','Garage'],['la terraza','terrace','Chhat wali jagah'],['el armario','wardrobe','Almari'],['el espejo','mirror','Sheesha'],['la lámpara','lamp','Lamp'],['el sofá','sofa','Sofa'],['la alfombra','carpet / rug','Qaleen / darri'],['la cortina','curtain','Parda'],['el interruptor','light switch','Switch'],['la toalla','towel','Tolia'],['el jabón','soap','Sabun'],['la ducha','shower','Shower / fawara'],['la bañera','bathtub','Bath tub'],['el grifo','tap / faucet','Nalka / toti'],['la nevera','fridge','Fridge'],['el horno','oven','Oven'],['la estufa','stove','Choolha'],['la lavadora','washing machine','Kapray dhonay ki machine'],['el fregadero','kitchen sink','Bartan dhonay ki jagah'],['la escoba','broom','Jharoo'],['el cubo','bucket','Balti'],['la basura','rubbish / trash','Kachra'],['el enchufe','plug / socket','Plug / switch board'],['el ventilador','fan','Pankha'],['el aire acondicionado','air conditioning','AC'],['la calefacción','heating','Garam karne ka system'],['el colchón','mattress','Gadda'],['la almohada','pillow','Takiya'],['la manta','blanket','Kambal'],['la sábana','bed sheet','Chadar'],['el cajón','drawer','Daraaz'],['la percha','hanger','Hanger'],['la azotea','rooftop terrace','Chhat'],['la chimenea','fireplace / chimney','Angeethi / chimney'],['el timbre','doorbell','Ghanti'],['el buzón','mailbox','Daak ka dabba'],['la puerta principal','main door','Bara darwaza']]);
+addCat('health2',[['el ojo','eye','Aankh'],['la nariz','nose','Naak'],['la boca','mouth','Munh'],['la oreja','ear (outer)','Kaan'],['el oído','hearing / inner ear','Sunne ki taqat'],['el diente','tooth','Daant'],['la lengua','tongue','Zubaan'],['el cuello','neck','Gardan'],['el hombro','shoulder','Kandha'],['el pecho','chest','Chhati'],['la espalda','back','Kamar / peeth'],['el codo','elbow','Kohni'],['la muñeca','wrist','Kalai'],['el dedo','finger','Ungli'],['la uña','nail (finger)','Nakhun'],['la rodilla','knee','Ghutna'],['el tobillo','ankle','Takhna'],['el pie','foot','Paon'],['el talón','heel','Airhi'],['el hueso','bone','Haddi'],['el músculo','muscle','Patha / muscle'],['la piel','skin','Jild'],['la sangre','blood','Khoon'],['el corazón','heart','Dil'],['el cerebro','brain','Dimagh'],['el pulmón','lung','Phephra'],['el hígado','liver','Jigar'],['el riñón','kidney','Gurda'],['la presión arterial','blood pressure','BP'],['el pulso','pulse','Nabz'],['la inyección','injection','Teeka'],['la pastilla','pill / tablet','Goli'],['la venda','bandage','Patti'],['la vacuna','vaccine','Vaccine / teeka'],['la operación','operation / surgery','Operation'],['el análisis de sangre','blood test','Khoon ka test'],['la radiografía','X-ray','X-ray'],['el termómetro','thermometer','Thermometer'],['la silla de ruedas','wheelchair','Wheelchair'],['las muletas','crutches','Baisakhi'],['las gafas','glasses','Ainak'],['la urgencia','emergency room','Emergency ward'],['la consulta','doctor visit / appointment','Doctor se checkup'],['el tratamiento','treatment','Ilaaj'],['la recuperación','recovery','Sehat yabi'],['el dolor de muelas','toothache','Daant ka dard'],['el mareo','dizziness','Chakkar'],['la náusea','nausea','Matli / ulti ka dil'],['la diarrea','diarrhoea','Dast'],['el esguince','sprain','Moch']]);
+addCat('feelings2',[['alegre','cheerful','Khush mizaj'],['ansioso','anxious','Be-chain / fikarmand'],['estresado','stressed','Zehen par bojh'],['relajado','relaxed','Pur-sukoon'],['motivado','motivated','Josh bhara'],['agradecido','grateful','Shukar guzaar'],['decepcionado','disappointed','Mayoos'],['frustrado','frustrated','Na-kaami se pareshan'],['esperanzado','hopeful','Pur-ummeed'],['valiente','brave','Bahadur'],['tímido','shy','Sharmeela'],['sociable','sociable','Milansaar'],['abrumado','overwhelmed','Bohat zyada bojh mein'],['satisfecho','satisfied','Mutmain'],['deprimido','depressed / very down','Bohat udaas'],['irritado','irritated','Chirchira'],['paciente','patient (calm)','Sabr wala'],['impaciente','impatient','Be-sabra'],['molesto','annoyed / bothered','Takleef mein / naraz sa'],['herido','hurt / injured','Zakhmi'],['inseguro','insecure / unsure','Ghair mehfooz mehsoos'],['curioso','curious','Tajassus wala'],['distraído','distracted','Dhyaan bhatka hua'],['concentrado','focused','Poori tawajjo mein'],['agotado','exhausted','Bilkul thaka hua'],['enérgico','energetic','Taqat bhara'],['perezoso','lazy','Sust'],['optimista','optimistic','Achi ummeed wala'],['pesimista','pessimistic','Buri ummeed wala'],['serio','serious','Sanjeeda'],['gracioso','funny','Mazahiya'],['entusiasmado','enthusiastic','Pur-josh'],['amable','kind','Naram dil'],['humilde','humble','Aajiz / naram'],['generoso','generous','Sakhi / dil khola'],['egoísta','selfish','Khud-garz'],['honesto','honest','Emaandaar'],['mentiroso','liar','Jhoota'],['educado','polite','Tameez-daar'],['maleducado','rude','Bad-tameez'],['en calma','calm','Sukoon mein'],['listo','clever / ready','Hoshiyar / tayyar'],['tonto','silly / foolish','Bewaqoof sa'],['sabio','wise','Aqalmand'],['loco','crazy','Pagal'],['sensato','sensible','Samajhdaar'],['terco','stubborn','Ziddi'],['flexible','flexible / easy-going','Lachak-daar / naram mizaj'],['decidido','determined','Pakka irada wala'],['desanimado','discouraged / downhearted','Himmat haara hua']]);
+addCat('work2',[['el contrato','contract','Muahida / contract'],['el salario','salary','Tankhwah'],['el aumento','pay rise','Tankhwah mein izafa'],['el ascenso','promotion','Tarraqi'],['el despido','dismissal (fired)','Naukri se nikalna'],['la renuncia','resignation','Istefa'],['la jornada','working day','Kaam ka din'],['las horas extra','overtime','Extra ghantay'],['el turno','shift','Shift / baari'],['la baja','sick leave','Beemari ki chutti'],['las vacaciones','holidays / vacation','Chuttiyan'],['el permiso','permission / leave','Ijazat / chutti'],['el teletrabajo','remote work (from home)','Ghar se kaam'],['la tarea','task','Kaam / task'],['el proyecto','project','Project'],['el plazo','deadline','Aakhri tareekh'],['el informe','report','Report'],['la presentación','presentation','Presentation'],['el archivo','file (document)','File'],['la carpeta','folder','Folder'],['la impresora','printer','Printer'],['el teclado','keyboard','Keyboard'],['el ratón','computer mouse','Mouse'],['la pantalla','screen','Screen'],['la contraseña','password','Password'],['el usuario','user','User / istemal karne wala'],['la cuenta','account','Account / khata'],['el presupuesto','budget','Budget'],['la factura','invoice / bill','Bill / invoice'],['el recibo','receipt','Raseed'],['la deuda','debt','Qarz'],['el préstamo','loan','Qarza (loan)'],['el impuesto','tax','Tax'],['la ganancia','profit','Munafa'],['la pérdida','loss','Nuqsan'],['el socio','business partner','Shareek'],['el proveedor','supplier','Supplier'],['la entrega','delivery','Delivery / pohanchana'],['el pedido','order','Order'],['el almacén','warehouse','Godaam'],['la sucursal','branch (office)','Branch'],['el mostrador','counter / desk','Counter'],['la caja','till / cash box','Galla / cash box'],['el descanso','break / rest','Waqt-e-aaram'],['la pausa','pause / short break','Chhota waqfa'],['el rendimiento','performance / output','Karkardagi'],['la formación','training','Training'],['la reunión de equipo','team meeting','Team ki meeting'],['el objetivo','goal / target','Hadaf']]);
+addCat('nature',[['el árbol','tree','Darakht'],['la flor','flower','Phool'],['la hoja','leaf','Patta'],['la hierba','grass','Ghaas'],['la planta','plant','Pauda'],['la semilla','seed','Beej'],['la raíz','root','Jar'],['la rama','branch','Tehni'],['el bosque','forest','Jangal'],['la selva','jungle / rainforest','Ghana jangal'],['la montaña','mountain','Pahaar'],['el valle','valley','Waadi'],['el río','river','Darya'],['el lago','lake','Jheel'],['el mar','sea','Samandar'],['la ola','wave','Leher'],['la arena','sand','Rait'],['la piedra','stone','Pathar'],['la roca','rock','Bari chattan'],['el desierto','desert','Sehra'],['la isla','island','Jazeera'],['la costa','coast','Saahil'],['el prado','meadow','Sabz maidan'],['la colina','hill','Pahaari / teela'],['la cascada','waterfall','Aabshaar'],['el volcán','volcano','Aatish-fishan'],['la cueva','cave','Ghaar'],['el amanecer','sunrise / dawn','Tulu-e-aftab'],['el atardecer','sunset','Ghuroob-e-aftab'],['el relámpago','lightning flash','Bijli ki chamak'],['el granizo','hail','Olay (barf ke golay)'],['el barro','mud','Keechar'],['el polvo','dust','Dhool'],['la tierra','earth / land','Zameen'],['el fuego','fire','Aag'],['el humo','smoke','Dhuwan'],['la ceniza','ash','Raakh'],['el animal','animal','Janwar'],['el pájaro','bird','Parinda'],['el pez','fish','Machli'],['el caballo','horse','Ghora'],['la vaca','cow','Gaaye'],['el perro','dog','Kutta'],['el gato','cat','Billi'],['la gallina','hen','Murgi'],['el cordero','lamb','Bher ka bacha'],['la abeja','bee','Shehad ki makkhi'],['la mariposa','butterfly','Titli'],['la hormiga','ant','Cheenti']]);
+addCat('tech',[['el ordenador','computer (Spain)','Computer'],['el portátil','laptop','Laptop'],['la tableta','tablet','Tablet'],['la aplicación','app','App'],['el programa','program','Program'],['el software','software','Software'],['la cámara','camera','Camera'],['el micrófono','microphone','Mic'],['los auriculares','headphones / earphones','Headphone'],['el cargador','charger','Charger'],['el cable','cable / lead','Taar / cable'],['la batería','battery','Battery'],['el adaptador','adapter','Adapter'],['la red','network','Network'],['el wifi','Wi-Fi','Wi-Fi'],['la señal','signal','Signal'],['los datos móviles','mobile data','Mobile data'],['la cobertura','signal coverage','Signal ki range'],['el mensaje de texto','text message','SMS'],['la videollamada','video call','Video call'],['descargar','to download','Download karna'],['subir','to upload','Upload karna'],['instalar','to install','Install karna'],['actualizar','to update','Update karna'],['borrar','to delete / erase','Mitana / delete'],['guardar','to save / keep','Save karna / rakhna'],['copiar','to copy','Copy karna'],['pegar','to paste','Paste karna'],['buscar en internet','to search online','Internet par dhoondna'],['la página web','web page','Web page'],['el enlace','link','Link'],['el navegador','web browser','Browser'],['la tienda de aplicaciones','app store','App store'],['la memoria','memory / storage','Memory'],['el espacio','storage space','Jagah (storage)'],['la copia de seguridad','backup copy','Backup'],['el virus','virus','Virus'],['el antivirus','antivirus','Antivirus'],['la privacidad','privacy','Privacy / raaz'],['la configuración','settings','Settings'],['apagar','to turn off','Band karna'],['encender','to turn on','Chalu karna'],['reiniciar','to restart','Dobara chalu karna'],['conectar','to connect','Jorna / connect'],['desconectar','to disconnect','Disconnect karna'],['compartir','to share','Share karna'],['el seguidor','follower','Follow karne wala'],['el buzón de voz','voicemail','Voice message dabba'],['lleno','full (storage)','Bhara hua']]);
+</script>
+<script>
 /* ============ LESSONS 1-10 ============ */
 var LESSONS=[
 {n:1,t:'Greetings & Introductions',sub:'Hola, Buenos días, Me llamo...',ex:'Spanish greetings are warm and friendly. Use "buenos días" in the morning, "buenas tardes" in the afternoon and "buenas noches" at night. To say your name, say "Me llamo..." (it means "I call myself..."). For a friend say "tú" — for respect say "usted". Start every talk with a greeting, just like Assalam-o-Alaikum at home.',words:[['Hola','Hello','Assalam-o-Alaikum jaisa salam','oh-lah — h is silent'],['Buenos días','Good morning','Subah bakhair','bweh-nos dee-as'],['Buenas tardes','Good afternoon','Dopahar bakhair','bweh-nas tar-des'],['Buenas noches','Good evening / night','Shab bakhair','bweh-nas no-ches'],['Me llamo...','My name is...','Mera naam ... hai','meh yah-mo — ll sounds like y'],['¿Cómo te llamas?','What is your name?','Aap ka naam kya hai?','koh-mo teh yah-mas'],['Mucho gusto','Pleased to meet you','Mil kar khushi hui','moo-cho goos-to'],['¿Cómo estás?','How are you?','Aap kaise hain?','koh-mo es-tas'],['Estoy bien, gracias','I am well, thanks','Main theek hoon, shukriya','es-toy bee-en gra-see-as'],['Adiós','Goodbye','Khuda hafiz','ah-dee-os'],['Por favor','Please','Meherbani karke','por fah-vor'],['Gracias','Thank you','Shukriya','gra-see-as']],sents:[['Hola, me llamo Farrakh.','Hello, my name is Farrakh.','Assalam-o-Alaikum, mera naam Farrakh hai.'],['Buenos días. ¿Cómo estás?','Good morning. How are you?','Subah bakhair. Aap kaise hain?'],['Estoy bien, gracias. ¿Y tú?','I am well, thanks. And you?','Main theek hoon, shukriya. Aur aap?']],dlg:[['A','¡Hola! Buenos días.','Hello! Good morning.'],['B','¡Hola! ¿Cómo estás?','Hello! How are you?'],['A','Estoy bien, gracias. Me llamo Farrakh. ¿Y tú?','I am well, thanks. My name is Farrakh. And you?'],['B','Me llamo Sara. ¡Mucho gusto!','My name is Sara. Pleased to meet you!']],quiz:[['What does "Buenos días" mean?',['Good night','Good morning','Thank you','Goodbye'],1,'Buenos días = good morning. Días = days.'],['How do you say "My name is Ahmed"?',['Me llamo Ahmed','Estoy Ahmed','Hola Ahmed','Soy bien Ahmed'],0,'Me llamo... = My name is...'],['What does "Gracias" mean?',['Please','Sorry','Thank you','Hello'],2,'Gracias = thank you. Reply: de nada.'],['"¿Cómo estás?" means...',['What is your name?','How are you?','Where are you?','How much is it?'],1,'Cómo = how, estás = you are.'],['Which greeting fits the night?',['Buenos días','Buenas tardes','Buenas noches','Hola mañana'],2,'Noches = nights → buenas noches at night.']]},
@@ -467,21 +519,36 @@ LESSONS.push(
 );
 </script>
 <script>
+/* ============ LESSONS 21-30 (A2 PACK) ============ */
+LESSONS.push(
+{n:21,t:'Weather Talk',sub:'Small talk about the weather — very Spanish!',ex:'Weather is the safest small talk in Spain. Most weather sentences use HACER: hace sol (it is sunny), hace calor (hot), hace frío (cold), hace viento (windy). For rain and snow Spanish uses verbs: llueve (it rains), nieva (it snows). Ask with "¿Qué tiempo hace?" Tomorrow\'s weather: "Mañana hará sol" — but simpler with your future: "Mañana va a llover" (tomorrow it is going to rain).',words:[['¿Qué tiempo hace?','What is the weather like?','Mausam kaisa hai?','keh tee-em-po ah-seh'],['hace sol','it is sunny','Dhoop hai','ah-seh sol'],['hace calor','it is hot','Garmi hai','ah-seh kah-lor'],['hace frío','it is cold','Sardi hai','ah-seh free-oh'],['hace viento','it is windy','Hawa chal rahi hai','ah-seh vee-en-to'],['está nublado','it is cloudy','Badal chaye hain','es-ta noo-blah-do'],['llueve','it is raining','Barish ho rahi hai','yweh-veh — ll = y'],['nieva','it is snowing','Barf par rahi hai','nee-eh-va'],['la tormenta','storm','Toofan','tor-men-ta'],['el paraguas','umbrella','Chhatri','pah-rah-gwas'],['¿Va a llover?','Is it going to rain?','Kya barish hogi?','va ah yo-ver'],['¡Qué buen tiempo!','What lovely weather!','Kitna acha mausam hai!','keh bwen tee-em-po']],sents:[['Hoy hace mucho calor.','Today it is very hot.','Aaj bohat garmi hai.'],['Mañana va a llover, lleva un paraguas.','Tomorrow it is going to rain, take an umbrella.','Kal barish hogi, chhatri le jana.'],['En invierno hace frío y a veces nieva.','In winter it is cold and sometimes it snows.','Sardiyon mein sardi hoti hai aur kabhi barf parti hai.']],dlg:[['A','¡Hola! ¿Qué tiempo hace hoy?','Hello! What is the weather like today?'],['B','Hace sol y calor. ¡Un día perfecto!','It is sunny and hot. A perfect day!'],['A','¿Y mañana?','And tomorrow?'],['B','Mañana va a llover por la tarde.','Tomorrow it is going to rain in the afternoon.']],quiz:[['"Hace frío" means...',['It is sunny','It is cold','It is raining','It is windy'],1,'Frío = cold (sardi).'],['Rain as a verb — "it is raining" is...',['hace lluvia','llueve','está agua','nieva'],1,'Llueve = it rains. Nieva = it snows.'],['"¿Qué tiempo hace?" asks...',['What time is it?','What is the weather like?','What day is it?','How are you?'],1,'Tiempo here = weather (mausam).'],['Umbrella in Spanish: ',['el paraguas','la tormenta','el viento','la nube'],0,'Paraguas = umbrella (chhatri).'],['"Mañana va a llover" means...',['It rained yesterday','Tomorrow it is going to rain','It never rains','I like rain'],1,'Va a + llover = going to rain.']]},
+{n:22,t:'At the Doctor (deep)',sub:'Explaining exactly what hurts',ex:'Go deeper than Lesson 15. Describe symptoms with TENER: tengo dolor de... (I have a pain in...), tengo náuseas (I feel sick), estoy mareado (I am dizzy). Say when it started: "desde ayer" (since yesterday), "desde hace dos días" (for two days). The doctor may say: "Abra la boca" (Open your mouth), "Respire" (Breathe), "Tiene que descansar" (You must rest), "Tome esto dos veces al día" (Take this twice a day).',words:[['tengo dolor de espalda','I have back pain','Meri kamar mein dard hai','ten-go do-lor deh es-pal-da'],['estoy mareado','I am dizzy','Mujhe chakkar aa rahe hain','es-toy mah-reh-ah-do'],['tengo náuseas','I feel sick / nauseous','Mera dil matla raha hai','ten-go now-seh-as'],['desde ayer','since yesterday','Kal se','des-deh ah-yer'],['desde hace dos días','for two days','Do din se','des-deh ah-seh dos dee-as'],['la receta','prescription','Dawai ka nuskha','reh-seh-ta'],['dos veces al día','twice a day','Din mein do dafa','dos veh-ses al dee-a'],['¿Es grave?','Is it serious?','Kya yeh khatarnak hai?','es grah-veh'],['Necesito un análisis','I need a test','Mujhe test karwana hai','neh-seh-see-to oon ah-nah-lee-sees'],['Soy alérgico a...','I am allergic to...','Mujhe ... se allergy hai','soy ah-ler-hee-ko ah'],['Respire profundo','Breathe deeply','Gehri saans lein','res-pee-reh pro-foon-do'],['Tiene que descansar','You must rest','Aap ko aaram karna chahiye','tee-eh-neh keh des-kan-sar']],sents:[['Tengo dolor de garganta desde hace tres días.','I have had a sore throat for three days.','Mujhe teen din se galay mein dard hai.'],['¿Es grave, doctor?','Is it serious, doctor?','Kya yeh khatarnak hai, doctor sahab?'],['Tome una pastilla dos veces al día.','Take one pill twice a day.','Ek goli din mein do dafa lein.']],dlg:[['A','Buenos días. ¿Qué le duele?','Good morning. What hurts?'],['B','Me duele la espalda y estoy mareado.','My back hurts and I am dizzy.'],['A','¿Desde cuándo?','Since when?'],['B','Desde ayer. ¿Es grave?','Since yesterday. Is it serious?'],['A','No es grave. Tiene que descansar y beber agua.','It is not serious. You must rest and drink water.']],quiz:[['"Estoy mareado" means...',['I am hungry','I am dizzy','I am angry','I am late'],1,'Mareado = dizzy (chakkar).'],['"Since yesterday" is...',['desde ayer','hasta ayer','para ayer','con ayer'],0,'Desde = since/from.'],['Prescription in Spanish: ',['la pastilla','la receta','la cita','la tos'],1,'Receta = prescription (nuskha).'],['"Dos veces al día" means...',['Two days','Twice a day','Every day','One day'],1,'Veces = times, al día = a day.'],['"¿Es grave?" asks...',['Is it free?','Is it serious?','Is it ready?','Is it far?'],1,'Grave = serious (khatarnak).']]},
+{n:23,t:'Renting a House',sub:'Finding and renting a home',ex:'Renting words: el alquiler (the rent), el piso (flat/apartment), la habitación (room), amueblado (furnished). Ask: "¿Cuánto es el alquiler al mes?" (How much is the monthly rent?), "¿Está amueblado?" (Is it furnished?), "¿Incluye los gastos?" (Does it include bills?). Signing: el contrato (contract), la fianza (deposit — usually 1–2 months in Spain), "¿Cuándo puedo entrar?" (When can I move in?).',words:[['el alquiler','rent / renting','Kiraya','al-kee-ler'],['Busco un piso','I am looking for a flat','Main flat dhoond raha hoon','boos-ko oon pee-so'],['¿Cuánto es al mes?','How much is it per month?','Mahina kitna hai?','kwan-to es al mes'],['amueblado','furnished','Furniture ke saath','ah-mweh-blah-do'],['¿Incluye los gastos?','Does it include the bills?','Kya bill shamil hain?','een-kloo-yeh los gas-tos'],['el contrato','contract','Muahida','kon-trah-to'],['la fianza','deposit','Zamanat / deposit','fee-an-sa'],['la cocina equipada','fitted kitchen','Poora kitchen','ko-see-na eh-kee-pah-da'],['¿Cuándo puedo entrar?','When can I move in?','Main kab andar aa sakta hoon?','kwan-do pweh-do en-trar'],['el barrio','neighbourhood','Mohalla / ilaqa','bah-ree-oh'],['tranquilo','quiet / calm','Pur-sukoon','tran-kee-lo'],['Tiene buena luz','It has good light','Is mein roshni achi hai','tee-eh-neh bweh-na loos']],sents:[['Busco un piso tranquilo cerca del centro.','I am looking for a quiet flat near the centre.','Main markaz ke qareeb pur-sukoon flat dhoond raha hoon.'],['El alquiler es seiscientos al mes, gastos incluidos.','The rent is 600 a month, bills included.','Kiraya 600 mahina hai, bill shamil.'],['¿Puedo ver el piso mañana?','Can I see the flat tomorrow?','Kya main kal flat dekh sakta hoon?']],dlg:[['A','Buenos días. Busco un piso. ¿Tiene algo?','Good morning. I am looking for a flat. Do you have anything?'],['B','Sí, un piso de dos habitaciones. El alquiler es quinientos al mes.','Yes, a two-room flat. The rent is 500 a month.'],['A','¿Está amueblado? ¿Y la fianza?','Is it furnished? And the deposit?'],['B','Sí, está amueblado. La fianza es un mes.','Yes, it is furnished. The deposit is one month.'],['A','Perfecto. ¿Cuándo puedo verlo?','Perfect. When can I see it?']],quiz:[['"El alquiler" means...',['The key','The rent','The contract','The room'],1,'Alquiler = rent (kiraya).'],['Deposit in Spanish: ',['la fianza','el gasto','el barrio','la luz'],0,'Fianza = deposit (zamanat).'],['"Amueblado" means...',['Big','Furnished','Quiet','Cheap'],1,'Amueblado = with furniture.'],['"¿Incluye los gastos?" asks...',['Is it near?','Does it include bills?','Is it quiet?','Can I enter?'],1,'Gastos = expenses/bills.'],['Neighbourhood is...',['el barrio','el piso','el mes','el alquiler total'],0,'Barrio = neighbourhood (mohalla).']]},
+{n:24,t:'Bank & Money',sub:'Accounts, cards and changing money',ex:'Bank words: la cuenta (account), abrir una cuenta (open an account), el cajero automático (cash machine/ATM), sacar dinero (take out money), ingresar (pay in), la transferencia (bank transfer). Ask: "¿Dónde hay un cajero?" (Where is an ATM?), "Quiero cambiar dinero" (I want to change money). Watch out: "¿Cuál es la comisión?" (What is the fee?) — small word, big money!',words:[['el banco','bank','Bank','ban-ko'],['abrir una cuenta','to open an account','Account kholna','ah-breer oo-na kwen-ta'],['el cajero automático','ATM / cash machine','ATM','kah-heh-ro ow-to-mah-tee-ko'],['sacar dinero','to withdraw money','Paisy nikalna','sah-kar dee-neh-ro'],['ingresar dinero','to pay in money','Paisy jama karna','een-greh-sar'],['la transferencia','bank transfer','Transfer','trans-feh-ren-see-a'],['¿Dónde hay un cajero?','Where is an ATM?','ATM kahan hai?','don-deh ay oon kah-heh-ro'],['Quiero cambiar dinero','I want to change money','Main paisy tabdeel karna chahta hoon','kee-eh-ro kam-bee-ar dee-neh-ro'],['la comisión','fee / commission','Fees / commission','ko-mee-see-on'],['el tipo de cambio','exchange rate','Rate','tee-po deh kam-bee-oh'],['Firmar aquí, por favor','Sign here, please','Yahan dastakhat karein','feer-mar ah-kee'],['el recibo','receipt','Raseed','reh-see-bo']],sents:[['Quiero abrir una cuenta, por favor.','I want to open an account, please.','Main ek account kholna chahta hoon.'],['¿Puedo sacar dinero con esta tarjeta?','Can I withdraw money with this card?','Kya main is card se paisy nikaal sakta hoon?'],['¿Cuál es la comisión por la transferencia?','What is the fee for the transfer?','Transfer ki fees kitni hai?']],dlg:[['A','Buenos días. Quiero abrir una cuenta.','Good morning. I want to open an account.'],['B','Claro. ¿Tiene su pasaporte?','Of course. Do you have your passport?'],['A','Sí, aquí está. ¿Tiene comisión la cuenta?','Yes, here it is. Does the account have a fee?'],['B','No, es gratis. Firme aquí, por favor.','No, it is free. Sign here, please.']],quiz:[['ATM in Spanish: ',['el cajero automático','la cuenta','la firma','el banco grande'],0,'Cajero automático = ATM.'],['"Sacar dinero" means...',['To save money','To withdraw money','To change money','To send money'],1,'Sacar = to take out.'],['"Quiero cambiar dinero" means...',['I want to open an account','I want to change money','I lost my money','I need a receipt'],1,'Cambiar = to change/exchange.'],['Receipt is...',['el recibo','la comisión','el tipo','la tarjeta nueva'],0,'Recibo = receipt (raseed).'],['Exchange rate is...',['el tipo de cambio','la cuenta','el cajero','la fianza'],0,'Tipo de cambio = exchange rate.']]},
+{n:25,t:'Phone Call Practice',sub:'Saying it right on the phone',ex:'Phone Spanish has its own phrases. Answer with "¿Diga?" (Hello? — in Spain) or "¿Aló?" in Latin America. Ask for someone: "¿Está Sara?" (Is Sara there?). Useful lines: "Soy Farrakh" (It is Farrakh), "Un momento, ahora se pone" (One moment, she is coming to the phone), "¿Puedo dejar un mensaje?" (Can I leave a message?), "Te llamo luego" (I will call you later), "Perdón, no te oigo bien" (Sorry, I cannot hear you well).',words:[['¿Diga?','Hello? (answering in Spain)','Hello? (phone par)','dee-ga'],['¿Está Sara?','Is Sara there?','Kya Sara hai?','es-ta sah-ra'],['Soy Farrakh','It is Farrakh (speaking)','Main Farrakh bol raha hoon','soy'],['Un momento','One moment','Ek minute','oon mo-men-to'],['ahora se pone','she/he is coming now','Woh abhi aata/aati hai','ah-oh-ra seh po-neh'],['¿Puedo dejar un mensaje?','Can I leave a message?','Kya main paighaam chor sakta hoon?','pweh-do deh-har oon men-sah-heh'],['Te llamo luego','I will call you later','Main baad mein call karunga','teh yah-mo lweh-go'],['No te oigo bien','I cannot hear you well','Aap ki awaaz saaf nahi','no teh oy-go bee-en'],['¿Puedes repetir?','Can you repeat?','Kya dobara keh sakte hain?','pweh-des reh-peh-teer'],['la cobertura','phone signal coverage','Signal ki range','ko-ber-too-ra'],['se ha cortado','it got cut off','Call kat gayi','seh ah kor-tah-do'],['¿Me oyes ahora?','Can you hear me now?','Ab awaaz aa rahi hai?','meh oh-yes ah-oh-ra']],sents:[['¿Diga? Soy Farrakh. ¿Está Ahmed?','Hello? It is Farrakh. Is Ahmed there?','Hello? Main Farrakh. Kya Ahmed hai?'],['Perdón, no te oigo bien. ¿Puedes repetir?','Sorry, I cannot hear you well. Can you repeat?','Maafi, awaaz saaf nahi. Dobara keh dein?'],['Te llamo luego, ahora no tengo cobertura.','I will call you later, I have no signal now.','Main baad mein call karunga, abhi signal nahi.']],dlg:[['A','¿Diga?','Hello?'],['B','Hola, soy Farrakh. ¿Está Sara?','Hi, it is Farrakh. Is Sara there?'],['A','Un momento, ahora se pone.','One moment, she is coming.'],['B','Gracias.','Thanks.'],['A','Perdón, se ha cortado. ¿Me oyes ahora?','Sorry, it got cut off. Can you hear me now?']],quiz:[['Answering the phone in Spain you say...',['¿Diga?','¿Dónde?','¿Cuenta?','¿Cómo?'],0,'¿Diga? = Hello? (from decir, to say).'],['"Te llamo luego" means...',['Call me now','I will call you later','I called you','You call him'],1,'Luego = later (baad mein).'],['"No te oigo bien" means...',['I cannot see you','I cannot hear you well','I do not know you','I cannot come'],1,'Oír = to hear.'],['"Se ha cortado" means...',['It is expensive','It got cut off','It is late','It is broken'],1,'The call dropped (call kat gayi).'],['"¿Puedo dejar un mensaje?" asks...',['Can I call later?','Can I leave a message?','Can I speak?','Can I pay?'],1,'Dejar un mensaje = leave a message.']]},
+{n:26,t:'Celebrations & Guests',sub:'Birthdays, weddings and hosting guests',ex:'Celebration words: la fiesta (party), el cumpleaños (birthday), la boda (wedding), el invitado (guest). Say "¡Felicidades!" (Congratulations!) for almost everything happy. Welcoming guests: "¡Bienvenidos a mi casa!" (Welcome to my home!), "Pasa, por favor" (Come in, please), "¿Quieres té o café?" Hosting tip from home: in Spain, like in Pakistan, guests are an honour — "Mi casa es tu casa" (My house is your house).',words:[['la fiesta','party / celebration','Dawat / party','fee-es-ta'],['el cumpleaños','birthday','Salgirah','koom-pleh-an-yos'],['¡Feliz cumpleaños!','Happy birthday!','Salgirah mubarak!','feh-lees koom-pleh-an-yos'],['la boda','wedding','Shaadi','bo-da'],['el invitado','guest (male)','Mehmaan','een-vee-tah-do'],['¡Bienvenidos!','Welcome! (to guests)','Khush aamdeed!','bee-en-veh-nee-dos'],['Pasa, por favor','Come in, please','Andar aayein','pah-sa por fah-vor'],['Mi casa es tu casa','My house is your house','Mera ghar aap ka ghar hai','mee kah-sa es too kah-sa'],['¡Felicidades!','Congratulations!','Mubarak ho!','feh-lee-see-dah-des'],['el regalo','gift / present','Tohfa','reh-gah-lo'],['brindar','to make a toast','Khushi mein toast karna','breen-dar'],['¡Que lo pases bien!','Have a great time!','Khoob maza karo!','keh lo pah-ses bee-en']],sents:[['¡Feliz cumpleaños! Este regalo es para ti.','Happy birthday! This gift is for you.','Salgirah mubarak! Yeh tohfa aap ke liye hai.'],['Bienvenidos a mi casa. Pasad, por favor.','Welcome to my home. Come in, please.','Mere ghar khush aamdeed. Andar aayein.'],['La boda es el sábado que viene.','The wedding is next Saturday.','Shaadi agle Haftay hai.']],dlg:[['A','¡Feliz cumpleaños, Sara!','Happy birthday, Sara!'],['B','¡Muchas gracias! Pasa, por favor.','Thank you very much! Come in, please.'],['A','Este regalo es para ti.','This gift is for you.'],['B','¡Qué bonito! ¿Quieres té o café?','How lovely! Do you want tea or coffee?'],['A','Un té, por favor. ¡Felicidades!','A tea, please. Congratulations!']],quiz:[['"La boda" means...',['The birthday','The wedding','The party','The gift'],1,'Boda = wedding (shaadi).'],['"Pasa, por favor" means...',['Pass the salt','Come in, please','Sit down','Wait here'],1,'Pasar = to come in/pass.'],['Guest in Spanish: ',['el regalo','el invitado','la fiesta','el brindis'],1,'Invitado = guest (mehmaan).'],['"¡Felicidades!" means...',['Goodbye!','Congratulations!','Good luck!','Welcome!'],1,'Felicidades = mubarak ho.'],['Gift is...',['el regalo','la boda','el cumpleaños','el invitado'],0,'Regalo = gift (tohfa).']]},
+{n:27,t:'Complaints Politely',sub:'Fixing problems without a fight',ex:'Things go wrong when you travel — complain politely and Spanish people will help fast. Start soft: "Perdón, hay un problema" (Sorry, there is a problem). Useful lines: "No funciona" (It does not work), "Está roto" (It is broken), "Esto no es lo que pedí" (This is not what I ordered), "¿Puede cambiarlo?" (Can you change it?), "Quiero hablar con el encargado" (I want to speak to the manager). Stay calm and smile — "por favor" works magic.',words:[['hay un problema','there is a problem','Ek masla hai','ay oon pro-bleh-ma'],['No funciona','It does not work','Yeh kaam nahi karta','no foon-see-oh-na'],['Está roto','It is broken','Yeh toota hua hai','es-ta roh-to'],['Esto no es lo que pedí','This is not what I ordered','Yeh woh nahi jo main ne mangwaya','es-to no es lo keh peh-dee'],['¿Puede cambiarlo?','Can you change it?','Kya aap isay badal sakte hain?','pweh-deh kam-bee-ar-lo'],['el encargado','the manager / person in charge','Manager / zimmedar','en-kar-gah-do'],['Perdón, está frío','Sorry, it is cold (food)','Maafi, yeh thanda hai','per-don es-ta free-oh'],['Hay un error en la cuenta','There is a mistake in the bill','Bill mein ghalti hai','ay oon eh-ror en lah kwen-ta'],['¿Puede arreglarlo?','Can you fix it?','Kya aap isay theek kar sakte hain?','pweh-deh ah-rreh-glar-lo'],['Lo antes posible','As soon as possible','Jitni jaldi ho sakay','lo an-tes po-see-bleh'],['No estoy contento','I am not happy (with this)','Main mutmain nahi hoon','no es-toy kon-ten-to'],['Gracias por su ayuda','Thank you for your help','Aap ki madad ka shukriya','gra-see-as por soo ah-yoo-da']],sents:[['Perdón, hay un problema: la ducha no funciona.','Sorry, there is a problem: the shower does not work.','Maafi, ek masla hai: shower kaam nahi karta.'],['Esto no es lo que pedí. Pedí pollo, no pescado.','This is not what I ordered. I ordered chicken, not fish.','Yeh woh nahi jo mangwaya. Main ne chicken mangwaya tha, machli nahi.'],['Hay un error en la cuenta, por favor.','There is a mistake in the bill, please.','Bill mein ghalti hai, meherbani karke dekhein.']],dlg:[['A','Perdón, hay un problema con mi habitación.','Sorry, there is a problem with my room.'],['B','¿Qué pasa?','What is the matter?'],['A','El aire no funciona y está roto el grifo.','The air conditioning does not work and the tap is broken.'],['B','Lo siento mucho. Lo arreglo hoy, o le cambio de habitación.','I am very sorry. I will fix it today, or change your room.'],['A','Gracias por su ayuda.','Thank you for your help.']],quiz:[['"No funciona" means...',['It is new','It does not work','It is closed','It is mine'],1,'Funcionar = to work/function.'],['"Está roto" means...',['It is broken','It is cold','It is ready','It is small'],0,'Roto = broken (toota hua).'],['Manager in Spanish: ',['el encargado','el invitado','el cliente','el cocinero'],0,'Encargado = person in charge.'],['"Hay un error en la cuenta" means...',['The bill is cheap','There is a mistake in the bill','The bill is ready','I lost the bill'],1,'Error = mistake (ghalti).'],['The polite starter for a complaint is...',['¡Escucha!','Perdón, hay un problema','Rápido, por favor','Esto es malo'],1,'Soft start + por favor = help comes fast.']]},
+{n:28,t:'My Village & City',sub:'Talking about where YOU live',ex:'Now talk about your own home — Chak No. 18 Janoobi! Places: el pueblo (village), la ciudad (city), el campo (countryside/fields), la mezquita (mosque), la escuela (school), el mercado (market). Describe: "Mi pueblo es pequeño y tranquilo" (My village is small and quiet), "Vivo cerca de..." (I live near...), "En mi pueblo hay..." (In my village there is...). People love hearing about your home — this is your best conversation topic!',words:[['mi pueblo','my village','Mera gaon','mee pweh-blo'],['la ciudad','city','Sheher','see-oo-dad'],['el campo','countryside / fields','Khet / dehat','kam-po'],['Vivo en un pueblo','I live in a village','Main gaon mein rehta hoon','vee-vo en oon pweh-blo'],['Es pequeño y tranquilo','It is small and quiet','Yeh chota aur pur-sukoon hai','es peh-ken-yo ee tran-kee-lo'],['la mezquita','mosque','Masjid','mes-kee-ta'],['la escuela','school','School','es-kweh-la'],['el río','river','Darya','ree-oh'],['los campos de trigo','wheat fields','Gandum ke khet','kam-pos deh tree-go'],['La gente es amable','People are kind','Log meherbaan hain','lah hen-teh es ah-mah-bleh'],['Está en Punjab','It is in Punjab','Yeh Punjab mein hai','es-ta en'],['Mi lugar favorito','My favourite place','Meri pasandeeda jagah','mee loo-gar fah-vo-ree-to']],sents:[['Vivo en un pueblo pequeño de Punjab, en Pakistán.','I live in a small village in Punjab, Pakistan.','Main Pakistan ke Punjab ke ek chotay gaon mein rehta hoon.'],['En mi pueblo hay una mezquita, una escuela y un mercado.','In my village there is a mosque, a school and a market.','Mere gaon mein ek masjid, ek school aur ek bazaar hai.'],['La gente de mi pueblo es muy amable.','The people of my village are very kind.','Mere gaon ke log bohat meherbaan hain.']],dlg:[['A','¿Dónde vives, Farrakh?','Where do you live, Farrakh?'],['B','Vivo en un pueblo de Punjab, en Pakistán. Se llama Chak 18.','I live in a village in Punjab, Pakistan. It is called Chak 18.'],['A','¿Cómo es tu pueblo?','What is your village like?'],['B','Es pequeño y tranquilo. Hay campos de trigo y la gente es amable.','It is small and quiet. There are wheat fields and the people are kind.'],['A','¡Qué bonito!','How lovely!']],quiz:[['"Mi pueblo" means...',['My city','My village','My house','My country'],1,'Pueblo = village/town (gaon).'],['Mosque in Spanish: ',['la escuela','la mezquita','el mercado','la iglesia'],1,'Mezquita = mosque (masjid).'],['"La gente es amable" means...',['The food is good','The people are kind','The place is big','The weather is fine'],1,'Gente = people, amable = kind.'],['Fields/countryside is...',['el campo','el río','el trigo solo','la ciudad'],0,'Campo = fields/countryside.'],['"Es pequeño y tranquilo" describes...',['A big noisy city','A small quiet place','An expensive hotel','A fast train'],1,'Pequeño = small, tranquilo = quiet.']]},
+{n:29,t:'Hopes & Dreams',sub:'Quiero, espero, un día... — your future',ex:'Talk about your dreams with three magic verbs: QUIERO (I want), ESPERO (I hope), VOY A (I am going to). "Quiero aprender español" (I want to learn Spanish), "Espero viajar a España un día" (I hope to travel to Spain one day), "Mi sueño es..." (My dream is...). Add reasons with "para" (in order to): "Estudio para trabajar y ayudar a mi familia" (I study in order to work and help my family). Dreams in Spanish sound beautiful — say yours aloud!',words:[['mi sueño','my dream','Mera khwab / sapna','mee swen-yo — ñ = ny'],['Quiero aprender','I want to learn','Main seekhna chahta hoon','kee-eh-ro ah-pren-der'],['Espero viajar','I hope to travel','Mujhe ummeed hai main safar karunga','es-peh-ro vee-ah-har'],['un día','one day','Ek din','oon dee-a'],['en el futuro','in the future','Mustaqbil mein','en el foo-too-ro'],['Quiero trabajar','I want to work','Main kaam karna chahta hoon','kee-eh-ro tra-bah-har'],['para ayudar a mi familia','to help my family','Apne khandan ki madad ke liye','pah-ra ah-yoo-dar ah mee fah-mee-lee-a'],['Mi meta es...','My goal is...','Mera hadaf hai...','mee meh-ta es'],['con esfuerzo','with effort / hard work','Mehnat se','kon es-fwer-so'],['Nunca es tarde','It is never too late','Kabhi dair nahi hoti','noon-ka es tar-deh'],['paso a paso','step by step','Qadam ba qadam','pah-so ah pah-so'],['¡Sí se puede!','Yes we can / it can be done!','Ho sakta hai!','see seh pweh-deh']],sents:[['Mi sueño es hablar español muy bien.','My dream is to speak Spanish very well.','Mera khwab hai ke main Spanish bohat achi bolun.'],['Espero viajar a España un día.','I hope to travel to Spain one day.','Mujhe ummeed hai ek din Spain jaunga.'],['Estudio todos los días para ayudar a mi familia.','I study every day to help my family.','Main har roz apne khandan ki madad ke liye parhta hoon.']],dlg:[['A','¿Cuál es tu sueño, Farrakh?','What is your dream, Farrakh?'],['B','Mi sueño es hablar español y viajar a España.','My dream is to speak Spanish and travel to Spain.'],['A','¿Y tu meta para este año?','And your goal for this year?'],['B','Quiero terminar el nivel A2, paso a paso.','I want to finish level A2, step by step.'],['A','¡Sí se puede!','Yes you can!']],quiz:[['"Mi sueño" means...',['My house','My dream','My job','My plan B'],1,'Sueño = dream (khwab).'],['"Espero viajar" means...',['I travel a lot','I hope to travel','I travelled','I hate travel'],1,'Espero = I hope (ummeed hai).'],['Goal in Spanish: ',['la meta','el sueño roto','el paso','el futuro total'],0,'Meta = goal (hadaf).'],['"Nunca es tarde" means...',['It is never too late','It is always late','Never say it','Tomorrow is late'],0,'A phrase to remember on hard days.'],['"Paso a paso" means...',['Very fast','Step by step','One day','With money'],1,'Paso = step (qadam).']]},
+{n:30,t:'Story Telling',sub:'Past + future mixed — tell your story!',ex:'A real story mixes tenses: past for what happened, future for what comes next. Story glue words: primero (first), luego (then), después (after that), de repente (suddenly), al final (in the end), y entonces (and then/so). Try your own story: "Ayer fui al mercado. Compré té. Luego, de repente, vi a un amigo. Mañana voy a visitarlo." You now have everything — this is the final A2 lesson. ¡Tu historia empieza ahora! (Your story starts now!)',words:[['primero','first (in a story)','Pehle','pree-meh-ro'],['luego','then','Phir','lweh-go'],['después','afterwards','Us ke baad','des-pwes'],['de repente','suddenly','Achanak','deh reh-pen-teh'],['al final','in the end','Aakhir mein','al fee-nal'],['y entonces','and then / so','Aur phir','ee en-ton-ses'],['había una vez','once upon a time','Ek tha / ek dafa ka zikr hai','ah-bee-a oo-na ves'],['la historia','story / history','Kahani','ees-toh-ree-a'],['me pasó','it happened to me','Mere saath hua','meh pah-so'],['¡No me digas!','No way! / You don\'t say!','Acha?! Sach mein?!','no meh dee-gas'],['¡Qué suerte!','What luck!','Kitni khush-qismati!','keh swer-teh'],['continuará...','to be continued...','Jaari hai...','kon-tee-noo-ah-ra']],sents:[['Ayer fui al mercado y, de repente, vi a un viejo amigo.','Yesterday I went to the market and, suddenly, I saw an old friend.','Kal main bazaar gaya aur achanak ek purana dost mila.'],['Primero estudié, luego trabajé y al final descansé.','First I studied, then I worked and in the end I rested.','Pehle main ne parha, phir kaam kiya aur aakhir mein aaram kiya.'],['El año que viene voy a contar esta historia en España.','Next year I am going to tell this story in Spain.','Agle saal main yeh kahani Spain mein sunaunga.']],dlg:[['A','Cuéntame: ¿qué te pasó ayer?','Tell me: what happened to you yesterday?'],['B','Fui a la ciudad. Primero compré un móvil nuevo.','I went to the city. First I bought a new phone.'],['A','¿Y luego?','And then?'],['B','De repente, ¡vi a mi primo! Comimos juntos.','Suddenly, I saw my cousin! We ate together.'],['A','¡Qué suerte! ¿Y mañana?','What luck! And tomorrow?'],['B','Mañana voy a visitarlo en su casa. ¡La historia continúa!','Tomorrow I am going to visit him at his house. The story continues!']],quiz:[['"De repente" means...',['Slowly','Suddenly','Finally','First'],1,'De repente = suddenly (achanak).'],['"Al final" means...',['At the start','In the end','Tomorrow','Suddenly'],1,'Al final = in the end (aakhir mein).'],['"Había una vez..." starts...',['A question','A story (once upon a time)','A complaint','A goodbye'],1,'The classic story opening.'],['Which sentence mixes past and future correctly?',['Ayer voy al mercado','Mañana fui al mercado','Ayer fui al mercado y mañana voy a volver','Fui mañana al mercado'],2,'Fui = past (went), voy a volver = future (going to return).'],['"¡No me digas!" means...',['Do not speak','No way! / Really?!','Tell me everything','I do not know'],1,'A fun reaction — like "Acha?! Sach mein?!"']]}
+);
+</script>
+<script>
 /* ============ HOME ============ */
 function nextLessonIdx(){for(var i=0;i<LESSONS.length;i++){if(!ST.done[LESSONS[i].n])return i}return LESSONS.length-1}
 function renderHome(){
   var d=new Date();var pod=POD[d.getDate()%POD.length];
   var wod=FLASH[(d.getDate()*7+d.getMonth())%FLASH.length];
-  var idx=nextLessonIdx();var L=LESSONS[idx];var allDone=Object.keys(ST.done).length>=20;
+  var idx=nextLessonIdx();var L=LESSONS[idx];var allDone=Object.keys(ST.done).length>=LESSONS.length;
   var hw='';
   function tc(nav,ic,t,s){return '<button type="button" class="toolcard" data-nav="'+nav+'"><span class="tic">'+ic+'</span><span class="tt"><b>'+t+'</b><span>'+s+'</span></span><span class="arr">›</span></button>'}
   function cat(ic,o,t,s){return '<div class="catsec"><div class="cathead"><span class="caticon'+(o?' o':'')+'">'+ic+'</span><div><h2>'+t+'</h2><p>'+s+'</p></div></div>'}
   /* HERO — Continue stays on top */
-  hw+='<div class="card herocard"><div class="kicker">Your Spanish path · A1</div><h2 style="font-size:1.3rem;margin:6px 0 2px">👋 ¡Hola, Farrakh!</h2>';
-  hw+='<p class="muted" style="margin:2px 0 10px">20 short lessons in order — pass each quiz with 4 of 5 to open the next. 10–20 minutes a day is enough.</p>';
-  hw+='<div class="progressbar"><div style="width:'+(Object.keys(ST.done).length/20*100)+'%"></div></div>';
-  hw+='<p class="muted" style="margin:6px 0 12px">'+Object.keys(ST.done).length+' of 20 lessons complete · '+Object.keys(ST.known).length+' words known · 🔥 '+ST.streak+' day streak</p>';
-  if(allDone){hw+='<button class="btn orange" id="contBtn" type="button" style="width:100%;min-height:56px;font-size:1.02rem">🏆 Review Lesson 20 again</button>'}
+  hw+='<div class="card herocard"><div class="kicker">Your Spanish path · A1 + A2</div><h2 style="font-size:1.3rem;margin:6px 0 2px">👋 ¡Hola, Farrakh!</h2>';
+  hw+='<p class="muted" style="margin:2px 0 10px">'+LESSONS.length+' lessons in order — 20 for A1, then 10 more for A2. Pass each quiz with 4 of 5 to open the next. 10–20 minutes a day is enough.</p>';
+  hw+='<div class="progressbar"><div style="width:'+(Object.keys(ST.done).length/LESSONS.length*100)+'%"></div></div>';
+  hw+='<p class="muted" style="margin:6px 0 12px">'+Object.keys(ST.done).length+' of '+LESSONS.length+' lessons complete · '+Object.keys(ST.known).length+' words known · 🔥 '+ST.streak+' day streak</p>';
+  if(allDone){hw+='<button class="btn orange" id="contBtn" type="button" style="width:100%;min-height:56px;font-size:1.02rem">🏆 Review Lesson '+LESSONS.length+' again</button>'}
   else{hw+='<button class="btn" id="contBtn" type="button" style="width:100%;min-height:56px;font-size:1.02rem">▶️ Continue: Lesson '+L.n+' — '+esc(L.t)+'</button>'}
   hw+='</div>';
   /* Word + Phrase of the Day */
@@ -492,23 +559,36 @@ function renderHome(){
   hw+='<p class="muted" style="margin:12px 0 0">Say both out loud 3 times. Speaking from day one is the secret.</p></div>';
   /* Daily lesson */
   hw+='<div class="card" id="dailyCard"><div class="kicker">Today · Learn</div><h3 style="font-size:1.08rem;margin-top:6px">⏱️ Daily 5-Minute Lesson '+(ST.dailyDoneDay===todayStr()?'· ✓ Done today':'')+'</h3><p class="muted">One tiny mix, fresh every day: 5 new words + 1 dialogue + 3 quick questions.</p><button class="btn orange" id="dailyBtn" type="button" style="width:100%">▶️ Start today\'s 5-minute lesson</button><div id="dailyBody"></div></div>';
+  /* Streak rescue — evening, today not practised yet */
+  var practisedToday=(ST.dailyDoneDay===todayStr())||ST.scores.some(function(s){return s.date===todayStr()});
+  if(!practisedToday&&new Date().getHours()>=17&&ST.rescueDay!==todayStr()){
+    hw+='<div class="rescue" id="rescueCard"><div style="display:flex;gap:10px;align-items:flex-start"><div style="flex:1"><b style="font-family:Sora">🔥 Keep your streak — do 5 minutes now</b><p class="muted" style="margin:4px 0 10px">It is evening and today\'s practice is not logged yet. Five small minutes keep your '+ST.streak+'-day streak alive.</p><button class="btn orange" id="rescueBtn" type="button">⏱️ Start the Daily 5-Minute Lesson</button></div><button type="button" id="rescueX" aria-label="Dismiss" style="background:transparent;border:none;font-size:1.15rem;color:var(--muted)">✕</button></div></div>';
+  }
+  /* Install + Share */
+  hw+='<div class="card"><div class="kicker">📲 Keep it on your phone · Share it</div><h3 style="font-size:1.05rem;margin:6px 0 2px">Install the app &amp; share the live link</h3><p class="muted" style="margin:2px 0 4px">Live site: <b>farrakhimtiaz74.github.io/learn-spanish-with-farrakh</b></p><button class="btn" id="installBtn" type="button" style="width:100%">📲 Install app</button><div id="installHelp"></div><div class="sharebar"><a class="wa" href="https://wa.me/?text='+encodeURIComponent('Learn Spanish with Farrakh — free built-in Spanish course (30 lessons, 800 flashcards): '+LIVE_URL)+'" target="_blank" rel="noopener">WhatsApp</a><a class="tg" href="https://t.me/share/url?url='+encodeURIComponent(LIVE_URL)+'&text='+encodeURIComponent('Learn Spanish with Farrakh — free built-in Spanish course')+'" target="_blank" rel="noopener">Telegram</a><a class="xx" href="https://twitter.com/intent/tweet?url='+encodeURIComponent(LIVE_URL)+'&text='+encodeURIComponent('Learn Spanish with Farrakh — free built-in Spanish course: 30 lessons, 800 flashcards')+'" target="_blank" rel="noopener">X</a></div><p class="muted" style="margin:8px 0 0">Or copy the live address from the line above by hand: <b>'+LIVE_URL+'</b></p></div>';
   /* CATEGORY 1 — LEARN */
   hw+=cat('📚','','1 · LEARN','Lessons and building blocks, step by step.');
   hw+='<div class="toolgrid">';
-  hw+=tc('lessons','🛤️','Lesson Path','20 lessons · '+Object.keys(ST.done).length+' done');
+  hw+=tc('lessons','🛤️','Lesson Path',LESSONS.length+' lessons · '+Object.keys(ST.done).length+' done');
   hw+=tc('daily','⏱️','Daily 5-Minute Lesson','5 words + dialogue + 3 questions');
   hw+=tc('builder','🧩','Sentence Builder','Tap words in order, hear it spoken');
   hw+=tc('serestar','⚖️','Ser vs Estar Trainer','20 sentences · Roman Urdu reasons');
+  hw+=tc('bridge','🇵🇰','Pakistan–Spain Bridge','Phrases about YOUR life, family & village');
+  hw+=tc('phrasebook','🆘','Survival Phrasebook','100 tap-to-speak travel phrases');
   hw+='</div></div>';
   /* CATEGORY 2 — PRACTICE */
   hw+=cat('🧠','o','2 · PRACTICE','Cards, quizzes and exams that make words stick.');
   hw+='<div class="toolgrid">';
-  hw+=tc('cards','🃏','Flashcards',''+FLASH.length+' words · 15 categories');
+  hw+=tc('cards','🃏','Flashcards',''+FLASH.length+' words · '+Object.keys(CATS).length+' categories');
   hw+=tc('hard','🆘','Hard Words Deck',hardIndices().length+' rescued words (3+ "still learning")');
   hw+=tc('quiz','❓','Quiz Zone','4 quiz types · 10 questions each');
   hw+=tc('timed','⏱️','Timed Quiz','60 seconds · best: '+ST.timedBest+' correct');
   hw+=tc('review','🔁','Review Mistakes',ST.mistakes.length+' saved — clear them all');
   hw+=tc('exam','🎓','Final Exam A1',ST.examPassed?'✓ Passed — certificate earned':'20 questions · pass = 14');
+  hw+=tc('exam2','🎓','Final Exam A2',ST.exam2Passed?'✓ Passed — A2 certificate earned':(ST.done[30]?'20 questions from Lessons 21–30':'Unlocks after Lesson 30'));
+  hw+=tc('match','🧩','Word Match Game','6 words · match the pairs · timer');
+  hw+=tc('hangman','🔤','Ahorcado (Hangman)','Guess the Spanish word letter by letter');
+  hw+=tc('numdrill','🔢','Numbers & Money Drill','Hear prices, times & dates — type them');
   hw+='</div></div>';
   /* CATEGORY 3 — SPEAK & LISTEN */
   hw+=cat('🎤','','3 · SPEAK & LISTEN','Your voice is the fastest teacher.');
@@ -519,12 +599,15 @@ function renderHome(){
   hw+=tc('mic','🎯','Speaking Practice','Word-match % score — honest, no AI');
   hw+=tc('testmic','🎙️','Test My Mic','Allowed / Blocked / Not asked');
   hw+=tc('speak','🐢','Speed Toggle','Normal / Slow — at the top of the page');
+  hw+=tc('library','🎧','Listening Library','20 short passages · Slow + Normal · 3 questions each');
+  hw+=tc('roleplay','🎭','Dialogue Role-Play','6 real conversations — you play your part');
   hw+='</div></div>';
   /* CATEGORY 4 — VERBS */
   hw+=cat('✍️','o','4 · VERBS','The engine of every sentence.');
   hw+='<div class="toolgrid">';
   hw+=tc('verbs','📖','Verb Trainer','20 verbs · Present, Past & voy a future');
   hw+=tc('verbs','🧠','Conjugation Quiz','Verb Master badge: '+ST.verbPasses+'/10 passed');
+  hw+=tc('irregular','⚡','Irregular Verbs Pack','12 famous irregulars by pattern + drills');
   hw+='</div></div>';
   /* CATEGORY 5 — MY PROGRESS */
   hw+=cat('📊','','5 · MY PROGRESS','Streak, weekly goal, badges and scores.');
@@ -535,6 +618,11 @@ function renderHome(){
   $('tab-home').innerHTML=hw;
   $('dailyBtn').onclick=function(){renderDaily()};
   $('contBtn').onclick=function(){openLesson(idx)};
+  var rb=$('rescueBtn');if(rb)rb.onclick=function(){var dc=$('dailyCard');if(dc)dc.scrollIntoView({behavior:'smooth'});renderDaily()};
+  var rx=$('rescueX');if(rx)rx.onclick=function(){ST.rescueDay=todayStr();save();var rc=$('rescueCard');if(rc)rc.remove()};
+  var ib=$('installBtn');if(ib)ib.onclick=function(){
+    $('installHelp').innerHTML='<div class="feedback ok" style="margin-top:10px"><b>Add to Home Screen:</b><br>📱 <b>Android (Chrome):</b> tap the ⋮ menu (top right) → <b>"Add to Home screen"</b> or "Install app" → Add. On the live site Chrome may also offer "Install app" by itself.<br>🍎 <b>iPhone (Safari):</b> tap the Share button → <b>"Add to Home Screen"</b>.<br>The app then opens full-screen from your home screen, like a real app.</div>';
+  };
   document.querySelectorAll('[data-nav]').forEach(function(b){b.addEventListener('click',function(){
     var nav=b.getAttribute('data-nav');
     if(nav==='lessons'){renderLessons();goTab('lessons')}
@@ -550,6 +638,15 @@ function renderHome(){
     else if(nav==='listentype'){goTab('quiz');startListenType()}
     else if(nav==='shadow'){goTab('speak');setTimeout(function(){var s=$('shLesson');if(s)s.scrollIntoView({behavior:'smooth',block:'center'})},80)}
     else if(nav==='testmic'){goTab('speak');setTimeout(function(){testMic();var o=$('micTestOut');if(o)o.scrollIntoView({behavior:'smooth',block:'center'})},80)}
+    else if(nav==='exam2'){goTab('quiz');startExam2()}
+    else if(nav==='match'){goTab('quiz');startWordMatch()}
+    else if(nav==='hangman'){goTab('quiz');startHangman()}
+    else if(nav==='numdrill'){goTab('quiz');startNumDrill()}
+    else if(nav==='irregular'){goTab('verbs');setTimeout(function(){var s=$('irrCard');if(s)s.scrollIntoView({behavior:'smooth',block:'start'})},80)}
+    else if(nav==='library'){goTab('speak');renderLibrary()}
+    else if(nav==='roleplay'){goTab('speak');renderRoleplays()}
+    else if(nav==='bridge'){goTab('speak');renderBridge()}
+    else if(nav==='phrasebook'){goTab('speak');renderPhrasebook()}
     else if(nav==='mic'||nav==='speak'){goTab('speak')}
     else if(nav==='verbs'){goTab('verbs')}
     else if(nav==='progress'){goTab('progress')}
@@ -624,7 +721,7 @@ function openLesson(i){
   curLesson=i;ST.lastLesson=i;save();touchDay();
   var L=LESSONS[i];
   var h='<button class="btn ghost small" id="backLessons" type="button">← All lessons</button>';
-  h+='<div class="card"><div class="kicker">Lesson '+L.n+' of 20</div><h2 style="font-size:1.35rem;margin:4px 0">'+esc(L.t)+'</h2><p class="muted" style="margin:2px 0 10px">'+esc(L.sub)+'</p>';
+  h+='<div class="card"><div class="kicker">Lesson '+L.n+' of '+LESSONS.length+(L.n>20?' · Level A2':' · Level A1')+'</div><h2 style="font-size:1.35rem;margin:4px 0">'+esc(L.t)+'</h2><p class="muted" style="margin:2px 0 10px">'+esc(L.sub)+'</p>';
   if(i===0)h+=soundBox();
   h+='<p>'+esc(L.ex)+'</p></div>';
   h+='<div class="card"><h3>📚 New words &amp; phrases</h3>';
@@ -708,10 +805,10 @@ function renderLessonQ(){
     if(pass){ST.done[L.n]=true}
     save();updateTop();
     var h='<p style="font-size:1.1rem"><b>You scored '+lqState.score+' / '+L.quiz.length+' ('+pct+'%)</b></p>';
-    h+=pass?'<div class="feedback ok">🎉 <b>Passed!</b> Lesson '+(L.n+1<=20?(L.n+1):'')+(L.n<20?' is now unlocked. Well done!':'')+(L.n===20?' You finished the whole path — ¡Enhorabuena! 🏆':'')+'</div>':'<div class="feedback no">Almost! You need 4/5 to unlock the next lesson. Read the words once more and try again — you can do it. 💪</div>';
+    h+=pass?'<div class="feedback ok">🎉 <b>Passed!</b> '+(L.n<LESSONS.length?'Lesson '+(L.n+1)+' is now unlocked. Well done!':'You finished the whole path — ¡Enhorabuena! 🏆 Take the Final Exam for this level from Home.')+'</div>':'<div class="feedback no">Almost! You need 4/5 to unlock the next lesson. Read the words once more and try again — you can do it. 💪</div>';
     if(lqState.mistakes.length){h+='<h4>Review your mistakes:</h4>';lqState.mistakes.forEach(function(m){h+='<p class="muted" style="margin:6px 0">• '+esc(m)+'</p>'})}
     h+='<div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px"><button class="btn" id="lqRetry" type="button">↻ Try quiz again</button>';
-    if(pass&&curLesson<19)h+='<button class="btn orange" id="lqNext" type="button">Next lesson →</button>';
+    if(pass&&curLesson<LESSONS.length-1)h+='<button class="btn orange" id="lqNext" type="button">Next lesson →</button>';
     h+='<button class="btn ghost" id="lqList" type="button">All lessons</button></div>';
     body.innerHTML=h;
     $('lqRetry').onclick=function(){lqState={q:0,score:0,mistakes:[]};renderLessonQ()};
@@ -757,12 +854,14 @@ function renderCards(){
   h+='<p class="muted">Tap the card to flip it. Words you mark "Still learning" come back more often. Known: <b>'+knownCount+'</b> / '+FLASH.length+'</p>';
   var hardN=hardIndices().length;
   h+='<button class="btn orange" id="fcHard" type="button" style="width:100%;margin-bottom:10px">🆘 Hard Words deck — '+hardN+' word'+(hardN===1?'':'s')+' you marked "Still learning" 3+ times</button>';
+  h+='<button class="btn ghost" id="fcPrint" type="button" style="width:100%;margin-bottom:10px">📄 Word sheet — the category chosen below</button>';
   h+='<label class="muted" style="font-weight:600">Category</label><select id="fcCatSel" style="margin:6px 0 10px"><option value="all">All categories</option><option value="hard"'+(fcCat==='hard'?' selected':'')+'>🆘 Hard Words ('+hardN+')</option>';
   for(var c in CATS){h+='<option value="'+c+'"'+(fcCat===c?' selected':'')+'>'+CATS[c]+'</option>'}
   h+='</select><label class="pill"><input type="checkbox" id="fcShuffle" '+(fcShuffle?'checked':'')+'> 🔀 Shuffle mode</label></div>';
   h+='<div id="fcBody"></div>';
   $('tab-cards').innerHTML=h;
   $('fcHard').addEventListener('click',function(){fcCat='hard';var s=$('fcCatSel');if(s)s.value='hard';buildQueue();renderCard()});
+  $('fcPrint').addEventListener('click',function(){openPrintSheet(fcCat)});
   $('fcCatSel').addEventListener('change',function(){fcCat=this.value;buildQueue();renderCard()});
   $('fcShuffle').addEventListener('change',function(){fcShuffle=this.checked;buildQueue();renderCard()});
   if(!fcQueue.length)buildQueue();
@@ -796,10 +895,11 @@ function renderVerbs(){
   h+='<label class="muted" style="font-weight:600">Choose a verb</label><select id="verbSel" style="margin:6px 0 4px">';
   VERBS.forEach(function(v,i){h+='<option value="'+i+'"'+(i===curVerb?' selected':'')+'>'+esc(v.inf)+' — '+esc(v.en)+'</option>'});
   h+='</select></div><div id="verbBody"></div>';
+  h+='<div id="irrBody"></div>';
   h+='<div class="card"><h3>🧠 Conjugation quiz</h3><p class="muted">Example: "¿Cómo se dice \'we eat\'?" — pick the right form.</p><div id="verbQuizBody"></div></div>';
   $('tab-verbs').innerHTML=h;
   $('verbSel').addEventListener('change',function(){curVerb=parseInt(this.value,10);renderVerbTable()});
-  renderVerbTable();vqState=null;renderVerbQuiz();
+  renderVerbTable();renderIrregulars();vqState=null;renderVerbQuiz();
 }
 function renderVerbTable(){
   var v=VERBS[curVerb];var b=$('verbBody');if(!b)return;
@@ -879,6 +979,10 @@ function renderQuizHome(){
   h+='<button class="btn" id="qzBuilder" type="button">🧩 Sentence Builder</button>';
   h+='<button class="btn" id="qzSerEstar" type="button">⚖️ Ser vs Estar trainer</button>';
   h+='<button class="btn orange" id="qzExam" type="button">🎓 Final Exam — Level A1'+(ST.examPassed?' ✓ Passed':'')+'</button>';
+  h+='<button class="btn orange" id="qzExam2" type="button">🎓 Final Exam — Level A2'+(ST.exam2Passed?' ✓ Passed':(ST.done[30]?'':' 🔒'))+'</button>';
+  h+='<button class="btn" id="qzMatch" type="button">🧩 Word Match game</button>';
+  h+='<button class="btn" id="qzHang" type="button">🔤 Ahorcado (hangman)</button>';
+  h+='<button class="btn" id="qzNum" type="button">🔢 Numbers &amp; Money drill</button>';
   h+='<button class="btn ghost" id="qzReview" type="button">🔁 Review Mistakes ('+ST.mistakes.length+')</button>';
   h+='</div></div>';
   h+='<div id="gzBody"></div>';
@@ -889,6 +993,10 @@ function renderQuizHome(){
   $('qzBuilder').onclick=function(){startBuilder()};
   $('qzSerEstar').onclick=function(){startSerEstar()};
   $('qzExam').onclick=function(){startExam()};
+  $('qzExam2').onclick=function(){startExam2()};
+  $('qzMatch').onclick=function(){startWordMatch()};
+  $('qzHang').onclick=function(){startHangman()};
+  $('qzNum').onclick=function(){startNumDrill()};
   $('qzReview').onclick=function(){startReview()};
 }
 /* ===== Review Mistakes mode ===== */
@@ -1149,7 +1257,12 @@ function renderSpeak(){
   LESSONS.forEach(function(L,i){h+='<option value="'+i+'">Lesson '+L.n+': '+esc(L.t)+'</option>'});
   h+='</select><div id="shOut"></div><div class="grid2"><button class="btn orange" id="shStart" type="button">▶️ Start shadowing</button><button class="btn ghost" id="shStop" type="button">⏹ Stop</button></div></div>';
   h+='<div class="card"><h2 style="font-size:1.15rem">🎙️ Test My Mic</h2><p class="muted">Check whether Chrome is allowed to use your microphone for speaking practice.</p><div id="micTestOut"></div><button class="btn" id="micTestBtn" type="button" style="width:100%">🎙️ Test my mic</button></div>';
+  h+='<div class="card"><h2 style="font-size:1.15rem">📖 Listening, Role-Play &amp; Real-Life Phrases</h2><p class="muted">Four more ways to practise — all built in, nothing to install.</p><div class="grid2"><button class="btn" id="spLibrary" type="button">🎧 Listening Library (20)</button><button class="btn" id="spRoleplay" type="button">🎭 Dialogue Role-Play (6)</button><button class="btn orange" id="spBridge" type="button">🇵🇰 Pakistan–Spain Bridge</button><button class="btn orange" id="spPhrasebook" type="button">🆘 Survival Phrasebook (100)</button></div></div>';
   $('tab-speak').innerHTML=h;
+  $('spLibrary').onclick=function(){renderLibrary()};
+  $('spRoleplay').onclick=function(){renderRoleplays()};
+  $('spBridge').onclick=function(){renderBridge()};
+  $('spPhrasebook').onclick=function(){renderPhrasebook()};
   $('shStart').onclick=function(){startShadowing(parseInt($('shLesson').value,10))};
   $('shStop').onclick=function(){stopShadowing();$('shOut').innerHTML='<p class="muted">Shadowing stopped. ¡Buen trabajo!</p>'};
   $('micTestBtn').onclick=testMic;
@@ -1240,8 +1353,8 @@ function testMic(){
 function renderProgress(){
   var doneN=Object.keys(ST.done).length;var knownN=Object.keys(ST.known).length;
   var h='<div class="card"><h2 style="font-size:1.2rem">📊 My Progress</h2>';
-  h+='<div class="grid2" style="margin-top:10px"><div class="pronbox" style="margin:0;text-align:center"><div style="font-size:1.7rem;font-weight:800;font-family:Sora">🔥 '+ST.streak+'</div><div class="muted">day streak</div></div><div class="pronbox" style="margin:0;text-align:center"><div style="font-size:1.7rem;font-weight:800;font-family:Sora">'+doneN+' / 20</div><div class="muted">lessons completed</div></div><div class="pronbox" style="margin:0;text-align:center"><div style="font-size:1.7rem;font-weight:800;font-family:Sora">'+knownN+'</div><div class="muted">words marked "Know it"</div></div><div class="pronbox" style="margin:0;text-align:center"><div style="font-size:1.7rem;font-weight:800;font-family:Sora">'+ST.totalDays+'</div><div class="muted">total practice days</div></div></div>';
-  h+='<p class="muted" style="margin-top:12px">Lesson progress</p><div class="progressbar"><div style="width:'+(doneN/20*100)+'%"></div></div>';
+  h+='<div class="grid2" style="margin-top:10px"><div class="pronbox" style="margin:0;text-align:center"><div style="font-size:1.7rem;font-weight:800;font-family:Sora">🔥 '+ST.streak+'</div><div class="muted">day streak</div></div><div class="pronbox" style="margin:0;text-align:center"><div style="font-size:1.7rem;font-weight:800;font-family:Sora">'+doneN+' / '+LESSONS.length+'</div><div class="muted">lessons completed</div></div><div class="pronbox" style="margin:0;text-align:center"><div style="font-size:1.7rem;font-weight:800;font-family:Sora">'+knownN+'</div><div class="muted">words marked "Know it"</div></div><div class="pronbox" style="margin:0;text-align:center"><div style="font-size:1.7rem;font-weight:800;font-family:Sora">'+ST.totalDays+'</div><div class="muted">total practice days</div></div></div>';
+  h+='<p class="muted" style="margin-top:12px">Lesson progress</p><div class="progressbar"><div style="width:'+(doneN/LESSONS.length*100)+'%"></div></div>';
   h+='<p class="muted">Flashcard progress</p><div class="progressbar"><div style="width:'+(FLASH.length?(knownN/FLASH.length*100):0)+'%;background:var(--orange)"></div></div>';
   h+='</div>';
   /* Weekly goal + 7-day graph */
@@ -1259,7 +1372,7 @@ function renderProgress(){
     ['✍️','Verb Master',ST.verbPasses>=10,'Pass 10 conjugation quizzes ('+ST.verbPasses+'/10)']];
   h+='<div class="card"><h3>🏅 My Badges</h3><div class="badgerow">';
   badges.forEach(function(b){h+='<div class="badgebox'+(b[2]?'':' off')+'"><div class="ic">'+b[0]+'</div><b>'+b[1]+'</b><div class="muted" style="font-size:.8rem">'+(b[2]?'✓ Earned!':b[3])+'</div></div>'});
-  h+='</div><p class="muted" style="margin-top:10px">⏱️ Timed quiz best: <b>'+ST.timedBest+'</b> correct in 60s · 🎓 Final Exam: <b>'+(ST.examPassed?'Passed ✓ (best '+ST.examBest+'/20)':'best '+(ST.examBest||0)+'/20 — pass is 14')+'</b> · 🔁 Mistakes waiting: <b>'+ST.mistakes.length+'</b></p></div>';
+  h+='</div><p class="muted" style="margin-top:10px">⏱️ Timed quiz best: <b>'+ST.timedBest+'</b> correct in 60s · 🎓 A1 Exam: <b>'+(ST.examPassed?'Passed ✓ (best '+ST.examBest+'/20)':'best '+(ST.examBest||0)+'/20 — pass is 14')+'</b> · 🎓 A2 Exam: <b>'+(ST.exam2Passed?'Passed ✓ (best '+ST.exam2Best+'/20)':(ST.done[30]?'best '+(ST.exam2Best||0)+'/20 — pass is 14':'unlocks after Lesson 30'))+'</b> · 🔁 Mistakes waiting: <b>'+ST.mistakes.length+'</b></p></div>';
   h+='<div class="card"><h3>🏅 Quiz score history</h3>';
   if(!ST.scores.length){h+='<p class="muted">No quizzes yet. Finish Lesson 1\'s quiz and your scores will appear here.</p>'}
   else{var rev=ST.scores.slice().reverse();h+='<table><tr><th>Quiz</th><th>Score</th><th>Date</th></tr>';rev.slice(0,20).forEach(function(s){h+='<tr><td>'+esc(s.name)+'</td><td><b>'+s.score+' / '+s.total+'</b></td><td class="muted">'+esc(s.date)+'</td></tr>'});h+='</table>'}
@@ -1269,12 +1382,481 @@ function renderProgress(){
   else{h+='<div class="chiprow">';LESSONS.forEach(function(L){if(ST.done[L.n])h+='<span class="chip on">✓ '+L.n+'. '+esc(L.t)+'</span>'});h+='</div>'}
   h+='<p class="muted" style="margin-top:12px">Progress is saved only on this device, in this browser (localStorage). Clearing browser data clears it too.</p>';
   h+='<button class="btn" id="resetBtn" type="button" style="background:var(--red)">🗑️ Reset all progress</button></div>';
+  h+='<div class="card"><h3>💾 Backup my progress (file)</h3><p class="muted">Moving to a new phone or browser? Download your progress as one small file, then restore it on the other device. <b>Honest note:</b> this is a manual file backup — not cloud sync. Nothing is uploaded anywhere; the file stays in your hands.</p><div class="grid2"><button class="btn" id="expBtn" type="button">⬇️ Download my progress</button><button class="btn ghost" id="impBtn" type="button">⬆️ Restore progress</button></div><input type="file" id="impFile" accept=".json,application/json" style="display:none"><div id="impFb"></div></div>';
   $('tab-progress').innerHTML=h;
+  $('expBtn').onclick=function(){
+    var blob=new Blob([JSON.stringify(ST,null,1)],{type:'application/json'});
+    var a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='learn-spanish-progress.json';document.body.appendChild(a);a.click();
+    setTimeout(function(){URL.revokeObjectURL(a.href);a.remove()},400);
+    $('impFb').innerHTML='<div class="feedback ok" style="margin-top:10px">✅ Backup file downloaded: <b>learn-spanish-progress.json</b> — keep it safe (WhatsApp it to yourself or save it in your files).</div>';
+  };
+  $('impBtn').onclick=function(){$('impFile').click()};
+  $('impFile').addEventListener('change',function(){
+    var f=this.files&&this.files[0];if(!f)return;
+    var rd=new FileReader();
+    rd.onload=function(){
+      try{
+        var data=JSON.parse(rd.result);
+        if(!data||typeof data!=='object'||!('done' in data)||!('known' in data)){$('impFb').innerHTML='<div class="feedback no" style="margin-top:10px">❌ That file does not look like a Learn Spanish progress backup. Nothing was changed.</div>';return}
+        askConfirm('Restore this progress?','Your current progress on this device will be replaced by the backup file. The page will then reload with the restored progress.',function(){
+          try{localStorage.setItem(SKEY,JSON.stringify(data))}catch(e){}
+          location.reload();
+        });
+      }catch(e){$('impFb').innerHTML='<div class="feedback no" style="margin-top:10px">❌ Could not read that file. Nothing was changed.</div>'}
+    };
+    rd.readAsText(f);this.value='';
+  });
   document.querySelectorAll('[data-goal]').forEach(function(b){b.addEventListener('click',function(){ST.weekGoal=parseInt(b.getAttribute('data-goal'),10);save();renderProgress()})});
   $('resetBtn').onclick=function(){askConfirm('Reset all progress?','This will delete your lesson progress, streak, quiz scores and known words on this device. This cannot be undone.',function(){
     ST=defState();save();buildQueue();updateTop();applyDark();renderProgress();renderHome();renderLessons();showNotice('All progress has been reset. Fresh start — Lesson 1 is open!');
   })};
 }
+/* ============ BATCH 2 DATA: Irregulars, Listening, Role-Play, Bridge, Survival ============ */
+var IRREG=[
+['Fully irregular — learn them by heart','SER and IR are wild — but their past tense is the same word (fui), two verbs for the price of one!',['ser','ir']],
+['The "-go" gang — irregular YO form','In the yo form these verbs end in -go: tengo, hago, digo, salgo, pongo. The other forms are almost regular.',['tener','hacer','decir','salir','poner']],
+['Stem changers — the vowel changes in the middle','e → ie: querer (quiero). o → ue: poder (puedo). e → i: decir (dices). Tener does both tricks: -go AND e → ie (tengo, tienes). The nosotros / vosotros forms stay normal.',['querer','poder']],
+['Special YO and moving accents','SABER: yo = sé — with an accent, learn it! ESTAR: the endings carry the stress: estoy, estás, está, están.',['saber','estar']],
+['Almost regular: VER','Only the yo form surprises you: veo (not "vo"). Everything else follows the normal -er pattern.',['ver']]
+];
+var IRREG_IDS=['ir','ser','estar','tener','hacer','decir','poder','querer','saber','salir','poner','ver'];
+var LISTEN_LIB=[
+{t:'Morning in my village',txt:'Me despierto a las seis de la mañana. Primero tomo un té con mi familia. Luego salgo a los campos de trigo. Mi pueblo es pequeño y tranquilo, y la gente es muy amable.',qs:[['What time does he wake up?',['Five','Six','Seven'],1,'He says "a las seis" — at six.'],['What does he drink first?',['Tea','Coffee','Water'],0,'"Primero tomo un té" — first I drink a tea.'],['How is his village?',['Big and noisy','Small and quiet','Far from the fields'],1,'"Pequeño y tranquilo" — small and quiet.']]},
+{t:'At the market',txt:'Hoy voy al mercado con mi hermano. Compramos tomates, cebollas y un kilo de mangos. El vendedor es amable: los mangos son frescos y dulces. Al final pagamos y volvemos a casa contentos.',qs:[['Who goes to the market with him?',['His sister','His brother','His father'],1,'"Con mi hermano" — with my brother.'],['What fruit do they buy?',['Mangoes','Apples','Grapes'],0,'"Un kilo de mangos" — a kilo of mangoes.'],['How are the mangoes?',['Green and sour','Expensive','Fresh and sweet'],2,'"Frescos y dulces" — fresh and sweet.']]},
+{t:'My big family',txt:'Mi familia es grande. Mi padre trabaja en el campo y mi madre cocina muy bien. Tengo un hermano y dos hermanas. Los domingos comemos todos juntos en casa.',qs:[['Where does his father work?',['In the fields','In an office','In a shop'],0,'"Trabaja en el campo" — he works in the fields.'],['How many sisters does he have?',['One','Three','Two'],2,'"Dos hermanas" — two sisters.'],['When do they all eat together?',['On Fridays','On Sundays','On Saturdays'],1,'"Los domingos" — on Sundays.']]},
+{t:'A trip to the city',txt:'Mañana voy a la ciudad en autobús. El autobús sale a las ocho de la mañana. Quiero comprar un móvil nuevo y visitar a mi primo. Vuelvo a casa por la noche.',qs:[['How does he travel to the city?',['By train','By taxi','By bus'],2,'"En autobús" — by bus.'],['What does he want to buy?',['A new phone','A book','New shoes'],0,'"Un móvil nuevo" — a new phone.'],['When does he come back home?',['At noon','At night','Next week'],1,'"Por la noche" — at night.']]},
+{t:'The weather today',txt:'Hoy hace sol y mucho calor. No hay nubes en el cielo. Por la tarde va a hacer viento. Mañana, dicen, va a llover.',qs:[['What is the weather like now?',['Cold and windy','Sunny and very hot','Rainy'],1,'"Hace sol y mucho calor."'],['What will the afternoon bring?',['Wind','Snow','Fog'],0,'"Va a hacer viento" — it is going to be windy.'],['What about tomorrow?',['More sun','Rain','A storm at night'],1,'"Va a llover" — it is going to rain.']]},
+{t:'In the restaurant',txt:'Entramos en el restaurante y pedimos el menú. Para mí, pollo con arroz y un té. Mi amigo quiere pescado con ensalada. La comida está deliciosa. Pedimos la cuenta y pagamos.',qs:[['What does the speaker order?',['Fish with salad','Only a tea','Chicken with rice'],2,'"Para mí, pollo con arroz."'],['What does his friend want?',['Fish with salad','Chicken','Soup'],0,'"Mi amigo quiere pescado con ensalada."'],['How is the food?',['Too spicy','Delicious','Cold'],1,'"Está deliciosa" — it is delicious.']]},
+{t:'My job',txt:'Trabajo en una oficina de lunes a viernes. Empiezo a las nueve y termino a las cinco. Mi jefe es amable y mis compañeros son buenos. Me gusta mi trabajo.',qs:[['Where does he work?',['In a hospital','In a school','In an office'],2,'"Trabajo en una oficina."'],['What time does he finish?',['At five','At four','At six'],0,'"Termino a las cinco."'],['How is his boss?',['Always angry','Kind','Strict'],1,'"Mi jefe es amable" — my boss is kind.']]},
+{t:'The new phone',txt:'Mi móvil viejo no funciona. Hoy compro un móvil nuevo en una tienda de la ciudad. No es caro y tiene una buena cámara. Ahora puedo llamar a mi familia y estudiar español.',qs:[['Why does he buy a new phone?',['The old one is lost','The old one does not work','The old one is ugly'],1,'"Mi móvil viejo no funciona."'],['The new phone is...',['very expensive','without a camera','not expensive'],2,'"No es caro."'],['Now he can...',['call his family and study Spanish','only play games','take a taxi'],0,'"Llamar a mi familia y estudiar español."']]},
+{t:'At the doctor',txt:'Estoy enfermo: me duele la garganta y tengo un poco de fiebre. El médico dice que no es grave. Tengo que descansar y tomar una medicina dos veces al día.',qs:[['What hurts?',['His throat','His back','His foot'],0,'"Me duele la garganta."'],['How much fever does he have?',['A lot','None','A little'],2,'"Un poco de fiebre" — a little fever.'],['What must he do?',['Work more','Rest and take medicine','Travel to the city'],1,'"Descansar y tomar una medicina."']]},
+{t:'My house',txt:'Vivo en una casa pequeña con mi familia. Hay tres habitaciones, una cocina y un jardín bonito. En el jardín tenemos flores y un árbol grande. Mi casa es tranquila.',qs:[['How many bedrooms are there?',['Two','Three','Five'],1,'"Tres habitaciones."'],['What is in the garden?',['A car','A swimming pool','Flowers and a big tree'],2,'"Flores y un árbol grande."'],['The house is...',['quiet','noisy','in the city centre'],0,'"Mi casa es tranquila."']]},
+{t:'The train journey',txt:'El tren sale a las siete y llega a las diez. Mi asiento está cerca de la ventana. Durante el viaje leo un libro y miro los campos verdes. El viaje es tranquilo.',qs:[['What time does the train arrive?',['At nine','At ten','At eleven'],1,'"Llega a las diez."'],['Where is his seat?',['Near the window','Near the door','In the middle'],0,'"Cerca de la ventana."'],['What does he do during the trip?',['He sleeps','He eats','He reads a book'],2,'"Leo un libro."']]},
+{t:'Shopping for clothes',txt:'Hoy busco una camisa nueva para la fiesta. En la tienda veo una camisa azul muy bonita. Cuesta veinticinco. Es un poco cara, pero me la llevo.',qs:[['What is he looking for?',['A new shirt','Shoes','A jacket'],0,'"Busco una camisa nueva."'],['What colour is it?',['Red','Green','Blue'],2,'"Una camisa azul."'],['How much does it cost?',['Twenty','Twenty-five','Thirty'],1,'"Cuesta veinticinco."']]},
+{t:'The birthday party',txt:'Hoy es el cumpleaños de mi hermana. Hay una fiesta en casa con familia y amigos. Mi madre prepara comida deliciosa y un pastel grande. Todos cantamos: ¡Feliz cumpleaños!',qs:[['Whose birthday is it?',['His mother\'s','His sister\'s','His brother\'s'],1,'"El cumpleaños de mi hermana."'],['Who prepares the food?',['His mother','His father','A cook'],0,'"Mi madre prepara comida deliciosa."'],['What do they all sing?',['A wedding song','Nothing','Happy birthday'],2,'"¡Feliz cumpleaños!"']]},
+{t:'At the hotel',txt:'Llegamos al hotel por la noche. Nuestra habitación es grande y tiene dos camas. El desayuno es a las ocho en el comedor. El hotel está cerca de la playa.',qs:[['When do they arrive at the hotel?',['In the morning','At night','At noon'],1,'"Por la noche."'],['What time is breakfast?',['At seven','At nine','At eight'],2,'"El desayuno es a las ocho."'],['The hotel is near...',['the beach','the station','the airport'],0,'"Cerca de la playa."']]},
+{t:'My friend Ahmed',txt:'Ahmed es mi mejor amigo. Vive en la ciudad y trabaja en un banco. Habla urdu, inglés y un poco de español. Los sábados jugamos al críquet juntos.',qs:[['Where does Ahmed work?',['In a school','In a bank','In a market'],1,'"Trabaja en un banco."'],['Which languages does Ahmed speak?',['Only Urdu','Only English','Urdu, English and a little Spanish'],2,'"Habla urdu, inglés y un poco de español."'],['What do they do on Saturdays?',['Play cricket','Work','Travel'],0,'"Jugamos al críquet."']]},
+{t:'A rainy day',txt:'Hoy llueve mucho y hace frío. No salgo de casa. Leo, tomo té caliente y estudio español con mi aplicación. La lluvia es buena para los campos.',qs:[['What is the weather like?',['Sunny and hot','Rainy and cold','Windy'],1,'"Llueve mucho y hace frío."'],['What does he do at home?',['He reads, drinks hot tea and studies','He sleeps all day','He only watches TV'],0,'"Leo, tomo té caliente y estudio español."'],['The rain is good for...',['the roads','the shops','the fields'],2,'"Buena para los campos."']]},
+{t:'At the bank',txt:'Voy al banco para abrir una cuenta. La empleada es muy amable. Firmo el contrato y recibo mi tarjeta nueva. Ahora puedo sacar dinero del cajero.',qs:[['Why does he go to the bank?',['To open an account','To change money','To pay a bill'],0,'"Para abrir una cuenta."'],['The bank employee is...',['in a hurry','rude','very kind'],2,'"La empleada es muy amable."'],['What does he receive?',['A new card','A passport','Cash'],0,'"Recibo mi tarjeta nueva."']]},
+{t:'My dream',txt:'Mi sueño es hablar español muy bien y viajar a España un día. Quiero ver Madrid y Barcelona, comer comida española y tener amigos españoles. Estudio todos los días, paso a paso.',qs:[['What is his dream?',['To work in a bank','To speak Spanish well and travel to Spain','To live in Madrid forever'],1,'"Hablar español muy bien y viajar a España."'],['Which cities does he want to see?',['Paris and Rome','London and Berlin','Madrid and Barcelona'],2,'"Quiero ver Madrid y Barcelona."'],['How does he study?',['Every day, step by step','Only on weekends','Only with books'],0,'"Estudio todos los días, paso a paso."']]},
+{t:'Football on Sunday',txt:'El domingo juego al fútbol con mis amigos en el parque. Mi equipo gana tres a dos. Después comemos juntos y hablamos del partido. ¡El fútbol es nuestro deporte favorito... después del críquet!',qs:[['When do they play football?',['On Saturday','On Sunday','On Friday'],1,'"El domingo juego al fútbol."'],['What is the score?',['Two–one','One–zero','Three–two'],2,'"Gana tres a dos."'],['After the match they...',['eat together','go straight home','sleep'],0,'"Después comemos juntos."']]},
+{t:'Evening walk',txt:'Por la tarde salgo a pasear con mi padre. Caminamos cerca del río y hablamos de la familia y del trabajo. El aire es fresco y el cielo está bonito. Volvemos a casa contentos.',qs:[['Who does he walk with?',['His father','His brother','His friend'],0,'"Con mi padre."'],['Where do they walk?',['In the market','Near the river','Near the station'],1,'"Caminamos cerca del río."'],['How do they return home?',['In a hurry','Tired and sad','Happy'],2,'"Volvemos a casa contentos."']]}
+];
+var ROLEPLAYS=[
+{t:'🍽️ At the Restaurant',turns:[
+['Buenas tardes. ¿Tiene una reserva?','Good afternoon. Do you have a booking?',['Sí, una mesa para dos.','La cuenta, por favor.','Está lloviendo mucho.'],0],
+['Muy bien. ¿Qué quiere beber?','Very well. What would you like to drink?',['Quiero agua y un té, por favor.','Quiero la llave de la habitación.','Hoy es lunes.'],0],
+['¿Y para comer?','And to eat?',['Mi hermano es muy alto.','Para mí, pollo con arroz.','El tren sale a las cinco.'],1],
+['¿Algo de postre?','Any dessert?',['Mi pueblo es pequeño.','Tengo una tarjeta nueva.','No, gracias. La cuenta, por favor.'],2],
+['Aquí tiene la cuenta. ¿Tarjeta o efectivo?','Here is the bill. Card or cash?',['En efectivo, gracias. Ha estado delicioso.','La fiesta es el sábado.','No funciona la ducha.'],0]]},
+{t:'🏨 At the Hotel',turns:[
+['Buenas noches, bienvenido al hotel.','Good evening, welcome to the hotel.',['Quiero un taxi, por favor.','Buenas noches. Tengo una reserva.','El desayuno es a las ocho.'],1],
+['¿Su nombre, por favor?','Your name, please?',['Soy de España.','La cuenta es diez.','Me llamo Farrakh.'],2],
+['Su habitación es la 204. ¿Necesita algo más?','Your room is 204. Do you need anything else?',['¿A qué hora es el desayuno?','El avión llega mañana.','Hace frío hoy.'],0],
+['El desayuno es a las ocho, en el comedor.','Breakfast is at eight, in the dining room.',['No me gusta el té.','Perfecto, muchas gracias.','¿Dónde está el río?'],1],
+['Que descanse.','Sleep well / rest well.',['Mi casa es muy grande.','Quiero pagar en efectivo.','Igualmente, buenas noches.'],2]]},
+{t:'🩺 At the Doctor',turns:[
+['Buenos días. ¿Qué le pasa?','Good morning. What is the matter?',['Estoy enfermo. Me duele la cabeza.','Quiero una habitación.','Hoy hace mucho sol.'],0],
+['¿Tiene fiebre?','Do you have a fever?',['No, gracias, la cuenta.','Sí, y tengo tos desde ayer.','Mi familia es de Punjab.'],1],
+['¿Desde cuándo está enfermo?','Since when have you been ill?',['Cuesta cincuenta.','El tren es rápido.','Desde hace dos días.'],2],
+['Tome esta medicina dos veces al día.','Take this medicine twice a day.',['Quiero cambiar dinero.','De acuerdo. ¿Es grave?','La fiesta es el sábado.'],1],
+['No es grave. Descanse mucho y beba agua.','It is not serious. Rest a lot and drink water.',['¿Dónde hay un cajero?','Buenas noches, hasta mañana.','Muchas gracias, doctor.'],2]]},
+{t:'🛍️ Shopping for a Shirt',turns:[
+['Buenos días. ¿Puedo ayudarle?','Good morning. Can I help you?',['Necesito un médico.','Sí, busco una camisa.','El hotel está cerca.'],1],
+['¿Qué talla necesita?','What size do you need?',['La talla mediana, por favor.','Tengo mucha hambre.','Son las tres.'],0],
+['Aquí tiene. ¿Le gusta el color?','Here you are. Do you like the colour?',['Mi sueño es viajar.','Llueve mucho hoy.','Sí, es bonita. ¿Cuánto cuesta?'],2],
+['Cuesta treinta.','It costs thirty.',['La boda es mañana.','Es un poco caro. ¿Veinticinco?','Estoy mareado.'],1],
+['Está bien, veinticinco.','Okay, twenty-five.',['No funciona.','Perfecto, me la llevo. Gracias.','Pasa, por favor.'],1]]},
+{t:'🚕 In the Taxi',turns:[
+['Buenas tardes. ¿A dónde va?','Good afternoon. Where are you going?',['Al aeropuerto, por favor.','Quiero comer arroz.','Mi hermano trabaja aquí.'],0],
+['¿Tiene maletas?','Do you have suitcases?',['El desayuno es bueno.','Sí, una maleta grande.','Hace mucho viento.'],1],
+['Son unos veinte minutos de viaje.','It is about a twenty-minute ride.',['La receta, por favor.','Tengo fiebre alta.','Está bien. ¿Cuánto cuesta?'],2],
+['Cuesta quince.','It costs fifteen.',['Feliz cumpleaños.','De acuerdo, vamos.','No entiendo el menú.'],1],
+['Ya llegamos.','We have arrived.',['Mi pueblo es tranquilo.','¿Está Sara en casa?','Gracias. Aquí tiene el dinero.'],2]]},
+{t:'🤝 Meeting an Old Friend',turns:[
+['¡Hola, Farrakh! ¡Cuánto tiempo!','Hello, Farrakh! Long time no see!?',['La cuenta, por favor.','¡Hola! ¡Qué alegría verte!','Busco un piso barato.'],1],
+['¿Qué tal todo?','How is everything?',['Muy bien. Estoy aprendiendo español.','El cajero está lejos.','Cuesta cien.'],0],
+['¡Qué bien! ¿Desde cuándo?','How great! Since when?',['La ducha no funciona.','Tengo una reserva.','Desde hace dos meses, poco a poco.'],2],
+['¿Quieres tomar un té conmigo?','Do you want to have a tea with me?',['No te oigo bien.','¡Claro! ¡Buena idea!','El alquiler es muy caro.'],1],
+['Vamos a mi cafetería favorita.','Let us go to my favourite café.',['Está roto, lo siento.','¡Vamos! Cuéntame de tu familia.','Buen viaje.'],1]]}
+];
+var BRIDGE=[
+['Soy de Pakistán.','I am from Pakistan.','Main Pakistan se hoon.'],
+['Soy pakistaní.','I am Pakistani.','Main Pakistani hoon.'],
+['Hablo urdu e inglés.','I speak Urdu and English.','Main Urdu aur English bolta hoon.'],
+['Estoy aprendiendo español.','I am learning Spanish.','Main Spanish seekh raha hoon.'],
+['Mi pueblo se llama Chak 18 Janoobi.','My village is called Chak 18 Janoobi.','Mere gaon ka naam Chak 18 Janoobi hai.'],
+['Vivo en Punjab, en un pueblo pequeño.','I live in Punjab, in a small village.','Main Punjab ke ek chotay gaon mein rehta hoon.'],
+['En Pakistán hablamos urdu.','In Pakistan we speak Urdu.','Pakistan mein hum Urdu bolte hain.'],
+['Mi comida favorita es el biryani.','My favourite food is biryani.','Meri pasandeeda dish biryani hai.'],
+['En Pakistán el té es muy importante.','In Pakistan tea is very important.','Pakistan mein chai bohat ahem hai.'],
+['Me gusta el críquet.','I like cricket.','Mujhe cricket pasand hai.'],
+['El críquet es el deporte favorito en Pakistán.','Cricket is the favourite sport in Pakistan.','Cricket Pakistan ka sab se pasandeeda khel hai.'],
+['Mi familia es grande y vivo con mi familia.','My family is big and I live with my family.','Mera khandan bara hai aur main un ke saath rehta hoon.'],
+['En mi pueblo hay campos de trigo.','In my village there are wheat fields.','Mere gaon mein gandum ke khet hain.'],
+['Nuestra comida es picante y deliciosa.','Our food is spicy and delicious.','Hamara khana mirch wala aur mazaydar hota hai.'],
+['En Pakistán la gente es muy amable y generosa.','In Pakistan people are very kind and generous.','Pakistan mein log bohat meherbaan aur sakhi hain.'],
+['Quiero visitar España un día.','I want to visit Spain one day.','Main ek din Spain jana chahta hoon.'],
+['Quiero tener amigos españoles.','I want to have Spanish friends.','Main Spanish dost banana chahta hoon.'],
+['Aprendo español poco a poco, cada día.','I am learning Spanish little by little, every day.','Main har roz thora thora Spanish seekh raha hoon.'],
+['Mi sueño es hablar español muy bien.','My dream is to speak Spanish very well.','Mera khwab hai ke main Spanish bohat achi bolun.'],
+['¿Quieres que te cuente de Pakistán?','Do you want me to tell you about Pakistan?','Kya aap Pakistan ke baare mein sunna chahenge?']
+];
+var SURVIVAL=[
+['¡Ayuda!','Help!','Madad!'],['Es una emergencia','It is an emergency','Yeh emergency hai'],['Llama a una ambulancia','Call an ambulance','Ambulance bulao'],['Necesito un médico','I need a doctor','Mujhe doctor chahiye'],['¿Dónde está el hospital?','Where is the hospital?','Hospital kahan hai?'],['Estoy perdido','I am lost','Main rasta bhool gaya hoon'],['No hablo español','I do not speak Spanish','Main Spanish nahi bolta'],['Hablo urdu e inglés','I speak Urdu and English','Main Urdu aur English bolta hoon'],['¿Hablas inglés?','Do you speak English?','Kya aap English bolte hain?'],['Más despacio, por favor','More slowly, please','Zara aahista, meherbani'],
+['¿Puedes repetir?','Can you repeat?','Dobara keh dein?'],['No entiendo','I do not understand','Samajh nahi aaya'],['¿Qué significa esto?','What does this mean?','Is ka matlab kya hai?'],['¿Dónde está el baño?','Where is the bathroom?','Bathroom kahan hai?'],['¿Cuánto cuesta?','How much does it cost?','Kitne ka hai?'],['Es demasiado caro','It is too expensive','Bohat mehnga hai'],['¿Acepta tarjeta?','Do you accept card?','Card chalega?'],['Solo tengo efectivo','I only have cash','Mere paas sirf cash hai'],['Quiero la cuenta','I want the bill','Bill de dein'],['¿A qué hora sale?','What time does it leave?','Kis waqt nikalti hai?'],
+['¿A qué hora llega?','What time does it arrive?','Kis waqt pohanchti hai?'],['Un billete, por favor','One ticket, please','Ek ticket de dein'],['¡Pare, por favor!','Stop, please!','Rook dein, meherbani'],['A la izquierda','To the left','Bayein taraf'],['A la derecha','To the right','Dayein taraf'],['Todo recto','Straight ahead','Bilkul seedha'],['Está cerca','It is near','Qareeb hai'],['Está lejos','It is far','Door hai'],['Tengo una reserva','I have a booking','Meri booking hai'],['Quiero una habitación','I want a room','Mujhe kamra chahiye'],
+['¿Hay wifi aquí?','Is there Wi-Fi here?','Yahan Wi-Fi hai?'],['No funciona','It does not work','Kaam nahi karta'],['Hay un problema','There is a problem','Ek masla hai'],['Tengo hambre','I am hungry','Bhook lagi hai'],['Tengo sed','I am thirsty','Pyaas lagi hai'],['Sin picante, por favor','Not spicy, please','Baghair mirch, meherbani'],['No como cerdo','I do not eat pork','Main suar ka gosht nahi khata'],['¿Tiene comida halal?','Do you have halal food?','Halal khana hai?'],['Un vaso de agua, por favor','A glass of water, please','Ek glass paani de dein'],['Me duele aquí','It hurts here','Yahan dard hai'],
+['Tengo fiebre','I have a fever','Mujhe bukhar hai'],['Soy alérgico a esto','I am allergic to this','Mujhe is se allergy hai'],['Necesito esta medicina','I need this medicine','Mujhe yeh dawai chahiye'],['¿Dónde hay una farmacia?','Where is a pharmacy?','Dawai ki dukaan kahan hai?'],['Llama a la policía','Call the police','Police ko bulao'],['He perdido mi pasaporte','I lost my passport','Mera passport kho gaya'],['Me han robado','I have been robbed','Mere saath chori hui hai'],['¿Puedes ayudarme?','Can you help me?','Madad kar sakte hain?'],['Un momento, por favor','One moment, please','Ek minute, meherbani'],['Ya voy','I am coming now','Bas aa raha hoon'],
+['No lo sé','I do not know','Mujhe nahi pata'],['Está bien','It is fine / OK','Theek hai'],['No pasa nada','No problem','Koi baat nahi'],['Con permiso','Excuse me (passing by)','Zara rasta dein'],['Lo siento mucho','I am very sorry','Bohat maafi chahta hoon'],['¿Qué hora es?','What time is it?','Kitne bajay hain?'],['Ahora no puedo','I cannot now','Abhi nahi ho sakta'],['Quizás mañana','Maybe tomorrow','Shayad kal'],['¿Está abierto?','Is it open?','Khula hai?'],['¿A qué hora cierran?','What time do you close?','Kitne bajay band hota hai?'],
+['Quiero comprar esto','I want to buy this','Main yeh kharidna chahta hoon'],['Solo estoy mirando','I am just looking','Bas dekh raha hoon'],['¿Tiene otro tamaño?','Do you have another size?','Doosra size hai?'],['¿Puedo probármelo?','Can I try it on?','Pehan kar dekh loon?'],['Me lo llevo','I will take it','Main yeh le loonga'],['¿Dónde puedo cargar el móvil?','Where can I charge my phone?','Mobile kahan charge karoon?'],['No tengo señal','I have no signal','Signal nahi hai'],['¿Cuál es la contraseña del wifi?','What is the Wi-Fi password?','Wi-Fi ka password kya hai?'],['Necesito un taxi','I need a taxi','Taxi chahiye'],['Al aeropuerto, por favor','To the airport, please','Airport le chalein'],
+['Para aquí, por favor','Stop here, please','Yahan rook dein'],['Ten cuidado','Be careful','Ehtiyaat karo'],['¡Cuidado!','Watch out!','Dekh kar!'],['Estoy muy cansado','I am very tired','Bohat thak gaya hoon'],['Necesito descansar','I need to rest','Mujhe aaram chahiye'],['Tengo frío','I am cold','Sardi lag rahi hai'],['Tengo calor','I am hot','Garmi lag rahi hai'],['¿Tiene un mapa?','Do you have a map?','Naqsha hai?'],['Quiero ir a este lugar','I want to go to this place','Main is jagah jana chahta hoon'],['¿Cuánto tiempo tarda?','How long does it take?','Kitna time lagta hai?'],
+['¿Es seguro?','Is it safe?','Mehfooz hai?'],['No me siento bien','I do not feel well','Tabiyat theek nahi'],['Necesito agua y comida','I need water and food','Paani aur khana chahiye'],['Mi teléfono no funciona','My phone does not work','Mera phone kharab hai'],['He perdido mi móvil','I lost my phone','Mera mobile kho gaya'],['¿Puedo usar tu teléfono?','Can I use your phone?','Aap ka phone use kar loon?'],['Gracias por todo','Thank you for everything','Sab kuch ke liye shukriya'],['Ha sido muy amable','You have been very kind','Aap bohat meherbaan rahe'],['Que tenga un buen día','Have a good day','Aap ka din acha guzre'],['Hasta pronto','See you soon','Jald milenge'],['¡Buen viaje!','Have a good trip!','Safar mubarak!'],
+['¿Dónde puedo aparcar?','Where can I park?','Gaari kahan khari karoon?'],['¿Cada cuánto sale el autobús?','How often does the bus leave?','Bus kitni dair baad nikalti hai?'],['Estoy buscando esta dirección','I am looking for this address','Main yeh pata dhoond raha hoon'],['¿Puede mostrarme en el mapa?','Can you show me on the map?','Naqshay par dikha dein?'],['Necesito un traductor','I need a translator','Mujhe tarjuman chahiye'],['¿Habla alguien inglés aquí?','Does anyone here speak English?','Yahan koi English bolta hai?'],['Por favor, escríbelo','Please write it down','Meherbani, likh dein'],['No tengo dinero','I have no money','Mere paas paisy nahi hain'],['Quiero denunciar un robo','I want to report a theft','Main chori ki report karni hai']
+];
+/* ============ IRREGULAR VERBS PACK ============ */
+var irrDrill=null;
+function verbById(id){for(var i=0;i<VERBS.length;i++){if(VERBS[i].id===id)return VERBS[i]}return null}
+function renderIrregulars(){
+  var b=$('irrBody');if(!b)return;
+  var h='<div class="card" id="irrCard"><h3>⚡ Irregular Verbs Pack</h3><p class="muted">The 12 famous irregular verbs, grouped by pattern. The patterns are the secret: learn the group, and the forms follow. Tap 🔊 to hear every form.</p>';
+  IRREG.forEach(function(g){
+    h+='<h4 style="margin:14px 0 4px">'+esc(g[0])+'</h4><p class="muted" style="margin:2px 0 8px">'+esc(g[1])+'</p>';
+    g[2].forEach(function(id){
+      var v=verbById(id);if(!v)return;
+      h+='<div style="border:1px solid var(--line);border-radius:14px;padding:10px 12px;margin:7px 0"><div style="display:flex;gap:8px;align-items:center"><div style="flex:1"><span class="es">'+esc(v.inf)+'</span> <span class="en">'+esc(v.en)+'</span></div>'+speakBtn(v.inf,true)+'</div>';
+      h+='<div class="chiprow" style="margin-top:6px">';
+      v.forms.forEach(function(f,i){h+='<span class="chip" style="cursor:pointer" data-say="'+esc(PRON[i]+' '+f)+'" title="Tap to hear">'+PRON[i]+' <b>'+esc(f)+'</b> 🔊</span>'});
+      h+='</div></div>';
+    });
+  });
+  h+='<div id="irrDrillBody" style="margin-top:12px"><button class="btn orange" id="irrStart" type="button" style="width:100%">⚡ Drill me — 5 irregular questions</button></div></div>';
+  b.innerHTML=h;
+  $('irrStart').onclick=function(){irrDrill={q:0,score:0,cur:irrQ()};renderIrrDrill()};
+}
+function irrQ(){
+  var id=IRREG_IDS[Math.floor(Math.random()*IRREG_IDS.length)];var v=verbById(id);var p=Math.floor(Math.random()*6);
+  var correct=v.forms[p];var opts=[correct];
+  while(opts.length<4){var rv=verbById(IRREG_IDS[Math.floor(Math.random()*IRREG_IDS.length)]);var f=rv.forms[Math.floor(Math.random()*6)];if(opts.indexOf(f)<0)opts.push(f)}
+  return{q:'Verb: '+v.inf+' ('+v.en+') — "'+PRON[p]+' ___" ?',opts:shuffle(opts),ans:correct,exp:v.inf+' → '+PRON[p]+' '+correct};
+}
+function renderIrrDrill(){
+  var b=$('irrDrillBody');if(!b||!irrDrill)return;
+  if(irrDrill.q>=5){
+    b.innerHTML='<div class="feedback '+(irrDrill.score>=4?'ok':'no')+'">⚡ Drill done: <b>'+irrDrill.score+' / 5</b>. '+(irrDrill.score>=4?'The irregulars are becoming yours!':'Check the tables above once more, then drill again.')+'</div><button class="btn orange" id="irrStart2" type="button" style="width:100%">↻ Drill again</button>';
+    $('irrStart2').onclick=function(){irrDrill={q:0,score:0,cur:irrQ()};renderIrrDrill()};touchDay();return;
+  }
+  var q=irrDrill.cur;
+  var h='<p class="muted" style="margin:4px 0">Drill '+(irrDrill.q+1)+' of 5 · Score: '+irrDrill.score+'</p><p style="font-weight:700">'+esc(q.q)+'</p>';
+  q.opts.forEach(function(o){h+='<button type="button" class="opt" data-iopt="'+esc(o)+'">'+esc(o)+'</button>'});
+  h+='<div id="irrFb"></div>';b.innerHTML=h;
+  document.querySelectorAll('[data-iopt]').forEach(function(btn){btn.addEventListener('click',function(){
+    var ok=btn.getAttribute('data-iopt')===q.ans;
+    document.querySelectorAll('[data-iopt]').forEach(function(x){x.disabled=true;if(x.getAttribute('data-iopt')===q.ans)x.classList.add('correct')});
+    if(!ok){btn.classList.add('wrong');saveMistake('Irregular drill: '+q.q,q.exp)}else irrDrill.score++;
+    $('irrFb').innerHTML='<div class="feedback '+(ok?'ok':'no')+'">'+(ok?'✅ Correct!':'❌ Correct: <b>'+esc(q.ans)+'</b>. '+esc(q.exp))+'</div><button class="btn" id="irrNext" type="button" style="width:100%">Next →</button>';
+    $('irrNext').onclick=function(){irrDrill.q++;irrDrill.cur=irrQ();renderIrrDrill()};
+  })});
+}
+/* ============ A2 FINAL EXAM ============ */
+var ex2State=null;
+function startExam2(){
+  if(!ST.done[30]){
+    $('tab-quiz').innerHTML='<div class="card"><h3>🎓 Final Exam — Level A2 🔒</h3><p class="muted">This exam unlocks when you pass <b>Lesson 30 (Story Telling)</b> — the last lesson of the A2 path (Lessons 21–30). Keep going, lesson by lesson: each quiz you pass opens the next.</p><button class="btn" onclick="renderLessons();goTab(\'lessons\')" type="button">📚 Go to my lessons</button> <button class="btn ghost" onclick="renderQuizHome()" type="button">Quiz Zone</button></div>';
+    return;
+  }
+  var pool=[];
+  LESSONS.slice(20,30).forEach(function(L){L.quiz.forEach(function(q){pool.push({q:'[Lesson '+L.n+'] '+q[0],opts:q[1],ans:q[1][q[2]],exp:q[3]})})});
+  ex2State={items:shuffle(pool).slice(0,20),q:0,score:0};
+  renderExam2Q();
+}
+function renderExam2Q(){
+  var wrap=$('tab-quiz');
+  if(ex2State.q>=ex2State.items.length){
+    var pass=ex2State.score>=14;
+    if(ex2State.score>(ST.exam2Best||0))ST.exam2Best=ex2State.score;
+    if(pass)ST.exam2Passed=true;
+    ST.scores.push({name:'Final Exam A2',score:ex2State.score,total:20,date:todayStr()});save();
+    var h='';
+    if(pass){h+='<div class="cert"><div class="seal">🏆</div><div class="kicker">Certificate of Completion</div><h2 style="font-size:1.5rem;margin:6px 0">Level A2 Complete</h2><p style="font-size:1.05rem;margin:4px 0"><b>Farrakh</b> has passed the Spanish A2 Final Exam</p><p class="muted">Score: '+ex2State.score+' / 20 · '+todayStr()+' · Learn Spanish with Farrakh</p><p style="font-size:1.3rem" class="es">¡Enhorabuena, Farrakh! De A1 a A2 🎉</p><p class="muted">📸 Take a screenshot of this card to keep your certificate.</p></div>'}
+    else{h+='<div class="card"><h3>🎓 A2 Final Exam — not passed yet</h3><p style="font-size:1.15rem"><b>Score: '+ex2State.score+' / 20</b> — you need 14 to pass.</p><div class="feedback no">So close! Review mistakes from Lessons 21–30, redo a lesson or two, and try again. Paso a paso.</div></div>'}
+    h+='<div class="card"><div style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn" onclick="startExam2()" type="button">↻ Take exam again</button><button class="btn ghost" onclick="renderQuizHome()" type="button">Quiz Zone</button></div></div>';
+    wrap.innerHTML=h;window.scrollTo({top:0,behavior:'smooth'});return;
+  }
+  var it=ex2State.items[ex2State.q];
+  var h='<div class="card"><p class="muted" style="margin-top:0">🎓 Final Exam A2 · Question '+(ex2State.q+1)+' of 20 · Score: '+ex2State.score+' · Pass = 14</p><div class="progressbar"><div style="width:'+(ex2State.q/20*100)+'%"></div></div>';
+  h+='<p style="font-weight:700;font-size:1.03rem;margin-top:10px">'+esc(it.q)+'</p>';
+  it.opts.forEach(function(o){h+='<button type="button" class="opt" data-ex2="'+esc(o)+'">'+esc(o)+'</button>'});
+  h+='<div id="ex2Fb"></div></div>';wrap.innerHTML=h;
+  document.querySelectorAll('[data-ex2]').forEach(function(b){b.addEventListener('click',function(){
+    var ok=b.getAttribute('data-ex2')===it.ans;
+    document.querySelectorAll('[data-ex2]').forEach(function(x){x.disabled=true;if(x.getAttribute('data-ex2')===it.ans)x.classList.add('correct')});
+    if(!ok)b.classList.add('wrong');else ex2State.score++;
+    if(!ok)saveMistake('A2 Exam: '+it.q,'Correct: '+it.ans+'. '+it.exp);
+    $('ex2Fb').innerHTML='<div class="feedback '+(ok?'ok':'no')+'">'+(ok?'✅ Correct!':'❌ Correct: <b>'+esc(it.ans)+'</b>. '+esc(it.exp))+'</div><button class="btn" id="ex2Next" type="button" style="width:100%">'+(ex2State.q+1>=20?'See my result →':'Next question →')+'</button>';
+    $('ex2Next').onclick=function(){ex2State.q++;renderExam2Q();window.scrollTo({top:0,behavior:'smooth'})};
+  })});
+}
+/* ============ WORD MATCH GAME ============ */
+var wmState=null, wmTimer=null;
+function startWordMatch(){
+  if(wmTimer)clearInterval(wmTimer);
+  var pool=shuffle(FLASH.filter(function(f){return f.es.indexOf(' ')<0||f.es.length<=14}).slice(0,120)).slice(0,6);
+  if(pool.length<6)pool=shuffle(FLASH.slice()).slice(0,6);
+  wmState={words:pool,meanings:shuffle(pool.map(function(f){return f.en})),selW:null,selM:null,done:{},mistakes:0,sec:0};
+  renderWordMatch();
+  wmTimer=setInterval(function(){wmState.sec++;var t=$('wmTime');if(t)t.textContent=wmState.sec;if(Object.keys(wmState.done).length>=wmState.words.length){clearInterval(wmTimer);wmTimer=null}},1000);
+}
+function renderWordMatch(){
+  var wrap=$('tab-quiz');var s=wmState;
+  var matched=Object.keys(s.done).length;
+  var h='<button class="btn ghost small" onclick="if(window.wmTimer){clearInterval(wmTimer);wmTimer=null}renderQuizHome()" type="button">← Quiz Zone</button><div class="card"><p class="muted" style="margin-top:0">🧩 Word Match · Matched: <b>'+matched+' / '+s.words.length+'</b> · Mistakes: <b>'+s.mistakes+'</b> · Time: <b><span id="wmTime">'+s.sec+'</span>s</b></p>';
+  h+='<p class="muted">Tap a Spanish word, then tap its meaning.</p><div class="wmgrid"><div>';
+  s.words.forEach(function(f,i){h+='<button type="button" class="wmbtn" data-wmw="'+i+'" '+(s.done[f.es]?'disabled':'')+' style="width:100%;margin:4px 0" >'+esc(f.es)+'</button>'});
+  h+='</div><div>';
+  s.meanings.forEach(function(m){var doneM=s.words.some(function(f){return f.en===m&&s.done[f.es]});h+='<button type="button" class="wmbtn" data-wmm="'+esc(m)+'" '+(doneM?'disabled':'')+' style="width:100%;margin:4px 0">'+esc(m)+'</button>'});
+  h+='</div></div><div id="wmFb"></div>';
+  if(matched>=s.words.length){h+='<div class="feedback ok">🎉 All 6 matched in <b>'+s.sec+' seconds</b> with '+s.mistakes+' mistake'+(s.mistakes===1?'':'s')+'! '+(s.mistakes===0?'Perfect round — ¡perfecto!':'Speed + accuracy both grow with flashcards.')+'</div><div style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn" onclick="startWordMatch()" type="button">↻ New round</button><button class="btn ghost" onclick="renderQuizHome()" type="button">Quiz Zone</button></div>'}
+  h+='</div>';wrap.innerHTML=h;
+  document.querySelectorAll('[data-wmw]').forEach(function(b){b.addEventListener('click',function(){
+    document.querySelectorAll('[data-wmw]').forEach(function(x){x.classList.remove('sel')});
+    b.classList.add('sel');wmState.selW=wmState.words[parseInt(b.getAttribute('data-wmw'),10)];checkMatch();
+  })});
+  document.querySelectorAll('[data-wmm]').forEach(function(b){b.addEventListener('click',function(){
+    document.querySelectorAll('[data-wmm]').forEach(function(x){x.classList.remove('sel')});
+    b.classList.add('sel');wmState.selM=b.getAttribute('data-wmm');checkMatch();
+  })});
+  function checkMatch(){
+    if(!wmState.selW||!wmState.selM)return;
+    var w=wmState.selW,m=wmState.selM;wmState.selW=null;wmState.selM=null;
+    if(w.en===m){wmState.done[w.es]=true;if(Object.keys(wmState.done).length>=wmState.words.length){if(wmTimer){clearInterval(wmTimer);wmTimer=null}touchDay()}}
+    else{wmState.mistakes++;saveMistake('Word Match: "'+w.es+'" means?','"'+w.es+'" = '+w.en+' ('+w.ur+')')}
+    renderWordMatch();
+  }
+}
+/* ============ AHORCADO (HANGMAN) ============ */
+var hgState=null, hgWins=0, hgLosses=0;
+var HG_WORDS=FLASH.filter(function(f){return /^[a-záéíóúñü]+$/i.test(f.es)&&f.es.length>=3&&f.es.length<=10});
+function hgNorm(ch){return ch.toLowerCase().replace('á','a').replace('é','e').replace('í','i').replace('ó','o').replace('ú','u').replace('ü','u')}
+function startHangman(){
+  var f=HG_WORDS[Math.floor(Math.random()*HG_WORDS.length)];
+  hgState={word:f.es,en:f.en,ur:f.ur,guessed:{},wrong:0,max:7};
+  renderHangman();
+}
+function renderHangman(){
+  var wrap=$('tab-quiz');var s=hgState;
+  var display=s.word.split('').map(function(ch){return s.guessed[hgNorm(ch)]?ch:'_'}).join('');
+  var won=display.indexOf('_')<0;var lost=s.wrong>=s.max;
+  var parts=['base','post','beam','rope','head','body','arms','legs'];
+  var svg='<svg viewBox="0 0 120 110" style="width:130px;max-width:40vw" aria-hidden="true"><g stroke="#94a3b8" stroke-width="4" stroke-linecap="round">';
+  if(s.wrong>=1)svg+='<line x1="10" y1="104" x2="60" y2="104"/>';
+  if(s.wrong>=2)svg+='<line x1="25" y1="104" x2="25" y2="8"/>';
+  if(s.wrong>=3)svg+='<line x1="25" y1="8" x2="80" y2="8"/>';
+  if(s.wrong>=4)svg+='<line x1="80" y1="8" x2="80" y2="24"/>';
+  svg+='</g>';
+  if(s.wrong>=5)svg+='<circle cx="80" cy="33" r="9" fill="none" stroke="#f97316" stroke-width="3.5"/>';
+  if(s.wrong>=6)svg+='<line x1="80" y1="42" x2="80" y2="66" stroke="#f97316" stroke-width="3.5" stroke-linecap="round"/>';
+  if(s.wrong>=7)svg+='<g stroke="#f97316" stroke-width="3.5" stroke-linecap="round"><line x1="80" y1="50" x2="66" y2="58"/><line x1="80" y1="50" x2="94" y2="58"/><line x1="80" y1="66" x2="68" y2="84"/><line x1="80" y1="66" x2="92" y2="84"/></g>';
+  svg+='</svg>';
+  var h='<button class="btn ghost small" onclick="renderQuizHome()" type="button">← Quiz Zone</button><div class="card"><p class="muted" style="margin-top:0">🔤 Ahorcado · Wins: <b>'+hgWins+'</b> · Losses: <b>'+hgLosses+'</b> · Wrong guesses left: <b>'+(s.max-s.wrong)+'</b></p>';
+  h+='<div style="display:flex;gap:14px;align-items:center;flex-wrap:wrap"><div>'+svg+'</div><div style="flex:1;min-width:180px"><p class="muted" style="margin:2px 0">Meaning hint: <b>'+esc(s.en)+'</b> <span class="ur">('+esc(s.ur)+')</span></p><div class="hangword">'+esc(display)+'</div><button class="btn small orange" id="hgListen" type="button">🔊 Listen to the word (hint)</button></div></div>';
+  if(won||lost){
+    if(won&&!s.counted){s.counted=true;hgWins++;touchDay()}
+    if(lost&&!s.counted){s.counted=true;hgLosses++}
+    h+='<div class="feedback '+(won?'ok':'no')+'">'+(won?'🎉 ¡Ganaste! You guessed <b>'+esc(s.word)+'</b> = '+esc(s.en)+'.':'💪 Round over — the word was <b>'+esc(s.word)+'</b> = '+esc(s.en)+' ('+esc(s.ur)+'). Listen to it and try the next one!')+' '+speakBtn(s.word)+'</div><div style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn" onclick="startHangman()" type="button">↻ New word</button><button class="btn ghost" onclick="renderQuizHome()" type="button">Quiz Zone</button></div>';
+  }else{
+    var rows=['abcdefghij','klmnñopqrs','tuvwxyz'];
+    rows.forEach(function(r){h+='<div class="kbrow">';r.split('').forEach(function(ch){
+      var used=s.guessed[ch];var inWord=s.word.toLowerCase().split('').some(function(c){return hgNorm(c)===ch});
+      h+='<button type="button" class="kbkey'+(used?(inWord?' used-ok':' used-no'):'')+'" data-hg="'+ch+'" '+(used?'disabled':'')+'>'+ch+'</button>';
+    });h+='</div>'});
+  }
+  h+='</div>';wrap.innerHTML=h;
+  var lb=$('hgListen');if(lb)lb.onclick=function(){speak(s.word)};
+  document.querySelectorAll('[data-hg]').forEach(function(b){b.addEventListener('click',function(){
+    var ch=b.getAttribute('data-hg');hgState.guessed[ch]=true;
+    var inWord=hgState.word.toLowerCase().split('').some(function(c){return hgNorm(c)===ch});
+    if(!inWord)hgState.wrong++;
+    renderHangman();
+  })});
+}
+/* ============ NUMBERS & MONEY DRILL ============ */
+var NUM_ONES=['cero','uno','dos','tres','cuatro','cinco','seis','siete','ocho','nueve','diez','once','doce','trece','catorce','quince','dieciséis','diecisiete','dieciocho','diecinueve','veinte'];
+var NUM_TENS=['','','veinte','treinta','cuarenta','cincuenta','sesenta','setenta','ochenta','noventa'];
+function numWords(n){
+  if(n<0)return 'menos '+numWords(-n);
+  if(n<21)return NUM_ONES[n];
+  if(n<30){var V29=['veinte','veintiún','veintidós','veintitrés','veinticuatro','veinticinco','veintiséis','veintisiete','veintiocho','veintinueve'];return V29[n-20]}
+  if(n<100){var t=Math.floor(n/10),r=n%10;return NUM_TENS[t]+(r?' y '+NUM_ONES[r]:'')}
+  if(n<1000){var c=Math.floor(n/100),r2=n%100;var cw=c===1?(r2?'ciento':'cien'):(c===5?'quinientos':(c===7?'setecientos':(c===9?'novecientos':NUM_ONES[c]+'cientos')));return cw+(r2?' '+numWords(r2):'')}
+  if(n<2000)return 'mil'+(n%1000?' '+numWords(n%1000):'');
+  return String(n);
+}
+var ndState=null;
+function numDrillRound(){
+  var kind=Math.floor(Math.random()*3);
+  if(kind===0){var p=Math.floor(Math.random()*480)+5;return{kind:'price',say:'Cuesta '+numWords(p)+' euros.',ask:'💶 You hear a PRICE. Type the number of euros (digits, e.g. 120).',accept:[String(p)],show:'Cuesta '+p+' euros — "Cuesta '+numWords(p)+' euros."',val:p}}
+  if(kind===1){var H=1+Math.floor(Math.random()*12);var mm=[0,15,30,45][Math.floor(Math.random()*4)];
+    var named=mm===45?(H%12+1):H;var part=mm===0?'en punto':(mm===15?'y cuarto':(mm===30?'y media':'menos cuarto'));
+    var verb=named===1?'Es':'Son';var art=named===1?'la una':('las '+numWords(named));
+    var dig=H+':'+(mm===0?'00':mm);var sayStr=verb+' '+art+' '+part;
+    return{kind:'time',say:sayStr+'.',ask:'🕐 You hear a TIME. Type it as digits (e.g. 3:30).',accept:[dig,H+'.'+(mm===0?'00':mm)],show:'It is '+dig+' — "'+sayStr+'."',val:dig}}
+  var day=1+Math.floor(Math.random()*28);var months=['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'];var mo=Math.floor(Math.random()*12);
+  return{kind:'date',say:'Es el '+numWords(day)+' de '+months[mo]+'.',ask:'📅 You hear a DATE. Type the day number and month (e.g. "5 mayo" or 5/5).',accept:[String(day)+' '+months[mo],day+'/'+(mo+1),String(day)+' '+String(mo+1)],show:'It is '+day+' '+months[mo]+' — "Es el '+numWords(day)+' de '+months[mo]+'."',val:day+'/'+(mo+1)};
+}
+function startNumDrill(){
+  if(!ndState)ndState={score:0,total:0};
+  ndState.cur=numDrillRound();
+  renderNumDrill();
+  setTimeout(function(){if(ndState&&ndState.cur)speak(ndState.cur.say)},350);
+}
+function renderNumDrill(){
+  var wrap=$('tab-quiz');var c=ndState.cur;
+  var h='<div class="card"><h3>🔢 Numbers &amp; Money Drill</h3><p class="muted" style="margin-top:0">Session score: <b>'+ndState.score+' / '+ndState.total+'</b> — this score lives only in this session, like real listening practice.</p>';
+  h+='<p style="font-weight:700">'+esc(c.ask)+'</p>';
+  h+='<button class="btn orange" id="ndPlay" type="button" style="width:100%">🔊 Play it again</button>';
+  h+='<input type="text" id="ndInput" placeholder="Type your answer here..." style="margin-top:12px">';
+  h+='<div id="ndFb"></div><button class="btn" id="ndCheck" type="button" style="width:100%;margin-top:10px">Check</button>';
+  h+='<button class="btn ghost" id="ndNext" type="button" style="width:100%;margin-top:8px">↻ New one (skip)</button>';
+  h+='<button class="btn ghost" onclick="renderQuizHome()" type="button" style="width:100%;margin-top:8px">Quiz Zone</button></div>';
+  wrap.innerHTML=h;
+  $('ndPlay').onclick=function(){speak(ndState.cur.say)};
+  $('ndNext').onclick=function(){startNumDrill()};
+  $('ndCheck').onclick=function(){
+    var v=$('ndInput').value.trim().toLowerCase();
+    var norm=v.replace(/\s+/g,' ');
+    var good=ndState.cur.accept.some(function(a){return norm===String(a).toLowerCase()})||norm===ndState.cur.say.toLowerCase().replace(/[¿?¡!.,]/g,'').replace(/^cuesta |^son |^es /,'').trim();
+    ndState.total++;if(good)ndState.score++;else saveMistake('Numbers drill: '+ndState.cur.say,'Correct: '+ndState.cur.show);
+    $('ndFb').innerHTML='<div class="feedback '+(good?'ok':'no')+'" style="margin-top:10px">'+(good?'✅ Correct! ':'❌ Not quite. ')+esc(ndState.cur.show)+' '+speakBtn(ndState.cur.say)+'</div>';
+    touchDay();
+    $('ndCheck').disabled=true;
+    $('ndNext').textContent='→ Next one';
+  };
+}
+/* ============ LISTENING LIBRARY ============ */
+var libState=null;
+function renderLibrary(){
+  var h='<button class="btn ghost small" onclick="renderSpeak()" type="button">← Back to Speak</button>';
+  h+='<div class="card"><h2 style="font-size:1.2rem">🎧 Listening Library</h2><p class="muted">20 short built-in passages. Listen at Normal or Slow speed first — then answer 3 questions about what you heard. No peeking: the text appears only when you open a passage.</p></div>';
+  LISTEN_LIB.forEach(function(p,i){h+='<button type="button" class="lessonitem" onclick="openPassage('+i+')"><span class="lring" style="background:#e8eef7"><i>'+(i+1)+'</i></span><span class="lt"><b>'+esc(p.t)+'</b><span class="muted">3 questions · slow + normal</span></span><span class="arr" style="color:var(--orange);font-weight:800">›</span></button>'});
+  $('tab-speak').innerHTML=h;window.scrollTo({top:0,behavior:'smooth'});
+}
+function openPassage(i){
+  libState={p:LISTEN_LIB[i],q:0,score:0};
+  var h='<button class="btn ghost small" onclick="renderLibrary()" type="button">← All passages</button>';
+  h+='<div class="card"><div class="kicker">Listening Library · '+(i+1)+' of 20</div><h2 style="font-size:1.25rem;margin:4px 0">'+esc(libState.p.t)+'</h2>';
+  h+='<div class="grid2"><button class="btn" id="libNormal" type="button">🔊 Play — Normal</button><button class="btn orange" id="libSlow" type="button">🐢 Play — Slow</button></div>';
+  h+='<div class="dlg" style="margin-top:12px"><div class="es" style="font-size:1.05rem">'+esc(libState.p.txt)+'</div></div>';
+  h+='<p class="muted">Tip: play it twice before answering. The text is here to check yourself afterwards.</p><div id="libQuiz"></div></div>';
+  $('tab-speak').innerHTML=h;window.scrollTo({top:0,behavior:'smooth'});
+  $('libNormal').onclick=function(){var prev=slowMode;slowMode=false;speak(libState.p.txt);slowMode=prev};
+  $('libSlow').onclick=function(){var prev=slowMode;slowMode=true;speak(libState.p.txt);slowMode=prev};
+  renderLibQ();
+}
+function renderLibQ(){
+  var b=$('libQuiz');if(!b||!libState)return;
+  if(libState.q>=3){
+    b.innerHTML='<div class="feedback '+(libState.score>=2?'ok':'no')+'">🎧 Passage done: <b>'+libState.score+' / 3</b>. '+(libState.score===3?'Perfect listening!':'Listen once more at Slow speed — every hearing makes it easier.')+'</div><button class="btn" onclick="renderLibrary()" type="button">← Choose another passage</button>';
+    ST.scores.push({name:'Listening: '+libState.p.t,score:libState.score,total:3,date:todayStr()});save();touchDay();return;
+  }
+  var q=libState.p.qs[libState.q];
+  var h='<p class="muted" style="margin:10px 0 2px">Question '+(libState.q+1)+' of 3</p><p style="font-weight:700">'+esc(q[0])+'</p>';
+  q[1].forEach(function(o,oi){h+='<button type="button" class="opt" data-lib="'+oi+'">'+esc(o)+'</button>'});
+  h+='<div id="libFb"></div>';b.innerHTML=h;
+  document.querySelectorAll('[data-lib]').forEach(function(btn){btn.addEventListener('click',function(){
+    var ok=parseInt(btn.getAttribute('data-lib'),10)===q[2];
+    document.querySelectorAll('[data-lib]').forEach(function(x){x.disabled=true;if(parseInt(x.getAttribute('data-lib'),10)===q[2])x.classList.add('correct')});
+    if(!ok){btn.classList.add('wrong');saveMistake('Listening ('+libState.p.t+'): '+q[0],'Correct: '+q[1][q[2]]+'. '+q[3])}else libState.score++;
+    $('libFb').innerHTML='<div class="feedback '+(ok?'ok':'no')+'">'+(ok?'✅ Correct!':'❌ Correct: <b>'+esc(q[1][q[2]])+'</b>. ')+esc(q[3])+'</div><button class="btn" id="libNext" type="button" style="width:100%">'+(libState.q+1>=3?'Finish →':'Next question →')+'</button>';
+    $('libNext').onclick=function(){libState.q++;renderLibQ()};
+  })});
+}
+/* ============ DIALOGUE ROLE-PLAY ============ */
+var rpState=null;
+function renderRoleplays(){
+  var h='<button class="btn ghost small" onclick="renderSpeak()" type="button">← Back to Speak</button>';
+  h+='<div class="card"><h2 style="font-size:1.2rem">🎭 Dialogue Role-Play</h2><p class="muted">The app plays the other person — speaking their lines aloud. You pick your reply from 3 choices. At the end you see the whole conversation. Wrong picks are saved to Review Mistakes.</p></div>';
+  ROLEPLAYS.forEach(function(r,i){h+='<button type="button" class="lessonitem" onclick="startRoleplay('+i+')"><span class="lring" style="background:#e8eef7"><i>'+(i+1)+'</i></span><span class="lt"><b>'+esc(r.t)+'</b><span class="muted">'+r.turns.length+' exchanges · you play yourself</span></span><span class="arr" style="color:var(--orange);font-weight:800">›</span></button>'});
+  $('tab-speak').innerHTML=h;window.scrollTo({top:0,behavior:'smooth'});
+}
+function startRoleplay(i){
+  rpState={r:ROLEPLAYS[i],turn:0,log:[],score:0};
+  renderRpTurn();
+  setTimeout(function(){if(rpState)speak(rpState.r.turns[0][0])},350);
+}
+function renderRpTurn(){
+  var wrap=$('tab-speak');var s=rpState;
+  var h='<button class="btn ghost small" onclick="renderRoleplays()" type="button">← All role-plays</button>';
+  h+='<div class="card"><div class="kicker">'+esc(s.r.t)+' · Exchange '+(Math.min(s.turn+1,s.r.turns.length))+' of '+s.r.turns.length+'</div>';
+  s.log.forEach(function(l){h+='<div class="rpline '+(l.who==='them'?'them':'me')+'"><div class="who" style="font-size:.72rem;font-weight:700;color:var(--blue)">'+(l.who==='them'?'🗣️ Them':'🙋 You')+'</div><div class="es" style="font-size:1.02rem">'+esc(l.es)+'</div><div class="en">'+esc(l.en)+'</div></div>'});
+  if(s.turn>=s.r.turns.length){
+    h+='<div class="feedback ok">🎉 Conversation complete! You scored '+s.score+' / '+s.r.turns.length+' first-try replies. Read the whole conversation above once more — that was YOU speaking Spanish in a real situation.</div><div style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn" onclick="startRoleplay('+ROLEPLAYS.indexOf(s.r)+')" type="button">↻ Play it again</button><button class="btn ghost" onclick="renderRoleplays()" type="button">All role-plays</button></div>';
+    h+='</div>';wrap.innerHTML=h;touchDay();return;
+  }
+  var t=s.r.turns[s.turn];
+  h+='<div class="rpline them"><div class="who" style="font-size:.72rem;font-weight:700;color:var(--blue)">🗣️ Them — tap 🔊 to hear again</div><div style="display:flex;gap:8px;align-items:flex-start"><div style="flex:1"><div class="es" style="font-size:1.05rem">'+esc(t[0])+'</div><div class="en">'+esc(t[1])+'</div></div>'+speakBtn(t[0],true)+'</div></div>';
+  h+='<p style="font-weight:700;margin:10px 0 2px">🙋 Your reply — pick the right one:</p>';
+  shuffle(t[2].map(function(c,ci){return ci})).forEach(function(ci){h+='<button type="button" class="opt" data-rp="'+ci+'">'+esc(t[2][ci])+' <span class="spk sm" data-say="'+esc(t[2][ci]).replace(/"/g,'&quot;')+'" role="button" aria-label="Listen" style="float:right">🔊</span></button>'});
+  h+='<div id="rpFb"></div></div>';wrap.innerHTML=h;
+  document.querySelectorAll('[data-rp]').forEach(function(b){b.addEventListener('click',function(ev){
+    if(ev.target.closest('[data-say]'))return;
+    var pick=parseInt(b.getAttribute('data-rp'),10);var ok=pick===t[3];
+    document.querySelectorAll('[data-rp]').forEach(function(x){x.disabled=true;if(parseInt(x.getAttribute('data-rp'),10)===t[3])x.classList.add('correct')});
+    if(!ok){b.classList.add('wrong');saveMistake('Role-play ('+s.r.t+'): reply to "'+t[0]+'"','Correct reply: '+t[2][t[3]])}else s.score++;
+    $('rpFb').innerHTML='<div class="feedback '+(ok?'ok':'no')+'">'+(ok?'✅ ¡Perfecto! That is the natural reply.':'❌ The natural reply is: <b>'+esc(t[2][t[3]])+'</b> — listen to it and say it aloud.')+' '+speakBtn(t[2][t[3]],true)+'</div><button class="btn" id="rpNext" type="button" style="width:100%">'+(s.turn+1>=s.r.turns.length?'See the full conversation →':'Continue →')+'</button>';
+    $('rpNext').onclick=function(){
+      s.log.push({who:'them',es:t[0],en:t[1]});s.log.push({who:'me',es:t[2][t[3]],en:''});
+      s.turn++;renderRpTurn();
+      if(s.turn<s.r.turns.length)setTimeout(function(){speak(s.r.turns[s.turn][0])},300);
+    };
+  })});
+}
+/* ============ BRIDGE + PHRASEBOOK ============ */
+function renderBridge(){
+  var h='<button class="btn ghost small" onclick="renderSpeak()" type="button">← Back to Speak</button>';
+  h+='<div class="card"><div class="kicker">🇵🇰 → 🇪🇸 Your real life, in Spanish</div><h2 style="font-size:1.25rem;margin:4px 0">Pakistan–Spain Bridge Phrases</h2><p class="muted">The sentences YOU will actually say when a Spanish speaker asks about your life — Pakistan, Urdu, cricket, food, family and your village. Learn these by heart; they start real friendships.</p></div>';
+  h+='<div class="card">';
+  BRIDGE.forEach(function(p){h+='<div class="wordrow"><div class="txt"><div class="es">'+esc(p[0])+'</div><div class="en">'+esc(p[1])+'</div><div class="ur">'+esc(p[2])+'</div></div>'+speakBtn(p[0])+'</div>'});
+  h+='</div>';
+  $('tab-speak').innerHTML=h;window.scrollTo({top:0,behavior:'smooth'});touchDay();
+}
+function renderPhrasebook(filter){
+  var h='<button class="btn ghost small" onclick="renderSpeak()" type="button">← Back to Speak</button>';
+  h+='<div class="card"><div class="kicker">🆘 Travel safety net</div><h2 style="font-size:1.25rem;margin:4px 0">Survival Phrasebook — 100 phrases</h2><p class="muted">Emergency and travel phrases. Type to filter, tap any row (or 🔊) to hear it spoken. Works fully offline — your pocket phrasebook in Spain.</p>';
+  h+='<input type="text" id="pbSearch" placeholder="Type to filter… e.g. taxi, doctor, water" value="'+esc(filter||'')+'"></div>';
+  h+='<div class="card" id="pbList">';
+  var f=(filter||'').toLowerCase();var shown=0;
+  SURVIVAL.forEach(function(p){
+    if(f&&(p[0]+' '+p[1]+' '+p[2]).toLowerCase().indexOf(f)<0)return;
+    shown++;
+    h+='<div class="wordrow" data-say="'+esc(p[0])+'" style="cursor:pointer"><div class="txt"><div class="es">'+esc(p[0])+'</div><div class="en">'+esc(p[1])+'</div><div class="ur">'+esc(p[2])+'</div></div>'+speakBtn(p[0],true)+'</div>';
+  });
+  if(!shown)h+='<p class="muted">No phrases match "'+esc(filter||'')+'". Try a shorter word — taxi, agua, ayuda, médico.</p>';
+  h+='<p class="muted" style="margin-top:8px">Showing '+shown+' of '+SURVIVAL.length+' phrases.</p></div>';
+  $('tab-speak').innerHTML=h;
+  if(!filter)window.scrollTo({top:0,behavior:'smooth'});
+  var inp=$('pbSearch');
+  inp.addEventListener('input',function(){renderPhrasebook(this.value);var n=$('pbSearch');n.focus();n.setSelectionRange(n.value.length,n.value.length)});
+  touchDay();
+}
+/* ============ PRINTABLE WORD SHEETS ============ */
+function openPrintSheet(cat){
+  var rows=[],title='';
+  if(cat==='hard'){hardIndices().forEach(function(i){rows.push(FLASH[i])});title='🆘 Hard Words — rescue deck'}
+  else if(cat==='all'||!cat){rows=FLASH.slice();title='All flashcards — '+FLASH.length+' words'}
+  else{rows=FLASH.filter(function(f){return f.cat===cat});title=CATS[cat]+' — '+rows.length+' words'}
+  var h='<div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px" class="noprint"><button class="btn ghost" id="psClose" type="button">✕ Close sheet</button></div>';
+  h+='<p class="muted" style="margin-top:0">This is the clean printable sheet. To print it or save it as a PDF, use your browser menu → Print — only this sheet prints, nothing else on the page.</p>';
+  h+='<h2 style="font-family:Sora">Learn Spanish with Farrakh — Word Sheet</h2><h3 style="font-family:Sora;margin:4px 0 10px">'+esc(title)+'</h3>';
+  h+='<table><tr><th>Spanish</th><th>English</th><th>Roman Urdu</th></tr>';
+  rows.forEach(function(f){h+='<tr><td><b>'+esc(f.es)+'</b></td><td>'+esc(f.en)+'</td><td>'+esc(f.ur)+'</td></tr>'});
+  h+='</table><p style="font-size:.8rem;color:#555;margin-top:10px">Learn Spanish with Farrakh · '+LIVE_URL+'</p>';
+  var ps=$('printSheet');ps.innerHTML=h;ps.hidden=false;
+  ps.scrollIntoView({behavior:'smooth'});
+  $('psClose').onclick=function(){ps.hidden=true;ps.innerHTML=''};
+}
+/* ============ PWA: guarded service worker (GitHub copy provides sw.js + manifest.json) ============ */
+if('serviceWorker' in navigator){try{navigator.serviceWorker.register('sw.js').catch(function(){})}catch(e){}}
 /* ============ INIT ============ */
 function applyDark(){var on=!!ST.dark;document.body.classList.toggle('dark',on);var t=$('darkToggle');if(t)t.checked=on}
 $('darkToggle').addEventListener('change',function(){ST.dark=this.checked;save();applyDark()});
