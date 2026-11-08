@@ -1289,6 +1289,9 @@ function renderHome(){
   if(allDone){hw+='<button class="btn orange" id="contBtn" type="button" style="width:100%;min-height:56px;font-size:1.02rem">🏆 Review Lesson '+LESSONS.length+' again</button>'}
   else{hw+='<button class="btn" id="contBtn" type="button" style="width:100%;min-height:56px;font-size:1.02rem">'+PLAY_SVG+' Continue: Lesson '+L.n+' — '+esc(L.t)+'</button>'}
   hw+='</div>';
+  /* Cloud account strip — the sign up / sign in page lives at #/account */
+  var _sess=LSFCloud.session();
+  hw+='<button type="button" class="toolcard" data-nav="account" style="width:100%;text-align:left"><span class="tic">☁️</span><span class="tt"><b>'+(_sess?'Cloud account — signed in':'Sign up / Sign in — cloud account')+'</b><span>'+(_sess?('Backing up as '+esc(_sess.email||'')):'Free backup of your progress — email + password')+'</span></span><span class="arr">›</span></button>';
   /* ROUND 4: Daily Motivation strip */
   var mot=MOTIV[(d.getDate()-1)%MOTIV.length];
   hw+='<div class="motivstrip"><div class="kicker">✨ Daily Motivation</div><div style="display:flex;gap:10px;align-items:flex-start;margin-top:6px"><div style="flex:1"><div class="es" style="font-size:1.12rem">'+esc(mot[0])+'</div><div class="ur">'+esc(mot[1])+'</div></div>'+speakBtn(mot[0])+'</div></div>';
@@ -2221,6 +2224,15 @@ function testMic(){
 }
 /* ── LAYER 5 · UI — Progress screen. Backup / restore / reset go through LSFStore (Layer 2); the 'Download app file' utility is Layer 6 shell behaviour wired here. ── */
 /* ============ PROGRESS ============ */
+function renderAccount(){
+  goTab('progress');syncRoute('#/account');
+  var h='<button class="btn ghost small" type="button" onclick="goRoute(\'#/progress\')">← My Progress</button>';
+  h+='<div class="card"><div class="kicker">☁️ Your account</div><h2 style="font-size:1.25rem;margin:4px 0">Sign up / Sign in</h2><p class="muted">One free account — email + password — backs up your Spanish progress online (Supabase), so it follows you to any phone or browser. No account? The app still works fully on this device; the account is only a safe copy.</p></div>';
+  h+=cloudCardHtml();
+  h+='<div class="card"><h3>How it works</h3><ul style="margin:6px 0;padding-left:20px;line-height:1.7"><li>📚 Practise as usual — progress saves on this device first</li><li>☁️ Signed in? A copy backs up automatically a few seconds later</li><li>📱 New phone? Open this page, sign in, and the app asks before loading your progress</li><li>🔒 Only your account can open your backup — the database rule was tested</li></ul><button class="btn ghost" type="button" style="width:100%" onclick="goRoute(\'#/progress\')">📊 Go to My Progress</button></div>';
+  $('tab-progress').innerHTML=h;
+  wireCloudCard();
+}
 function cloudStatusText(){if(!LSFCloud.session())return'';return ST.cloudAt?('Last cloud backup: '+new Date(ST.cloudAt).toLocaleString()):'Not backed up yet — tap Sync now.'}
 function cloudCardHtml(){
   var s=LSFCloud.session();
@@ -2263,7 +2275,7 @@ function wireCloudCard(){
   if(up)up.onclick=function(){var em=($('cloudEmail').value||'').trim(),pw=$('cloudPass').value||'';if(!em||em.indexOf('@')<1||pw.length<6){no('❌ Please enter a valid email and a password of at least 6 characters.');return}up.disabled=true;fb('');LSFCloud.signUp(em,pw).then(function(){return afterAuth(true)}).catch(function(e){up.disabled=false;no('❌ '+esc(e.message||'Could not create the account. Check your internet and try again.'))})};
   if(inn)inn.onclick=function(){var em=($('cloudEmail').value||'').trim(),pw=$('cloudPass').value||'';if(!em||!pw){no('❌ Please enter your email and password.');return}inn.disabled=true;fb('');LSFCloud.signIn(em,pw).then(function(){return afterAuth(false)}).catch(function(e){inn.disabled=false;no('❌ '+esc(e.message||'Could not sign in. Check the email and password.'))})};
   if(sync)sync.onclick=function(){LSFCloud._hold=false;sync.disabled=true;LSFCloud.push().then(function(){sync.disabled=false;ok('✅ Progress saved to your account.');var st=$('cloudStatus');if(st)st.textContent=cloudStatusText()}).catch(function(e){sync.disabled=false;no('❌ '+esc(e.message||'Sync failed — check your internet and try again.'))})};
-  if(out)out.onclick=function(){LSFCloud.signOut();renderProgress();showNotice('Signed out. Progress on this device is untouched.')};
+  if(out)out.onclick=function(){LSFCloud.signOut();if((location.hash||'').indexOf('account')>=0){renderAccount()}else{renderProgress()}showNotice('Signed out. Progress on this device is untouched.')};
 }
 function renderProgress(){
   var doneN=Object.keys(ST.done).length;var knownN=Object.keys(ST.known).length;
@@ -3723,7 +3735,7 @@ function renderSearchPage(){
    the matching real cards of the Progress dashboard (same wiring, same data). */
 function focusProgress(mode){
   var wrap=$('tab-progress');if(!wrap)return;
-  var keepS=['Reading & Sound Settings','Daily minutes goal','Weekly goal','Backup my progress','Lessons completed','Share My Level'];
+  var keepS=['Reading & Sound Settings','Daily minutes goal','Weekly goal','Backup my progress','Cloud account & backup','Lessons completed','Share My Level'];
   var keepB=['My Badges','Share My Level'];
   for(var i=0;i<wrap.children.length;i++){
     var el=wrap.children[i];var txt=el.textContent||'';var keep=true;
@@ -3794,6 +3806,7 @@ function titleFor(parts){
   if(a==='progress')return '📊 My Progress';
   if(a==='badges')return '🏅 Badges & Certificates';
   if(a==='settings')return '⚙️ Settings & Backup';
+  if(a==='account')return '☁️ Cloud Account';
   return '';
 }
 function parentFor(parts){
@@ -3828,7 +3841,7 @@ function updateChrome(parts){
   $('headPage').hidden=isHome;
   if(!isHome)$('pageTitle').textContent=titleFor(parts);
   document.body.classList.toggle('deep',isDeep(parts));
-  var dockMap={home:'dockHome',lessons:'dockLessons',levelmap:'dockLessons',lesson:'dockLessons',flashcards:'dockCards',study:'dockCards',practice:'dockPractice',tool:'dockPractice',exam:'dockPractice',exams:'dockPractice',writing:'dockPractice',progress:'dockProgress',badges:'dockProgress',settings:'dockProgress'};
+  var dockMap={home:'dockHome',lessons:'dockLessons',levelmap:'dockLessons',lesson:'dockLessons',flashcards:'dockCards',study:'dockCards',practice:'dockPractice',tool:'dockPractice',exam:'dockPractice',exams:'dockPractice',writing:'dockPractice',progress:'dockProgress',badges:'dockProgress',settings:'dockProgress',account:'dockProgress'};
   ['dockHome','dockLessons','dockCards','dockPractice','dockProgress'].forEach(function(id){var b=$(id);if(b)b.classList.toggle('dockon',dockMap[parts[0]]===id)});
 }
 function runTool(name){
@@ -3928,6 +3941,7 @@ function runRoute(parts){
   if(a==='grammar'){renderGrammar();return true}
   if(a==='phrasebook'){goTab('speak');renderPhrasebook();return true}
   if(a==='bridge'){goTab('speak');renderBridge();return true}
+  if(a==='account'){renderAccount();return true}
   if(a==='progress'){goTab('progress');focusProgress('');return true}
   if(a==='badges'){goTab('progress');focusProgress('badges');return true}
   if(a==='settings'){goTab('progress');focusProgress('settings');return true}
