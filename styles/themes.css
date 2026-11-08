@@ -92,3 +92,11 @@ body.dark input.switch:checked{background:linear-gradient(135deg,#4f46e5,#3b82f6
 .setrow{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;padding:12px 0;border-bottom:1px solid var(--line)}
 .setrow:last-of-type{border-bottom:none}
 .setrow .lab{font-weight:600;font-size:.95rem}
+
+/* ===== Compact Progress stats (fix 2026-11-08) =====
+   The stats tiles were collapsing to one full-width column with roomy
+   padding. Force a tight 2-up grid of mini tiles on the Progress page. */
+.pstats{grid-template-columns:1fr 1fr !important;gap:8px !important}
+.pstats .pronbox{padding:9px 6px !important;margin:0 !important;border-radius:14px}
+.pstats .pronbox>div:first-child{font-size:1.3rem !important;line-height:1.2}
+.pstats .muted{font-size:.78rem;line-height:1.25}
