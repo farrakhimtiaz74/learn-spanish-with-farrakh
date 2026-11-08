@@ -3902,6 +3902,25 @@ function initRouter(){
   if(!location.hash){try{history.replaceState(null,'','#/home')}catch(e){}}
   applyRoute();
 }
+/* ===== Inbound share / protocol handler (Round 5) =====
+   Other apps can share text into this app (manifest share_target), and
+   web+spanish: links open here (protocol_handlers). Both land on the
+   Search page with the shared text already searched. */
+function handleInboundShare(){
+  try{
+    var p=new URLSearchParams(location.search);
+    var q=(p.get('text')||p.get('q')||'').replace(/\s+/g,' ').trim();
+    if(q.indexOf('web+spanish:')===0){q=q.slice(12).replace(/^\/+/,'').trim()}
+    if(q.length>80)q=q.slice(0,80);
+    if(q.length<2)return;
+    try{history.replaceState(null,'',location.pathname)}catch(e){}
+    goRoute('#/tool/search');
+    setTimeout(function(){
+      var inp=$('pgSearch');
+      if(inp){inp.value=q;renderSearchResults(q)}
+    },200);
+  }catch(e){}
+}
 /* ============ INIT (final — after all Round 4 features) ============ */
 applyUr();
 applyDark();
@@ -3915,6 +3934,7 @@ renderQuizHome();
 renderSpeak();
 renderProgress();
 initRouter();
+handleInboundShare();
 </script>
 </body>
 </html>
