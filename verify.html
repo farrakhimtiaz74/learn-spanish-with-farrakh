@@ -135,6 +135,16 @@ function verify(raw) {
     + '<div class="row"><b>Score</b><span>' + esc(score) + ' / ' + esc(total) + ' (' + pct + '%)</span></div>';
 }
 
+/* V37 #41: certificate QR codes link here as verify.html?c=<code> —
+   prefill the box and run the same check automatically on load. */
+(function () {
+  var c = new URLSearchParams(window.location.search).get("c");
+  if (c) {
+    document.getElementById("code").value = c;
+    verify(c);
+  }
+})();
+
 document.getElementById("go").addEventListener("click", function () {
   verify(document.getElementById("code").value);
 });
