@@ -43,6 +43,7 @@ function goTab(name){
   var prev=currentTab;
   if(prev!==name)stopAllActivity();
   currentTab=name;
+  var _bs=$('bootSkel');if(_bs)_bs.remove();
   var tabs=document.querySelectorAll('#tabs .tab');
   for(var i=0;i<tabs.length;i++){tabs[i].classList.toggle('active',tabs[i].getAttribute('data-tab')===name)}
   var secs=['home','lessons','lesson-detail','cards','verbs','quiz','speak','progress','page'];
