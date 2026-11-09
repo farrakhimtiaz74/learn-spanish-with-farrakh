@@ -5,6 +5,7 @@ import { VERBS } from '../data/verbs.js';
 import { CATS, FLASH, POD } from '../data/vocabulary.js';
 import { $, LSFCloud, ST, esc, pushScore, save, saveMistake, srsDueList, todayMinutes, todayStr, touchDay, updateTop, uuLine } from '../store.js';
 import { PLAY_SVG, SPK_SVG_SM, pickEsVoice, slowMode, speak, speakBtn, splitSpeechChunks } from '../tts.js';
+import { fireConfetti } from '../services.js';
 import { hardIndices } from './cards.js';
 import { renderGrammar } from './grammar.js';
 import { beep, renderLevelMap, testMic } from './speak.js';
@@ -188,19 +189,21 @@ function renderDailyQ(){
 /* ============ LESSONS LIST ============ */
 function renderLessons(){
   var h='<div class="card"><h2 style="font-size:1.2rem">📖 Your Lesson Path</h2><p class="muted">Lessons open in order. Pass a quiz with 4 of 5 or more to unlock the next one.</p><button class="btn orange" onclick="renderLevelMap()" type="button" style="width:100%">🧭 Open the Level Map — '+LESSONS.length+' stepping stones</button><button class="btn ghost" onclick="renderGrammar()" type="button" style="width:100%;margin-top:8px">📚 Grammar Reference Library — all 50 rules</button></div>';
+  h+='<div class="fpills" id="lvlPills"><button type="button" class="fpill on" data-lf="all">All levels</button><button type="button" class="fpill" data-lf="A1">A1 · Beginner</button><button type="button" class="fpill" data-lf="A2">A2</button><button type="button" class="fpill" data-lf="B1">B1</button><button type="button" class="fpill" data-lf="B2">B2</button></div>';
   for(var i=0;i<LESSONS.length;i++){var L=LESSONS[i];
-    if(i===0)h+='<h3 style="margin:16px 0 2px">Level A1 — Lessons 1–20</h3>';
-    if(i===20)h+='<h3 style="margin:16px 0 2px">Level A2 — Lessons 21–30</h3>';
-    if(i===30)h+='<h3 style="margin:16px 0 2px">Level B1 — Lessons 31–40</h3>';
-    if(i===40)h+='<h3 style="margin:16px 0 2px">Level B2 — Lessons 41–50</h3>';
+    if(i===0)h+='<h3 class="lvlhead" data-lvl="A1" style="margin:16px 0 2px">Level A1 — Lessons 1–20</h3>';
+    if(i===20)h+='<h3 class="lvlhead" data-lvl="A2" style="margin:16px 0 2px">Level A2 — Lessons 21–30</h3>';
+    if(i===30)h+='<h3 class="lvlhead" data-lvl="B1" style="margin:16px 0 2px">Level B1 — Lessons 31–40</h3>';
+    if(i===40)h+='<h3 class="lvlhead" data-lvl="B2" style="margin:16px 0 2px">Level B2 — Lessons 41–50</h3>';
     var unlocked=(i===0)||!!ST.done[LESSONS[i-1].n];var done=!!ST.done[L.n];
-    h+='<button type="button" class="lessonitem'+(done?' done':'')+(unlocked?'':' locked')+'" data-lesson="'+i+'" '+(unlocked?'':'disabled')+'>';
+    h+='<button type="button" class="lessonitem'+(done?' done':'')+(unlocked?'':' locked')+'" data-lesson="'+i+'" data-lvl="'+(i<20?'A1':i<30?'A2':i<40?'B1':'B2')+'" '+(unlocked?'':'disabled')+'>';
     var pct=done?100:(unlocked?12:0);var ringCol=done?'#16a34a':(unlocked?'#f97316':'#cbd5e1');
     h+='<span class="lring" style="background:conic-gradient('+ringCol+' '+pct+'%,#e8eef7 '+pct+'%)"><i>'+(done?'✓':(unlocked?L.n:'🔒'))+'</i></span><span class="lt"><b>Lesson '+L.n+': '+esc(L.t)+'</b><span class="muted">'+esc(L.sub)+'</span></span>';
     h+='<span class="badge'+(done?' done':'')+'">'+(done?'Done ✓':(unlocked?'Open':'Locked'))+'</span></button>';
   }
   $('tab-lessons').innerHTML=h;
   document.querySelectorAll('[data-lesson]').forEach(function(b){b.addEventListener('click',function(){openLesson(parseInt(b.getAttribute('data-lesson'),10))})});
+  document.querySelectorAll('#lvlPills .fpill').forEach(function(p){p.addEventListener('click',function(){document.querySelectorAll('#lvlPills .fpill').forEach(function(x){x.classList.remove('on')});p.classList.add('on');var f=p.getAttribute('data-lf');document.querySelectorAll('#tab-lessons [data-lvl]').forEach(function(el){el.style.display=(f==='all'||el.getAttribute('data-lvl')===f)?'':'none'})})});
 }
 /* ============ LESSON DETAIL ============ */
 var curLesson=0, lqState=null;
@@ -320,7 +323,7 @@ function renderLessonQ(){
   if(lqState.q>=L.quiz.length){
     var pct=Math.round(lqState.score/L.quiz.length*100);var pass=lqState.score>=4;
     pushScore('Lesson '+L.n+' quiz',lqState.score,L.quiz.length);
-    if(pass){ST.done[L.n]=true;var _hr=new Date().getHours();if(_hr<8)ST.earlyBird=true;if(_hr>=23)ST.nightOwl=true}
+    if(pass){ST.done[L.n]=true;fireConfetti();var _hr=new Date().getHours();if(_hr<8)ST.earlyBird=true;if(_hr>=23)ST.nightOwl=true}
     save();updateTop();
     var h='<p style="font-size:1.1rem"><b>You scored '+lqState.score+' / '+L.quiz.length+' ('+pct+'%)</b></p>';
     h+=pass?'<div class="feedback ok">🎉 <b>Passed!</b> '+(L.n<LESSONS.length?'Lesson '+(L.n+1)+' is now unlocked. Well done!':'You finished the whole path — ¡Enhorabuena! 🏆 Take the Final Exam for this level from Home.')+'</div>':'<div class="feedback no">Almost! You need 4/5 to unlock the next lesson. Read the words once more and try again — you can do it. 💪</div>';
