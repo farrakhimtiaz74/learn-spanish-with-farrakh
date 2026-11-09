@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Verify Certificate — Learn Spanish with Farrakh</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background: #ffffff; color: #111111; min-height: 100vh;
+    display: flex; align-items: flex-start; justify-content: center;
+    padding: 32px 16px;
+  }
+  .wrap { width: 100%; max-width: 520px; }
+  .flag { font-size: 40px; text-align: center; }
+  h1 { font-size: 24px; text-align: center; margin: 8px 0 4px; }
+  .sub { text-align: center; color: #6B7280; font-size: 14px; margin-bottom: 24px; }
+  .card {
+    background: #ffffff; border: 1px solid #E4E4E7; border-radius: 16px;
+    padding: 22px; box-shadow: 0 2px 10px rgba(0,0,0,0.04);
+  }
+  label { display: block; font-size: 13px; font-weight: 700; color: #374151; margin-bottom: 8px; }
+  input {
+    width: 100%; padding: 14px; font-size: 16px; border: 1.5px solid #E4E4E7;
+    border-radius: 12px; outline: none; letter-spacing: 0.3px;
+  }
+  input:focus { border-color: #0B5FFF; }
+  button {
+    width: 100%; margin-top: 12px; padding: 14px; font-size: 16px; font-weight: 700;
+    color: #ffffff; background: #0B5FFF; border: none; border-radius: 12px; cursor: pointer;
+  }
+  button:active { opacity: 0.85; }
+  .hint { font-size: 12.5px; color: #6B7280; margin-top: 10px; text-align: center; }
+  #result { margin-top: 18px; display: none; }
+  .ok  { border: 2px solid #16A34A; background: #F0FDF4; }
+  .bad { border: 2px solid #DC2626; background: #FEF2F2; }
+  .verdict { font-size: 19px; font-weight: 800; text-align: center; margin-bottom: 6px; }
+  .ok .verdict { color: #15803D; }
+  .bad .verdict { color: #B91C1C; }
+  .row { display: flex; justify-content: space-between; padding: 8px 2px; border-top: 1px solid rgba(0,0,0,0.07); font-size: 15px; }
+  .row:first-of-type { border-top: none; }
+  .row b { color: #111111; }
+  .row span { color: #374151; text-align: right; }
+  .foot { text-align: center; color: #9CA3AF; font-size: 12px; margin-top: 22px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="flag">🇪🇸</div>
+  <h1>Verify Certificate</h1>
+  <p class="sub">Learn Spanish with Farrakh — certificate ka code check karo.<br>
+  Enter the code printed on the certificate.</p>
+
+  <div class="card">
+    <label for="code">Certificate code</label>
+    <input id="code" type="text" placeholder="LSF-FINAL-20261109-18/20-XX"
+           autocomplete="off" autocapitalize="characters" spellcheck="false">
+    <button id="go" type="button">✓ Verify karo</button>
+    <p class="hint">Code certificate ke neeche likha hota hai, misaal: LSF-A1-20261109-13/15-4K</p>
+  </div>
+
+  <div id="result" class="card"></div>
+
+  <p class="foot">Ye page sirf code ki bunyadi jaanch karta hai —<br>
+  This page checks the code's built-in checksum, fully offline.</p>
+</div>
+
+<script>
+"use strict";
+/* Certificate code format (must match CertCode.java EXACTLY):
+   LSF-<KIND>-<yyyymmdd>-<score>/<total>-<CHK>
+   CHK = 2 base-36 chars (0-9A-Z) of
+         ( sum over payload chars of charCode * (index+1) + 2609 ) mod 1296
+   where payload = "LSF-<KIND>-<yyyymmdd>-<score>/<total>".            */
+var B36 = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+
+function chk(payload) {
+  var sum = 2609;
+  for (var i = 0; i < payload.length; i++) {
+    sum += payload.charCodeAt(i) * (i + 1);
+  }
+  var v = sum % 1296;
+  return B36.charAt(Math.floor(v / 36)) + B36.charAt(v % 36);
+}
+
+function prettyKind(kind) {
+  if (kind === "FINAL") return "Final Exam";
+  if (kind === "DELE") return "DELE-Style Mock Exam";
+  if (kind === "LISTEN") return "Listening Exam";
+  if (/^MOCK-[A-Z][0-9]$/.test(kind)) return "Level " + kind.substring(5) + " Mock Exam";
+  if (/^[A-Z][0-9]$/.test(kind)) return "Level " + kind + " Exam";
+  if (kind === "SKILL-LISTENING") return "Skill Certificate — Listening Master";
+  if (kind === "SKILL-SPEAKING") return "Skill Certificate — Speaking Star";
+  if (kind === "SKILL-GRAMMAR") return "Skill Certificate — Grammar Guru";
+  if (kind === "SKILL-WORDS") return "Skill Certificate — Word Bank";
+  return kind;
+}
+
+function esc(s) {
+  return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+}
+
+function verify(raw) {
+  var code = String(raw || "").trim().toUpperCase();
+  var box = document.getElementById("result");
+  box.style.display = "block";
+  var m = /^LSF-(.+)-(\d{8})-(\d+)\/(\d+)-([0-9A-Z]{2})$/.exec(code);
+  if (!m) {
+    box.className = "card bad";
+    box.innerHTML = '<div class="verdict">❌ Code ghalat hai</div>'
+      + '<p style="text-align:center;color:#374151;font-size:14px">'
+      + 'Ye code sahi format mein nahi hai. Certificate par likha code bilkul waisa hi likho.<br>'
+      + 'This code is not in the right format — copy it exactly as printed.</p>';
+    return;
+  }
+  var kind = m[1], date = m[2], score = m[3], total = m[4], given = m[5];
+  var payload = "LSF-" + kind + "-" + date + "-" + score + "/" + total;
+  if (chk(payload) !== given) {
+    box.className = "card bad";
+    box.innerHTML = '<div class="verdict">❌ Code ghalat hai / is not valid</div>'
+      + '<p style="text-align:center;color:#374151;font-size:14px">'
+      + 'Is code ki jaanch (checksum) match nahi hui — code mein koi harf ya number badla hua lagta hai.<br>'
+      + 'The checksum does not match, so this code was not issued by the app.</p>';
+    return;
+  }
+  var niceDate = date.substring(0, 4) + "-" + date.substring(4, 6) + "-" + date.substring(6, 8);
+  var pct = Math.round(100 * parseInt(score, 10) / Math.max(1, parseInt(total, 10)));
+  box.className = "card ok";
+  box.innerHTML = '<div class="verdict">✅ This code is genuine</div>'
+    + '<p style="text-align:center;color:#374151;font-size:14px;margin-bottom:8px">Ye code asal app se bana hua hai.</p>'
+    + '<div class="row"><b>Certificate</b><span>' + esc(prettyKind(kind)) + '</span></div>'
+    + '<div class="row"><b>Code type</b><span>' + esc(kind) + '</span></div>'
+    + '<div class="row"><b>Date / Tareekh</b><span>' + esc(niceDate) + '</span></div>'
+    + '<div class="row"><b>Score</b><span>' + esc(score) + ' / ' + esc(total) + ' (' + pct + '%)</span></div>';
+}
+
+document.getElementById("go").addEventListener("click", function () {
+  verify(document.getElementById("code").value);
+});
+document.getElementById("code").addEventListener("keydown", function (e) {
+  if (e.key === "Enter") verify(this.value);
+});
+</script>
+</body>
+</html>
