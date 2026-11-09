@@ -1,7 +1,7 @@
 /* Learn Spanish — MODULAR build service worker.
    Same policy as the main app: network-first for everything same-origin so
    updates land on the next launch; cache is the offline fallback. */
-var CACHE='learn-spanish-v14';
+var CACHE='learn-spanish-v15';
 var CORE=['./','./index.html','./manifest.json',
 './styles/main.css','./styles/components.css','./styles/themes.css',
 './js/app.js','./js/store.js','./js/tts.js','./js/services.js',
