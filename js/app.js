@@ -10,7 +10,7 @@ import { buildQueue, curVerb, fcCat, renderCards, renderQuizHome, renderVerbs, s
 import { conditionalForms, imperfectForms, renderGrammar, verbFormsFor } from './ui/grammar.js';
 import { nextLessonIdx, openLesson, renderHome, renderLessons } from './ui/learn.js';
 import { openPassage, openStory, renderAccount, renderBridge, renderLevelMap, renderLibrary, renderPhrasebook, renderProgress, renderReading, renderRoleplays, renderSearchResults, renderSpeak, renderSyllables, renderTraps, startExam2, startExam3, startHangman, startMarathon, startMic, startMock, startNumDrill, startRoleplay, startWordMatch, wireSettingsModal } from './ui/speak.js';
-import { challengeInfo, cinemaLocked, openCinema, openClinic, renderBuilderPro, renderCinema, renderClinic, renderSimList, renderWriting, startExam4, startSim } from './ui/tools.js';
+import { challengeInfo, cinemaLocked, openCinema, openClinic, renderBuilderPro, renderCinema, renderClinic, renderSimList, renderWriting, startExam4, startExam5, startSim } from './ui/tools.js';
 
 /* Bridge: the app's generated HTML strings call some functions from inline
    handlers (onclick=...). Modules create no globals, so the function exports
@@ -136,6 +136,7 @@ function renderExamsHub(){
   h+=hubLink('#/exam/a2','🎓','Final Exam — Level A2',ST.exam2Passed?'\u2713 Passed — certificate earned':(ST.done[30]?'Open — 20 questions · pass 14':'\uD83D\uDD12 Unlocks after Lesson 30'));
   h+=hubLink('#/exam/b1','🎓','Final Exam — Level B1',ST.exam3Passed?'\u2713 Passed — certificate earned':(ST.done[40]?'Open — 20 questions · pass 14':'\uD83D\uDD12 Unlocks after Lesson 40'));
   h+=hubLink('#/exam/b2','🎓','Final Exam — Level B2',ST.exam4Passed?'\u2713 Passed — certificate earned':(ST.done[50]?'Open — 20 questions · pass 14':'\uD83D\uDD12 Unlocks after Lesson 50'));
+  h+=hubLink('#/exam/c1','🎓','Final Exam — Level C1',ST.exam5Passed?'\u2713 Passed — certificate earned':(ST.done[60]?'Open — 20 questions · pass 14':'\uD83D\uDD12 Unlocks after Lesson 60'));
   h+=hubLink('#/exam/dele','📝','DELE-Style Mock Exam','25 mixed questions · timed · best so far: '+(ST.mockBest||0)+'/25');
   h+=hubLink('#/exam/verbs','🎓','Verb Grand Exam',ST.verbExamPassed?'\u2713 Passed — best '+(ST.verbExamBest||0)+'/20':'20 questions across all tenses · pass 14+');
   h+='</div>';
@@ -147,7 +148,7 @@ function renderLibraryHub(){
   goTab('page');
   var h='<div class="card"><div class="kicker">📚 Library Hub</div><h2 style="font-size:1.25rem;margin:4px 0">Read, listen &amp; look things up</h2><p class="muted">Stories, reference rules and real-life phrases — everything in the library, one tap away.</p></div><div class="toolgrid">';
   h+=hubLink('#/reading','📖','Reading Library','10 graded stories · tap any word to hear it · 3 questions each');
-  h+=hubLink('#/grammar','📚','Grammar Reference Library','All 50 lesson rules · searchable · examples + mistake warnings');
+  h+=hubLink('#/grammar','📚','Grammar Reference Library','All 60 lesson rules · searchable · examples + mistake warnings');
   h+=hubLink('#/phrasebook','🆘','Survival Phrasebook',SURVIVAL.length+' tap-to-speak phrases for travel, health, food &amp; emergencies');
   h+=hubLink('#/bridge','🇵🇰','Pakistan–Spain Bridge','Phrases about YOUR life, family &amp; village');
   h+=hubLink('#/listening','🎧','Listening Library',LISTEN_LIB.length+' short passages · slow + normal · 3 questions each');
@@ -187,7 +188,7 @@ function focusProgress(mode){
    ================================================================ */
 var _curRoute='', _inRoute=false, _booting=true;
 var TOOL_TITLES={quiz:'❓ Quiz Zone',timed:'⏱️ Timed Quiz','listen-type':'🎧✍️ Listen & Type','sentence-builder':'🧩 Sentence Builder','ser-estar':'🔀 Ser vs Estar Trainer','word-match':'🎯 Word Match Game',hangman:'🔤 Ahorcado (Hangman)',traps:'⚠️ Urdu-Speaker Trap Trainer',syllables:'🔤 Syllable Trainer',dictation:'📝 Dictation Marathon',marathon:'📝 Dictation Marathon',numbers:'🔢 Numbers & Money Drill','review-mistakes':'📝 Review Mistakes',search:'🔎 Search Everything','builder-pro':'🧩 Sentence Builder Pro'};
-var EXAM_TITLES={a1:'🎓 Final Exam — Level A1',a2:'🎓 Final Exam — Level A2',b1:'🎓 Final Exam — Level B1',b2:'🎓 Final Exam — Level B2',dele:'📝 DELE-Style Mock Exam',verbs:'🎓 Verb Grand Exam'};
+var EXAM_TITLES={a1:'🎓 Final Exam — Level A1',a2:'🎓 Final Exam — Level A2',b1:'🎓 Final Exam — Level B1',b2:'🎓 Final Exam — Level B2',c1:'🎓 Final Exam — Level C1',dele:'📝 DELE-Style Mock Exam',verbs:'🎓 Verb Grand Exam'};
 function routeParts(){
   var h=(location.hash||'').replace(/^#\/?/,'');
   if(!h)return['home'];
@@ -298,6 +299,7 @@ function runExam(which){
   if(which==='a2'){goTab('quiz');startExam2();return true}
   if(which==='b1'){goTab('quiz');startExam3();return true}
   if(which==='b2'){startExam4();return true}
+  if(which==='c1'){startExam5();return true}
   if(which==='dele'){goTab('quiz');startMock();return true}
   if(which==='verbs'){goTab('verbs');setTimeout(function(){var s=$('vmBody');if(s)s.scrollIntoView({behavior:'smooth',block:'start'});var vb=$('vgeStart');if(vb)vb.click()},160);return true}
   return false;
