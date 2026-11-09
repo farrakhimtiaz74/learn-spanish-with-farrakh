@@ -9,7 +9,7 @@ import { SPK_SVG_SM, speak, speakBtn } from '../tts.js';
 import { renderVerbMastery } from './grammar.js';
 import { renderLessons } from './learn.js';
 import { openPrintSheet, renderIrregulars, renderSyllables, renderTraps, startExam2, startExam3, startHangman, startMarathon, startMock, startNumDrill, startWordMatch } from './speak.js';
-import { renderBuilderPro, renderWriting, startExam4 } from './tools.js';
+import { renderBuilderPro, renderWriting, startExam4, startExam5 } from './tools.js';
 
 /* ── LAYER 5 · UI — small render helpers (favourite-star buttons, speaker icons) ── */
 function favStarBtn(idx){var on=!!ST.favs[idx];return '<button type="button" class="spk sm" data-fav="'+idx+'" aria-label="Favourite word" style="background:'+(on?'var(--orange)':'#94a3b8')+'">'+(on?'★':'☆')+'</button>'}
@@ -54,6 +54,8 @@ function renderCards(){
   h+='</div></div>';
   h+='<div id="fcBody"></div>';
   $('tab-cards').innerHTML=h;
+  document.querySelectorAll('[data-catopen]').forEach(function(b){b.addEventListener('click',function(){fcCat=b.getAttribute('data-catopen');var s=$('fcCatSel');if(s)s.value=fcCat;buildQueue();renderCard();$('tab-cards').classList.add('studyfocus');syncRoute('#/study/'+fcCat)})});
+  document.querySelectorAll('#fcPills .fpill').forEach(function(p){p.addEventListener('click',function(){document.querySelectorAll('#fcPills .fpill').forEach(function(x){x.classList.remove('on')});p.classList.add('on');var f=p.getAttribute('data-cf');document.querySelectorAll('[data-catopen]').forEach(function(t){t.style.display=(f==='all'||t.getAttribute('data-cst')===f)?'':'none'})})});
   $('fcHard').addEventListener('click',function(){fcCat='hard';var s=$('fcCatSel');if(s)s.value='hard';buildQueue();renderCard();$('tab-cards').classList.add('studyfocus');syncRoute('#/study/hard')});
   $('fcDue').addEventListener('click',function(){fcCat='due';var s=$('fcCatSel');if(s)s.value='due';buildQueue();renderCard();$('tab-cards').classList.add('studyfocus');syncRoute('#/study/due')});
   $('fcDirF').addEventListener('click',function(){fcDir='fwd';fcFlipped=false;renderCards()});
@@ -209,6 +211,7 @@ function renderQuizHome(){
   h+='<button class="btn" id="qzTraps" type="button">⚠️ Urdu-Speaker Trap Trainer</button>';
   h+='<button class="btn" id="qzSyl" type="button">🔤 Syllable Trainer</button>';
   h+='<button class="btn orange" id="qzExam4" type="button">🎓 Final Exam — Level B2'+(ST.exam4Passed?' ✓ Passed':(ST.done[50]?'':' 🔒'))+'</button>';
+  h+='<button class="btn orange" id="qzExam5" type="button">🎓 Final Exam — Level C1'+(ST.exam5Passed?' ✓ Passed':(ST.done[60]?'':' 🔒'))+'</button>';
   h+='<button class="btn" id="qzWriting" type="button">✍️ Writing Workshop (12 tasks)</button>';
   h+='<button class="btn" id="qzBuilderPro" type="button">🧩 Sentence Builder Pro + My Phrases</button>';
   h+='<button class="btn" id="qzMarathon" type="button">📝 Dictation Marathon (10 lines)</button>';
@@ -234,6 +237,7 @@ function renderQuizHome(){
   $('qzTraps').onclick=function(){renderTraps()};
   $('qzSyl').onclick=function(){renderSyllables()};
   $('qzExam4').onclick=function(){startExam4()};
+  $('qzExam5').onclick=function(){startExam5()};
   $('qzWriting').onclick=function(){renderWriting()};
   $('qzBuilderPro').onclick=function(){renderBuilderPro()};
   $('qzMarathon').onclick=function(){startMarathon()};

@@ -10,7 +10,7 @@ import { openLesson, renderLessons } from './learn.js';
 function renderGrammar(filter){
   goTab('lessons');syncRoute('#/grammar');
   var f=(filter||'').toLowerCase();
-  var lvName=function(n){return n>40?'B2':(n>30?'B1':(n>20?'A2':'A1'))};
+  var lvName=function(n){return n>50?'C1':(n>40?'B2':(n>30?'B1':(n>20?'A2':'A1')))};
   var h='<button class="btn ghost small" onclick="renderLessons();goTab(\'lessons\')" type="button">← Lesson list</button>';
   h+='<div class="card"><div class="kicker">📚 Reference</div><h2 style="font-size:1.25rem;margin:4px 0">Grammar Reference Library</h2><p class="muted">The grammar rule of every lesson 1–50 in one searchable place: rule, Roman Urdu note, 3 examples you can hear, and the one mistake to avoid.</p><input type="text" id="gramSearch" placeholder="Search a rule… e.g. past, gusta, si, que" value="'+esc(filter||'')+'"></div>';
   var shown=0,lastLv='';

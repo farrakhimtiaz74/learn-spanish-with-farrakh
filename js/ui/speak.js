@@ -326,7 +326,7 @@ function renderProgress(){
     ['🎓','Verb Grand Master',!!ST.verbExamPassed,'Pass the Verb Grand Exam ('+(ST.verbExamBest||0)+'/20 best)']];
   h+='<div class="card"><h3>🏅 My Badges</h3><div class="badgerow">';
   badges.forEach(function(b){h+='<div class="badgebox'+(b[2]?'':' off')+'"><div class="ic">'+b[0]+'</div><b>'+b[1]+'</b><div class="muted" style="font-size:.8rem">'+(b[2]?'✓ Earned!':b[3])+'</div></div>'});
-  h+='</div><p class="muted" style="margin-top:10px">⏱️ Timed quiz best: <b>'+ST.timedBest+'</b> correct in 60s · 🎓 A1 Exam: <b>'+(ST.examPassed?'Passed ✓ (best '+ST.examBest+'/20)':'best '+(ST.examBest||0)+'/20 — pass is 14')+'</b> · 🎓 A2 Exam: <b>'+(ST.exam2Passed?'Passed ✓ (best '+ST.exam2Best+'/20)':(ST.done[30]?'best '+(ST.exam2Best||0)+'/20 — pass is 14':'unlocks after Lesson 30'))+'</b> · 🎓 B1 Exam: <b>'+(ST.exam3Passed?'Passed ✓ (best '+ST.exam3Best+'/20)':(ST.done[40]?'best '+(ST.exam3Best||0)+'/20 — pass is 14':'unlocks after Lesson 40'))+'</b> · 🎓 B2 Exam: <b>'+(ST.exam4Passed?'Passed ✓ (best '+ST.exam4Best+'/20)':(ST.done[50]?'best '+(ST.exam4Best||0)+'/20 — pass is 14':'unlocks after Lesson 50'))+'</b> · 📝 Mock best: <b>'+(ST.mockBest||0)+'/25</b> · 🔁 Mistakes waiting: <b>'+ST.mistakes.length+'</b></p></div>';
+  h+='</div><p class="muted" style="margin-top:10px">⏱️ Timed quiz best: <b>'+ST.timedBest+'</b> correct in 60s · 🎓 A1 Exam: <b>'+(ST.examPassed?'Passed ✓ (best '+ST.examBest+'/20)':'best '+(ST.examBest||0)+'/20 — pass is 14')+'</b> · 🎓 A2 Exam: <b>'+(ST.exam2Passed?'Passed ✓ (best '+ST.exam2Best+'/20)':(ST.done[30]?'best '+(ST.exam2Best||0)+'/20 — pass is 14':'unlocks after Lesson 30'))+'</b> · 🎓 B1 Exam: <b>'+(ST.exam3Passed?'Passed ✓ (best '+ST.exam3Best+'/20)':(ST.done[40]?'best '+(ST.exam3Best||0)+'/20 — pass is 14':'unlocks after Lesson 40'))+'</b> · 🎓 B2 Exam: <b>'+(ST.exam4Passed?'Passed ✓ (best '+ST.exam4Best+'/20)':(ST.done[50]?'best '+(ST.exam4Best||0)+'/20 — pass is 14':'unlocks after Lesson 50'))+'</b> · 🎓 C1 Exam: <b>'+(ST.exam5Passed?'Passed ✓ (best '+ST.exam5Best+'/20)':(ST.done[60]?'best '+(ST.exam5Best||0)+'/20 — pass is 14':'unlocks after Lesson 60'))+'</b> · 📝 Mock best: <b>'+(ST.mockBest||0)+'/25</b> · 🔁 Mistakes waiting: <b>'+ST.mistakes.length+'</b></p></div>';
   h+=weaknessHtml();
   h+=challengeCardHtml();
   h+=shareLevelHtml();
@@ -747,8 +747,8 @@ function renderLevelMap(){
   syncRoute('#/levelmap');
   var cur=nextLessonIdx();var allDone=Object.keys(ST.done).length>=LESSONS.length;
   var h='<button class="btn ghost small" onclick="renderLessons();goTab(\'lessons\')" type="button">← Lesson list</button>';
-  h+='<div class="card"><div class="kicker">Your path · A1 → B2</div><h2 style="font-size:1.25rem;margin:4px 0">🧭 Level Map — '+LESSONS.length+' stepping stones</h2><p class="muted">Green = done ✓ · Orange = where you are now · Grey = locked. Tap any open stone to jump straight into that lesson.</p></div>';
-  var secs=[[0,20,'Level A1 — Lessons 1–20 · The basics'],[20,30,'Level A2 — Lessons 21–30 · Real life'],[30,40,'Level B1 — Lessons 31–40 · Independence'],[40,50,'Level B2 — Lessons 41–50 · Confidence']];
+  h+='<div class="card"><div class="kicker">Your path · A1 → C1</div><h2 style="font-size:1.25rem;margin:4px 0">🧭 Level Map — '+LESSONS.length+' stepping stones</h2><p class="muted">Green = done ✓ · Orange = where you are now · Grey = locked. Tap any open stone to jump straight into that lesson.</p></div>';
+  var secs=[[0,20,'Level A1 — Lessons 1–20 · The basics'],[20,30,'Level A2 — Lessons 21–30 · Real life'],[30,40,'Level B1 — Lessons 31–40 · Independence'],[40,50,'Level B2 — Lessons 41–50 · Confidence'],[50,60,'Level C1 — Lessons 51–60 · Mastery']];
   secs.forEach(function(sc){
     h+='<div class="card"><h3 style="margin-bottom:10px">'+sc[2]+'</h3><div style="display:flex;flex-wrap:wrap;gap:10px">';
     for(var i=sc[0];i<sc[1];i++){var L=LESSONS[i];var done=!!ST.done[L.n];var unlocked=(i===0)||!!ST.done[LESSONS[i-1].n];

@@ -242,6 +242,53 @@ function renderExam4Q(){
     $('ex4Next').onclick=function(){ex4State.q++;renderExam4Q();window.scrollTo({top:0,behavior:'smooth'})};
   })});
 }
+/* ============ ROUND 4: C1 FINAL EXAM ============ */
+var ex5State=null;
+function startExam5(){
+  goTab('quiz');
+  if(!ST.done[60]){
+    $('tab-quiz').innerHTML='<div class="card"><h3>🎓 Final Exam — Level C1 🔒</h3><p class="muted">This exam unlocks when you pass <b>Lesson 60 (Expresiones idiomáticas)</b> — the last lesson of the C1 path (Lessons 51–60). 20 unique questions from those lessons; pass mark is 14.</p><button class="btn" onclick="renderLessons();goTab(\'lessons\')" type="button">📚 Go to my lessons</button> <button class="btn ghost" onclick="renderQuizHome()" type="button">Quiz Zone</button></div>';
+    return;
+  }
+  var pool=[];
+  LESSONS.slice(50,60).forEach(function(L){L.quiz.forEach(function(q){pool.push({q:'[Lesson '+L.n+'] '+q[0],opts:q[1],ans:q[1][q[2]],exp:q[3]})})});
+  var seenQ={},uniq=[];
+  pool.forEach(function(pp){var k=normAns(pp.q);if(seenQ[k])return;seenQ[k]=1;uniq.push(pp)});
+  ex5State={items:shuffle(uniq).slice(0,20),q:0,score:0};
+  renderExam5Q();
+}
+function renderExam5Q(){
+  var wrap=$('tab-quiz');
+  if(ex5State.q>=ex5State.items.length){
+    var pass=ex5State.score>=14;
+    if(ex5State.score>(ST.exam5Best||0))ST.exam5Best=ex5State.score;
+    if(pass)ST.exam5Passed=true;
+    pushScore('Final Exam C1',ex5State.score,20);save();
+    var h='';
+    if(pass){
+      h+='<div class="cert"><div class="seal">🏆</div><div class="kicker">Certificate of Completion</div><h2 style="font-size:1.5rem;margin:6px 0">Level C1 Complete</h2><p style="font-size:1.05rem;margin:4px 0"><b>Farrakh</b> has passed the Spanish C1 Final Exam</p><p class="muted">Score: '+ex5State.score+' / 20 · '+todayStr()+' · Learn Spanish with Farrakh</p><p style="font-size:1.3rem" class="es">¡Enhorabuena, Farrakh! Nivel C1 🎉</p><p class="muted">📸 Take a screenshot of this card to keep your certificate.</p></div>';
+    }else{
+      h+='<div class="card"><h3>🎓 C1 Final Exam — not passed yet</h3><p style="font-size:1.15rem"><b>Score: '+ex5State.score+' / 20</b> — you need 14 to pass.</p><div class="feedback no">Close! Review the mistakes from Lessons 51–60 — the hypothesis and subjunctive questions love a second look — and try again.</div></div>';
+    }
+    h+='<div class="card"><div style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn" onclick="startExam5()" type="button">↻ Take exam again</button>'+(pass?certDlBtn('C1',ex5State.score):'')+'<button class="btn ghost" onclick="renderQuizHome()" type="button">Quiz Zone</button></div></div>';
+    wrap.innerHTML=h;window.scrollTo({top:0,behavior:'smooth'});
+    if(pass)fireConfetti();
+    return;
+  }
+  var it=ex5State.items[ex5State.q];
+  var h='<div class="card"><p class="muted" style="margin-top:0">🎓 Final Exam C1 · Question '+(ex5State.q+1)+' of 20 · Score: '+ex5State.score+' · Pass = 14</p><div class="progressbar"><div style="width:'+(ex5State.q/20*100)+'%"></div></div>';
+  h+='<p style="font-weight:700;font-size:1.03rem;margin-top:10px">'+esc(it.q)+'</p>';
+  it.opts.forEach(function(o){h+='<button type="button" class="opt" data-ex5="'+esc(o)+'">'+esc(o)+'</button>'});
+  h+='<div id="ex5Fb"></div></div>';wrap.innerHTML=h;
+  document.querySelectorAll('[data-ex5]').forEach(function(b){b.addEventListener('click',function(){
+    var ok=b.getAttribute('data-ex5')===it.ans;
+    document.querySelectorAll('[data-ex5]').forEach(function(x){x.disabled=true;if(x.getAttribute('data-ex5')===it.ans)x.classList.add('correct')});
+    if(!ok)b.classList.add('wrong');else ex5State.score++;
+    if(!ok)saveMistake('C1 Exam: '+it.q,'Correct: '+it.ans+'. '+it.exp);
+    $('ex5Fb').innerHTML='<div class="feedback '+(ok?'ok':'no')+'">'+(ok?'✅ Correct!':'❌ Correct: <b>'+esc(it.ans)+'</b>. '+esc(it.exp))+'</div><button class="btn" id="ex5Next" type="button" style="width:100%">'+(ex5State.q+1>=20?'See my result →':'Next question →')+'</button>';
+    $('ex5Next').onclick=function(){ex5State.q++;renderExam5Q();window.scrollTo({top:0,behavior:'smooth'})};
+  })});
+}
 /* ── LAYER 3 · LEARNING LOGIC — weekly-challenge progress, Weakness Doctor and badge calculations (the cards they return are rendered by Layer 5) ── */
 /* ============ ROUND 4: WEEKLY CHALLENGES + WEAKNESS DOCTOR + SHARE + SETTINGS ============ */
 function mondayStr(off){
@@ -295,10 +342,10 @@ function weaknessHtml(){
 function shareLevelHtml(){
   var doneN=Object.keys(ST.done).length;var knownN=Object.keys(ST.known).length;
   var lvl='A1 (in progress)';
-  if(ST.examPassed)lvl='A1'; if(ST.exam2Passed)lvl='A2'; if(ST.exam3Passed)lvl='B1'; if(ST.exam4Passed)lvl='B2';
+  if(ST.examPassed)lvl='A1'; if(ST.exam2Passed)lvl='A2'; if(ST.exam3Passed)lvl='B1'; if(ST.exam4Passed)lvl='B2'; if(ST.exam5Passed)lvl='C1';
   if(!ST.examPassed){if(doneN>=40)lvl='B2 (in progress)';else if(doneN>=30)lvl='B1 (in progress)';else if(doneN>=20)lvl='A2 (in progress)'}
   var bCount=earnedBadgesCount();
-  var txt='🇪🇸 My Spanish level: '+lvl+' · 📚 '+doneN+'/50 lessons done · 🗂️ '+knownN+' words known · 🔥 '+ST.streak+'-day streak · 🏅 '+bCount+' badges — Learn Spanish with Farrakh: '+LIVE_URL;
+  var txt='🇪🇸 My Spanish level: '+lvl+' · 📚 '+doneN+'/'+LESSONS.length+' lessons done · 🗂️ '+knownN+' words known · 🔥 '+ST.streak+'-day streak · 🏅 '+bCount+' badges — Learn Spanish with Farrakh: '+LIVE_URL;
   var h='<div class="card" style="background:linear-gradient(140deg,#e3edfd,#ffffff 55%,#eef4ff)"><div class="kicker">📤 Share My Level</div><h3 style="font-size:1.15rem;margin:6px 0">Farrakh · Spanish Level '+esc(lvl)+'</h3>';
   h+='<p style="margin:4px 0">📚 <b>'+doneN+' / 50</b> lessons done · 🗂️ <b>'+knownN+'</b> words known<br>🔥 <b>'+ST.streak+'-day</b> streak · 🏅 <b>'+bCount+'</b> badges earned</p>';
   h+='<div class="sharebar"><a class="wa" href="https://wa.me/?text='+encodeURIComponent(txt)+'" target="_blank" rel="noopener">WhatsApp</a><a class="tg" href="https://t.me/share/url?url='+encodeURIComponent(LIVE_URL)+'&text='+encodeURIComponent(txt)+'" target="_blank" rel="noopener">Telegram</a><a class="xx" href="https://twitter.com/intent/tweet?text='+encodeURIComponent(txt)+'" target="_blank" rel="noopener">X</a></div>';
@@ -369,4 +416,4 @@ function renderBuilderPro(){
   document.querySelectorAll('[data-delphrase]').forEach(function(b){b.addEventListener('click',function(){var ix=parseInt(b.getAttribute('data-delphrase'),10);ST.myPhrases.splice(ix,1);save();renderBuilderPro()})});
 }
 
-export { simState, renderSimList, startSim, renderSimTurn, clinicState, renderClinic, openClinic, renderClinicTest, wrState, renderWriting, openWriting, cinState, cinemaLocked, renderCinema, openCinema, renderCinQ, ex4State, startExam4, renderExam4Q, mondayStr, challengeInfo, challengeCardHtml, weaknessHtml, shareLevelHtml, earnedBadgesCount, settingsHtml, wireProgressExtras, sbpState, renderBuilderPro };
+export { simState, renderSimList, startSim, renderSimTurn, clinicState, renderClinic, openClinic, renderClinicTest, wrState, renderWriting, openWriting, cinState, cinemaLocked, renderCinema, openCinema, renderCinQ, ex4State, startExam4, renderExam4Q, ex5State, startExam5, renderExam5Q, mondayStr, challengeInfo, challengeCardHtml, weaknessHtml, shareLevelHtml, earnedBadgesCount, settingsHtml, wireProgressExtras, sbpState, renderBuilderPro };

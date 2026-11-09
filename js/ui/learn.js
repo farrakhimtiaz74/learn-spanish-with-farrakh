@@ -65,7 +65,7 @@ function renderHome(){
   hw+=tc('lessons','🗺️','Lesson Path',LESSONS.length+' lessons · '+Object.keys(ST.done).length+' done');
   hw+=tc('levelmap','🧭','Level Map','50 stepping stones · A1 · A2 · B1 · B2 — tap a stone to jump in');
   hw+=tc('daily','⏱️','Daily 5-Minute Lesson','5 words + dialogue + 3 questions');
-  hw+=tc('grammar','📚','Grammar Reference Library','All 50 lesson rules · searchable · examples + mistake warnings');
+  hw+=tc('grammar','📚','Grammar Reference Library','All 60 lesson rules · searchable · examples + mistake warnings');
   hw+=tc('cinema','🎬','Listening Cinema','10 long stories A2–B2 · transcript after the questions');
   hw+='</div></div>';
   /* CATEGORY 2 — VERBS */
@@ -92,6 +92,7 @@ function renderHome(){
   hw+=tc('exam3','🎓','Final Exam B1',ST.exam3Passed?'✓ Passed — B1 certificate earned':(ST.done[40]?'20 questions from Lessons 31–40':'Unlocks after Lesson 40'));
   hw+=tc('mock','📝','DELE-Style Mock Exam','25 mixed questions · timed · pass mark 60%');
   hw+=tc('exam4','🎓','Final Exam B2',ST.exam4Passed?'✓ Passed — B2 certificate earned':(ST.done[50]?'20 questions from Lessons 41–50':'Unlocks after Lesson 50'));
+  hw+=tc('exam5','🎓','Final Exam C1',ST.exam5Passed?'✓ Passed — C1 certificate earned':(ST.done[60]?'20 questions from Lessons 51–60':'Unlocks after Lesson 60'));
   hw+=tc('writing','✍️','Writing Workshop','12 guided tasks · model answers · save your drafts');
   hw+=tc('builderpro','🧩','Sentence Builder Pro','Your family, village, job & plans — save My Phrases');
   hw+=tc('traps','⚠️','Urdu-Speaker Trap Trainer',TRAPS.length+' classic traps + mini-quiz');
@@ -140,7 +141,7 @@ function renderHome(){
     else if(nav==='verbmastery'){goRoute('#/verbs');setTimeout(function(){var vmx=$('vmBody');if(vmx)vmx.scrollIntoView({behavior:'smooth',block:'start'})},140)}
     else if(nav==='mic'){goRoute('#/speak')}
     else{
-      var routes={lessons:'#/lessons',levelmap:'#/levelmap',grammar:'#/grammar',cinema:'#/cinema',verbs:'#/verbs',cards:'#/flashcards',hard:'#/study/hard',quiz:'#/practice',builder:'#/tool/sentence-builder',serestar:'#/tool/ser-estar',timed:'#/tool/timed',review:'#/tool/review-mistakes',exam:'#/exam/a1',exam2:'#/exam/a2',exam3:'#/exam/b1',exam4:'#/exam/b2',mock:'#/exam/dele',verbexam:'#/exam/verbs',writing:'#/writing',builderpro:'#/tool/builder-pro',traps:'#/tool/traps',syllables:'#/tool/syllables',match:'#/tool/word-match',hangman:'#/tool/hangman',numdrill:'#/tool/numbers',listentype:'#/tool/listen-type',library:'#/listening',roleplay:'#/roleplay',bridge:'#/bridge',phrasebook:'#/phrasebook',reading:'#/reading',sim:'#/simulator',clinic:'#/clinic',speak:'#/speak',progress:'#/progress',account:'#/account'};
+      var routes={lessons:'#/lessons',levelmap:'#/levelmap',grammar:'#/grammar',cinema:'#/cinema',verbs:'#/verbs',cards:'#/flashcards',hard:'#/study/hard',quiz:'#/practice',builder:'#/tool/sentence-builder',serestar:'#/tool/ser-estar',timed:'#/tool/timed',review:'#/tool/review-mistakes',exam:'#/exam/a1',exam2:'#/exam/a2',exam3:'#/exam/b1',exam4:'#/exam/b2',exam5:'#/exam/c1',mock:'#/exam/dele',verbexam:'#/exam/verbs',writing:'#/writing',builderpro:'#/tool/builder-pro',traps:'#/tool/traps',syllables:'#/tool/syllables',match:'#/tool/word-match',hangman:'#/tool/hangman',numdrill:'#/tool/numbers',listentype:'#/tool/listen-type',library:'#/listening',roleplay:'#/roleplay',bridge:'#/bridge',phrasebook:'#/phrasebook',reading:'#/reading',sim:'#/simulator',clinic:'#/clinic',speak:'#/speak',progress:'#/progress',account:'#/account'};
       if(routes[nav])goRoute(routes[nav]);
     }
   })});
@@ -188,15 +189,16 @@ function renderDailyQ(){
 }
 /* ============ LESSONS LIST ============ */
 function renderLessons(){
-  var h='<div class="card"><h2 style="font-size:1.2rem">📖 Your Lesson Path</h2><p class="muted">Lessons open in order. Pass a quiz with 4 of 5 or more to unlock the next one.</p><button class="btn orange" onclick="renderLevelMap()" type="button" style="width:100%">🧭 Open the Level Map — '+LESSONS.length+' stepping stones</button><button class="btn ghost" onclick="renderGrammar()" type="button" style="width:100%;margin-top:8px">📚 Grammar Reference Library — all 50 rules</button></div>';
-  h+='<div class="fpills" id="lvlPills"><button type="button" class="fpill on" data-lf="all">All levels</button><button type="button" class="fpill" data-lf="A1">A1 · Beginner</button><button type="button" class="fpill" data-lf="A2">A2</button><button type="button" class="fpill" data-lf="B1">B1</button><button type="button" class="fpill" data-lf="B2">B2</button></div>';
+  var h='<div class="card"><h2 style="font-size:1.2rem">📖 Your Lesson Path</h2><p class="muted">Lessons open in order. Pass a quiz with 4 of 5 or more to unlock the next one.</p><button class="btn orange" onclick="renderLevelMap()" type="button" style="width:100%">🧭 Open the Level Map — '+LESSONS.length+' stepping stones</button><button class="btn ghost" onclick="renderGrammar()" type="button" style="width:100%;margin-top:8px">📚 Grammar Reference Library — all 60 rules</button></div>';
+  h+='<div class="fpills" id="lvlPills"><button type="button" class="fpill on" data-lf="all">All levels</button><button type="button" class="fpill" data-lf="A1">A1 · Beginner</button><button type="button" class="fpill" data-lf="A2">A2</button><button type="button" class="fpill" data-lf="B1">B1</button><button type="button" class="fpill" data-lf="B2">B2</button><button type="button" class="fpill" data-lf="C1">C1</button></div>';
   for(var i=0;i<LESSONS.length;i++){var L=LESSONS[i];
     if(i===0)h+='<h3 class="lvlhead" data-lvl="A1" style="margin:16px 0 2px">Level A1 — Lessons 1–20</h3>';
     if(i===20)h+='<h3 class="lvlhead" data-lvl="A2" style="margin:16px 0 2px">Level A2 — Lessons 21–30</h3>';
     if(i===30)h+='<h3 class="lvlhead" data-lvl="B1" style="margin:16px 0 2px">Level B1 — Lessons 31–40</h3>';
     if(i===40)h+='<h3 class="lvlhead" data-lvl="B2" style="margin:16px 0 2px">Level B2 — Lessons 41–50</h3>';
+    if(i===50)h+='<h3 class="lvlhead" data-lvl="C1" style="margin:16px 0 2px">Level C1 — Lessons 51–60</h3>';
     var unlocked=(i===0)||!!ST.done[LESSONS[i-1].n];var done=!!ST.done[L.n];
-    h+='<button type="button" class="lessonitem'+(done?' done':'')+(unlocked?'':' locked')+'" data-lesson="'+i+'" data-lvl="'+(i<20?'A1':i<30?'A2':i<40?'B1':'B2')+'" '+(unlocked?'':'disabled')+'>';
+    h+='<button type="button" class="lessonitem'+(done?' done':'')+(unlocked?'':' locked')+'" data-lesson="'+i+'" data-lvl="'+(i<20?'A1':i<30?'A2':i<40?'B1':i<50?'B2':'C1')+'" '+(unlocked?'':'disabled')+'>';
     var pct=done?100:(unlocked?12:0);var ringCol=done?'#16a34a':(unlocked?'#f97316':'#cbd5e1');
     h+='<span class="lring" style="background:conic-gradient('+ringCol+' '+pct+'%,#e8eef7 '+pct+'%)"><i>'+(done?'✓':(unlocked?L.n:'🔒'))+'</i></span><span class="lt"><b>Lesson '+L.n+': '+esc(L.t)+'</b><span class="muted">'+esc(L.sub)+'</span></span>';
     h+='<span class="badge'+(done?' done':'')+'">'+(done?'Done ✓':(unlocked?'Open':'Locked'))+'</span></button>';
