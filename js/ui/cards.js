@@ -46,6 +46,12 @@ function renderCards(){
   h+='</select><label class="pill"><input type="checkbox" id="fcShuffle" '+(fcShuffle?'checked':'')+'> 🔀 Shuffle mode</label>';
   h+='<div style="margin-top:10px"><span class="muted" style="font-weight:600">Direction: </span><span class="seg"><button type="button" id="fcDirF" class="'+(fcDir==='fwd'?'on':'')+'">Spanish → Meaning</button><button type="button" id="fcDirR" class="'+(fcDir==='rev'?'on':'')+'">Meaning → Spanish (recall)</button></span></div>';
   h+='<p class="muted kbhint" style="margin:8px 0 0">⌨️ Keyboard: Space = flip · 1 = Know it · 2 = Still learning</p><p class="muted" style="margin:8px 0 0">🔁 Spaced repetition: "Know it" schedules the card again in 1 → 3 → 7 → 21 → 45 days. "Still learning" brings it back tomorrow. ⭐ star any word to build your Favourites deck.</p></div>';
+  var catTot={},catKnown={};
+  FLASH.forEach(function(f,i){catTot[f.cat]=(catTot[f.cat]||0)+1;if(ST.known[i])catKnown[f.cat]=(catKnown[f.cat]||0)+1});
+  h+='<div class="card fc-cats"><h3 style="margin:0 0 2px">🗂️ Categories — tap one to study it</h3><div class="fpills" id="fcPills"><button type="button" class="fpill on" data-cf="all">All</button><button type="button" class="fpill" data-cf="prog">In progress</button><button type="button" class="fpill" data-cf="done">Completed</button><button type="button" class="fpill" data-cf="new">Not started</button></div><div class="catgrid">';
+  for(var ck in CATS){var tot=catTot[ck]||0,kn=catKnown[ck]||0,pct=tot?Math.round(kn/tot*100):0,cst=pct===100?'done':(pct>0?'prog':'new'),off=(100.5*(1-pct/100)).toFixed(1);
+    h+='<button type="button" class="catitem" data-catopen="'+ck+'" data-cst="'+cst+'"><svg class="catring" width="40" height="40" viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="16" fill="none" stroke="#e2e8f0" stroke-width="4"/><circle cx="20" cy="20" r="16" fill="none" stroke="'+(pct===100?'#10b981':'#4f46e5')+'" stroke-width="4" stroke-linecap="round" stroke-dasharray="100.5" stroke-dashoffset="'+off+'" transform="rotate(-90 20 20)"/></svg><span class="ct"><b>'+CATS[ck]+'</b><span class="muted">'+kn+' / '+tot+' known · '+pct+'%</span></span></button>'}
+  h+='</div></div>';
   h+='<div id="fcBody"></div>';
   $('tab-cards').innerHTML=h;
   $('fcHard').addEventListener('click',function(){fcCat='hard';var s=$('fcCatSel');if(s)s.value='hard';buildQueue();renderCard();$('tab-cards').classList.add('studyfocus');syncRoute('#/study/hard')});
