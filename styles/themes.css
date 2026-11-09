@@ -107,7 +107,8 @@ body.dark input.switch:checked{background:linear-gradient(135deg,#4f46e5,#3b82f6
    on purpose: these rules override the v10 block above. */
 :root{--glass:rgba(255,255,255,.8);--glassline:rgba(15,23,42,.08)}
 body.dark{--glass:rgba(15,23,42,.78);--glassline:rgba(148,163,184,.22)}
-.topbar{background:var(--glass) !important;-webkit-backdrop-filter:blur(16px) saturate(1.5);backdrop-filter:blur(16px) saturate(1.5);border-bottom:1px solid var(--glassline);box-shadow:0 8px 24px -12px rgba(15,23,42,.18)}
+.topbar{background:linear-gradient(135deg,rgba(79,70,229,.88),rgba(59,130,246,.86)) !important;-webkit-backdrop-filter:blur(16px) saturate(1.5);backdrop-filter:blur(16px) saturate(1.5);border-bottom:1px solid rgba(255,255,255,.25);box-shadow:0 8px 24px -12px rgba(15,23,42,.18)}
+body.dark .topbar{background:linear-gradient(135deg,rgba(30,27,75,.9),rgba(30,58,95,.88)) !important}
 .dock{background:var(--glass) !important;-webkit-backdrop-filter:blur(16px) saturate(1.5);backdrop-filter:blur(16px) saturate(1.5);border-top:1px solid var(--glassline);box-shadow:0 -10px 28px -14px rgba(15,23,42,.25)}
 @keyframes lsfViewIn{from{opacity:0;transform:translateY(16px) scale(.995)}to{opacity:1;transform:translateY(0) scale(1)}}
 section.tabenter{animation:lsfViewIn .38s cubic-bezier(.22,.9,.3,1) both}
