@@ -31,9 +31,35 @@
   .phone { border: 2px dashed #C7CDD6; border-radius: 28px; aspect-ratio: 9 / 19; display: flex; align-items: center; justify-content: center; text-align: center; color: #9CA3AF; font-size: 14px; padding: 18px; background: #fff; }
   .note { text-align: center; color: #6B7280; font-size: 14px; margin-top: 14px; }
   footer { border-top: 1px solid #E4E4E7; margin-top: 48px; padding: 26px 0 34px; text-align: center; color: #6B7280; font-size: 14px; }
+
+  .navwrap { border-bottom: 1px solid #E4E4E7; padding: 14px 0 12px; background: #fff; }
+  .brandline { font-size: 19px; font-weight: 800; }
+  .brandline a { color: #111; text-decoration: none; }
+  nav.pills { margin-top: 10px; display: flex; flex-wrap: wrap; gap: 8px; }
+  nav.pills a { border: 1px solid #E4E4E7; border-radius: 999px; padding: 6px 14px; font-size: 14px;
+                font-weight: 600; color: #111; text-decoration: none; }
+  nav.pills a:hover { background: #F4F4F5; }
+  .bigfooter { border-top: 1px solid #E4E4E7; margin-top: 48px; padding: 26px 0 34px; }
+  .fgrid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 18px; margin-bottom: 18px; text-align: left; }
+  .fgrid h4 { font-size: 14px; margin-bottom: 8px; color: #111; }
+  .fgrid a { display: block; color: #374151; text-decoration: none; font-size: 14px; margin-bottom: 5px; }
+  .fgrid a:hover { color: #0B5FFF; }
+  .fbottom { color: #6B7280; font-size: 13.5px; border-top: 1px solid #E4E4E7; padding-top: 14px; text-align: left; }
 </style>
 </head>
 <body>
+<div class="navwrap">
+  <div class="wrap">
+    <div class="brandline"><a href="index.html">🇪🇸 Learn Spanish with Farrakh</a></div>
+    <nav class="pills">
+      <a href="index.html">App</a>
+      <a href="download.html">Download</a>
+      <a href="blog.html">Guides</a>
+      <a href="faq.html">FAQ</a>
+      <a href="about.html">About</a>
+    </nav>
+  </div>
+</div>
 <header>
   <div class="wrap">
     <div class="flag">🇪🇸</div>
@@ -83,8 +109,74 @@
   </div>
 </section>
 
-<footer>
-  <div class="wrap">Learn Spanish with Farrakh — free forever 🇪🇸 · Made with ❤️ for Urdu speakers</div>
+
+<section>
+  <div class="wrap">
+    <h2>📚 Guides aur madad</h2>
+    <div class="grid">
+      <div class="card"><div class="ico">🌱</div><h3>Beginners Guide</h3>
+        <p>Bilkul shuru se Spanish — pehla qadam asaan urdu mein samjhaya gaya.</p>
+        <p style="margin-top:8px"><a href="beginners.html">Beginners Guide →</a></p></div>
+      <div class="card"><div class="ico">📖</div><h3>Grammar Guide</h3>
+        <p>Ser vs Estar, Por vs Para, Subjunctive — har mushkil topic ka apna page.</p>
+        <p style="margin-top:8px"><a href="grammar-guide.html">Grammar Guide →</a></p></div>
+      <div class="card"><div class="ico">🗣️</div><h3>Phrasebook</h3>
+        <p>300 roz-marra jumlay — safar, kaam, doctor aur emergency ke liye.</p>
+        <p style="margin-top:8px"><a href="phrasebook.html">Phrasebook →</a></p></div>
+      <div class="card"><div class="ico">🎓</div><h3>Levels A1–C1</h3>
+        <p>Har level mein kya seekhoge — A1 se C1 tak ka poora naqsha.</p>
+        <p style="margin-top:8px"><a href="level-a1.html">A1</a> · <a href="level-a2.html">A2</a> · <a href="level-b1.html">B1</a> · <a href="level-b2.html">B2</a> · <a href="level-c1.html">C1</a></p></div>
+      <div class="card"><div class="ico">❓</div><h3>FAQ</h3>
+        <p>Aam sawalon ke jawab — download, update, PIN, cloud backup aur certificates.</p>
+        <p style="margin-top:8px"><a href="faq.html">FAQ →</a></p></div>
+      <div class="card"><div class="ico">🗺️</div><h3>Saari pages</h3>
+        <p>Website ki har cheez ek list mein — guides, levels, tools aur madad.</p>
+        <p style="margin-top:8px"><a href="sitemap.html">Sitemap →</a></p></div>
+    </div>
+  </div>
+</section>
+<footer class="bigfooter">
+  <div class="wrap">
+    <div class="fgrid">
+      <div>
+        <h4>App</h4>
+        <a href="download.html">Download</a>
+        <a href="changelog.html">Changelog</a>
+        <a href="verify.html">Verify Certificate</a>
+        <a href="privacy.html">Privacy</a>
+        <a href="terms.html">Terms</a>
+      </div>
+      <div>
+        <h4>Learn</h4>
+        <a href="beginners.html">Beginners Guide</a>
+        <a href="grammar-guide.html">Grammar Guide</a>
+        <a href="phrasebook.html">Phrasebook</a>
+        <a href="top-100-words.html">Top 100 Words</a>
+        <a href="blog.html">Blog</a>
+      </div>
+      <div>
+        <h4>Levels</h4>
+        <a href="level-a1.html">A1</a>
+        <a href="level-a2.html">A2</a>
+        <a href="level-b1.html">B1</a>
+        <a href="level-b2.html">B2</a>
+        <a href="level-c1.html">C1</a>
+      </div>
+      <div>
+        <h4>More</h4>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+        <a href="faq.html">FAQ</a>
+        <a href="press.html">Press Kit</a>
+        <a href="credits.html">Credits</a>
+        <a href="sitemap.html">Sitemap</a>
+        <a href="share.html">Share</a>
+      </div>
+    </div>
+    <p class="fbottom">© 2026 Learn Spanish with Farrakh · Free forever · No ads<br>
+    Progress hamesha tumhare phone/computer mein rehta hai.<br>
+    <span style="color:#9CA3AF">Learn Spanish with Farrakh — free forever 🇪🇸 · Made with ❤️ for Urdu speakers</span></p>
+  </div>
 </footer>
 </body>
 </html>

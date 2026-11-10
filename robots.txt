@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://farrakhimtiaz74.github.io/learn-spanish-with-farrakh/sitemap.xml
